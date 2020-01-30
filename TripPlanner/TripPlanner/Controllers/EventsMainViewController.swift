@@ -6,6 +6,12 @@
 //  Copyright © 2020 Hamster. All rights reserved.
 //
 
+/*
+ EventsMainViewController
+ A view controller that manages events page
+ This is the main VC of all VC associated with events
+*/
+
 import Foundation
 import UIKit
 
@@ -20,10 +26,13 @@ class EventsMainViewController: UIViewController {
     
     // MARK: Handlers
     @IBAction func didTapMenu(_ sender: UIBarButtonItem) {
+        // Executes when side menu button icon is tapped
+        
         // Instantiate menu view controller
         guard let menuViewController = storyboard?.instantiateViewController(
             withIdentifier: "MenuViewController") as? MenuViewController else { return }
         
+        // Set the closure value of menu VC
         menuViewController.didTapMenuButton = {
             selectedMenu in
             self.showNewController(selectedMenu)
@@ -35,6 +44,8 @@ class EventsMainViewController: UIViewController {
     }
     
     func showNewController(_ selectedMenu: MenuType) {
+        // Takes selected menu as input and present corresponding VC
+
         var newViewController: UIViewController
         
         switch selectedMenu {
@@ -49,13 +60,18 @@ class EventsMainViewController: UIViewController {
                 withIdentifier: "SettingsNavigationViewController"))!
         }
         
+        // Present VC in fullscreen
         newViewController.modalPresentationStyle = .fullScreen
         present(newViewController, animated: false)
     }
 }
 
 extension EventsMainViewController: UIViewControllerTransitioningDelegate {
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        // Asks your delegate for the transition animator object to use
+        // when presenting a view controller
         transition.isPresenting = true
         return transition
     }

@@ -6,8 +6,13 @@
 //  Copyright © 2020 Hamster. All rights reserved.
 //
 
-import UIKit
+/*
+ SettingsViewController
+ A view controller that manages settings page
+ This is the main VC of all VC associated with settings
+*/
 
+import UIKit
 
 class SettingsViewController: UIViewController {
     // MARK: Properties
@@ -16,15 +21,17 @@ class SettingsViewController: UIViewController {
     // MARK: Initializations
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
+    // MARK: Handlers
     @IBAction func didTapMenu(_ sender: Any) {
+        // Executes when side menu button icon is tapped
+        
         // Instantiate menu view controller
         guard let menuViewController = storyboard?.instantiateViewController(
             withIdentifier: "MenuViewController") as? MenuViewController else { return }
         
+        // Set the closure value of menu VC
         menuViewController.didTapMenuButton = {
             selectedMenu in
             self.showNewController(selectedMenu)
@@ -36,6 +43,8 @@ class SettingsViewController: UIViewController {
     }
     
     func showNewController(_ selectedMenu: MenuType) {
+        // Takes selected menu as input and present corresponding VC
+        
         var newViewController: UIViewController
         
         switch selectedMenu {
@@ -49,6 +58,8 @@ class SettingsViewController: UIViewController {
             newViewController = (storyboard?.instantiateViewController(
                 withIdentifier: "SettingsNavigationViewController"))!
         }
+        
+        // Present VC in fullscreen
         newViewController.modalPresentationStyle = .fullScreen
         present(newViewController, animated: false)
     }
@@ -58,6 +69,8 @@ extension SettingsViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController,
                              presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        // Asks your delegate for the transition animator object to use
+        // when presenting a view controller
         transition.isPresenting = true
         return transition
     }

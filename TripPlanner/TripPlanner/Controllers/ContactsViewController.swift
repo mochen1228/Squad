@@ -6,25 +6,32 @@
 //  Copyright © 2020 Hamster. All rights reserved.
 //
 
+/*
+ ContactsViewController
+ A view controller that manages contacts page
+ This is the main VC of all VC associated with contacts
+*/
+
 import UIKit
 
 class ContactsViewController: UIViewController {
     // MARK: Properties
-
     let transition = MenuSlideInTransition()
 
     // MARK: Initializations
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
     
+    // MARK: Handlers
     @IBAction func didTapMenu(_ sender: UIBarButtonItem) {
+        // Executes when side menu button icon is tapped
+        
         // Instantiate menu view controller
         guard let menuViewController = storyboard?.instantiateViewController(
             withIdentifier: "MenuViewController") as? MenuViewController else { return }
         
+        // Set the closure value of menu VC
         menuViewController.didTapMenuButton = {
             selectedMenu in
             self.showNewController(selectedMenu)
@@ -36,6 +43,7 @@ class ContactsViewController: UIViewController {
     }
     
     func showNewController(_ selectedMenu: MenuType) {
+        // Takes selected menu as input and present corresponding VC
         var newViewController: UIViewController
         
         switch selectedMenu {
@@ -49,6 +57,8 @@ class ContactsViewController: UIViewController {
             newViewController = (storyboard?.instantiateViewController(
                 withIdentifier: "SettingsNavigationViewController"))!
         }
+        
+        // Present VC in fullscreen
         newViewController.modalPresentationStyle = .fullScreen
         present(newViewController, animated: false)
     }
@@ -58,6 +68,8 @@ extension ContactsViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController,
                              presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        // Asks your delegate for the transition animator object to use
+        // when presenting a view controller
         transition.isPresenting = true
         return transition
     }
