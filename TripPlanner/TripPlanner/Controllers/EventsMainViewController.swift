@@ -1,5 +1,5 @@
 //
-//  HomeController.swift
+//  EventsMainViewController.swift
 //  TripPlanner
 //
 //  Created by Hamster on 1/27/20.

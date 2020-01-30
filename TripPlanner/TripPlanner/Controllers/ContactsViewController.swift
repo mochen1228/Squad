@@ -10,11 +10,13 @@ import UIKit
 
 class ContactsViewController: UIViewController {
     // MARK: Properties
+
     let transition = MenuSlideInTransition()
 
     // MARK: Initializations
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
     }
     
