@@ -15,13 +15,16 @@ enum MenuType: Int {
     case settings
 }
 
-class MenuController: UITableViewController {
+class MenuViewController: UITableViewController {
     
     // MARK: Properties
     var didTapMenuButton: ((MenuType) -> Void)?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.layer.cornerRadius = 20
+
     }
         
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

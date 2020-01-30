@@ -10,7 +10,7 @@
         <!--Events-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="EventsViewController" id="BYZ-38-t0r" customClass="HomeController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventsViewController" id="BYZ-38-t0r" customClass="EventsMainViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -33,14 +33,20 @@
         <!--Settings-->
         <scene sceneID="QBN-vf-bdL">
             <objects>
-                <viewController storyboardIdentifier="SettingsViewController" id="UPP-ZW-SGl" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" id="UPP-ZW-SGl" customClass="SettingsViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="59u-hb-aJb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="7td-ug-pZM"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Settings" id="V6e-qD-dIm"/>
+                    <navigationItem key="navigationItem" title="Settings" id="V6e-qD-dIm">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="line.horizontal.3" catalog="system" id="Ve4-S7-aTK">
+                            <connections>
+                                <action selector="didTapMenu:" destination="UPP-ZW-SGl" id="jqw-Ho-Zyw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePn-FF-KW6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -49,23 +55,29 @@
         <!--Contacts-->
         <scene sceneID="t4M-50-4cM">
             <objects>
-                <viewController storyboardIdentifier="ContactsViewController" id="xhY-Wj-jSd" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactsViewController" id="xhY-Wj-jSd" customClass="ContactsViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bUP-HJ-uxx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="WQv-eC-kGs"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Contacts" id="08q-9r-SV4"/>
+                    <navigationItem key="navigationItem" title="Contacts" id="08q-9r-SV4">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="line.horizontal.3" catalog="system" id="qgx-nK-8fm">
+                            <connections>
+                                <action selector="didTapMenu:" destination="xhY-Wj-jSd" id="P49-AC-vYZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H9w-OQ-fkb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1048" y="818"/>
         </scene>
-        <!--Menu Controller-->
+        <!--Menu View Controller-->
         <scene sceneID="QZp-5o-LgY">
             <objects>
-                <tableViewController storyboardIdentifier="MenuViewController" id="Oct-Jp-F2F" customClass="MenuController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MenuViewController" id="Oct-Jp-F2F" customClass="MenuViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="YCU-fc-scs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -201,7 +213,7 @@
         <!--Navigation Controller-->
         <scene sceneID="81X-a0-mC8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aIt-Di-0q9" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="EventsNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="aIt-Di-0q9" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aZH-VN-ZPv">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -223,7 +235,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ZTG-qd-QED">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fhk-02-hau" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ContactsNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="Fhk-02-hau" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0vu-je-mO4">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -245,7 +257,7 @@
         <!--Navigation Controller-->
         <scene sceneID="eup-I4-Ilq">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SVC-lh-Shl" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SettingsNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="SVC-lh-Shl" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lEZ-nk-XmC">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -271,4 +283,5 @@
         <image name="icons8-settings-100" width="100" height="100"/>
         <image name="line.horizontal.3" catalog="system" width="64" height="32"/>
     </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

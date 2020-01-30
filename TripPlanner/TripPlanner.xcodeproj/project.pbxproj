@@ -13,9 +13,11 @@
 		A868642223DF7B7E00EBFA35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A868642123DF7B7E00EBFA35 /* Assets.xcassets */; };
 		A868642523DF7B7E00EBFA35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A868642323DF7B7E00EBFA35 /* LaunchScreen.storyboard */; };
 		A868643123DF89B600EBFA35 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868643023DF89B600EBFA35 /* ContainerController.swift */; };
-		A868643323DF89D400EBFA35 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868643223DF89D400EBFA35 /* HomeController.swift */; };
-		A868643523DF89E300EBFA35 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868643423DF89E300EBFA35 /* MenuController.swift */; };
+		A868643323DF89D400EBFA35 /* EventsMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868643223DF89D400EBFA35 /* EventsMainViewController.swift */; };
+		A868643523DF89E300EBFA35 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868643423DF89E300EBFA35 /* MenuViewController.swift */; };
 		A8A1071323E0BC2F008C4D59 /* MenuSlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1071223E0BC2F008C4D59 /* MenuSlideInTransition.swift */; };
+		A8A1074223E2663D008C4D59 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1074123E2663D008C4D59 /* ContactsViewController.swift */; };
+		A8A1074423E2665A008C4D59 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1074323E2665A008C4D59 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,9 +29,11 @@
 		A868642423DF7B7E00EBFA35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A868642623DF7B7E00EBFA35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A868643023DF89B600EBFA35 /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
-		A868643223DF89D400EBFA35 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
-		A868643423DF89E300EBFA35 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		A868643223DF89D400EBFA35 /* EventsMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsMainViewController.swift; sourceTree = "<group>"; };
+		A868643423DF89E300EBFA35 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		A8A1071223E0BC2F008C4D59 /* MenuSlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSlideInTransition.swift; sourceTree = "<group>"; };
+		A8A1074123E2663D008C4D59 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		A8A1074323E2665A008C4D59 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,8 +85,10 @@
 			isa = PBXGroup;
 			children = (
 				A868643023DF89B600EBFA35 /* ContainerController.swift */,
-				A868643223DF89D400EBFA35 /* HomeController.swift */,
-				A868643423DF89E300EBFA35 /* MenuController.swift */,
+				A868643223DF89D400EBFA35 /* EventsMainViewController.swift */,
+				A868643423DF89E300EBFA35 /* MenuViewController.swift */,
+				A8A1074123E2663D008C4D59 /* ContactsViewController.swift */,
+				A8A1074323E2665A008C4D59 /* SettingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -188,11 +194,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8A1071323E0BC2F008C4D59 /* MenuSlideInTransition.swift in Sources */,
+				A8A1074223E2663D008C4D59 /* ContactsViewController.swift in Sources */,
 				A868641923DF7B7D00EBFA35 /* AppDelegate.swift in Sources */,
 				A868641B23DF7B7D00EBFA35 /* SceneDelegate.swift in Sources */,
 				A868643123DF89B600EBFA35 /* ContainerController.swift in Sources */,
-				A868643523DF89E300EBFA35 /* MenuController.swift in Sources */,
-				A868643323DF89D400EBFA35 /* HomeController.swift in Sources */,
+				A868643523DF89E300EBFA35 /* MenuViewController.swift in Sources */,
+				A868643323DF89D400EBFA35 /* EventsMainViewController.swift in Sources */,
+				A8A1074423E2665A008C4D59 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
