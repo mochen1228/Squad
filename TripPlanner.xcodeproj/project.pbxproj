@@ -18,10 +18,12 @@
 		A8A1071323E0BC2F008C4D59 /* MenuSlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1071223E0BC2F008C4D59 /* MenuSlideInTransition.swift */; };
 		A8A1074223E2663D008C4D59 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1074123E2663D008C4D59 /* ContactsViewController.swift */; };
 		A8A1074423E2665A008C4D59 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1074323E2665A008C4D59 /* SettingsViewController.swift */; };
+		A8A1074723E354D1008C4D59 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8A1074623E354D1008C4D59 /* Login.storyboard */; };
+		A8A1074923E3958F008C4D59 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8A1074823E3958F008C4D59 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A868641523DF7B7D00EBFA35 /* TripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A868641523DF7B7D00EBFA35 /* HangoutPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HangoutPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A868641823DF7B7D00EBFA35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A868641A23DF7B7D00EBFA35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A868641F23DF7B7D00EBFA35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -34,6 +36,8 @@
 		A8A1071223E0BC2F008C4D59 /* MenuSlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSlideInTransition.swift; sourceTree = "<group>"; };
 		A8A1074123E2663D008C4D59 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		A8A1074323E2665A008C4D59 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		A8A1074623E354D1008C4D59 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		A8A1074823E3958F008C4D59 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +62,7 @@
 		A868641623DF7B7D00EBFA35 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A868641523DF7B7D00EBFA35 /* TripPlanner.app */,
+				A868641523DF7B7D00EBFA35 /* HangoutPlanner.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -66,15 +70,16 @@
 		A868641723DF7B7D00EBFA35 /* TripPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				A8A1074523E354AB008C4D59 /* Storyboards */,
 				A868642F23DF896000EBFA35 /* Utils */,
 				A868642E23DF895B00EBFA35 /* Models */,
 				A868642D23DF895900EBFA35 /* Views */,
 				A868642C23DF895600EBFA35 /* Controllers */,
 				A868641823DF7B7D00EBFA35 /* AppDelegate.swift */,
 				A868641A23DF7B7D00EBFA35 /* SceneDelegate.swift */,
-				A868641E23DF7B7D00EBFA35 /* Main.storyboard */,
 				A868642123DF7B7E00EBFA35 /* Assets.xcassets */,
 				A868642323DF7B7E00EBFA35 /* LaunchScreen.storyboard */,
+				A8A1074823E3958F008C4D59 /* GoogleService-Info.plist */,
 				A868642623DF7B7E00EBFA35 /* Info.plist */,
 			);
 			path = TripPlanner;
@@ -122,6 +127,15 @@
 			path = Transitions;
 			sourceTree = "<group>";
 		};
+		A8A1074523E354AB008C4D59 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A868641E23DF7B7D00EBFA35 /* Main.storyboard */,
+				A8A1074623E354D1008C4D59 /* Login.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,7 +153,7 @@
 			);
 			name = TripPlanner;
 			productName = TripPlanner;
-			productReference = A868641523DF7B7D00EBFA35 /* TripPlanner.app */;
+			productReference = A868641523DF7B7D00EBFA35 /* HangoutPlanner.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -180,7 +194,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8A1074723E354D1008C4D59 /* Login.storyboard in Resources */,
 				A868642523DF7B7E00EBFA35 /* LaunchScreen.storyboard in Resources */,
+				A8A1074923E3958F008C4D59 /* GoogleService-Info.plist in Resources */,
 				A868642223DF7B7E00EBFA35 /* Assets.xcassets in Resources */,
 				A868642023DF7B7D00EBFA35 /* Main.storyboard in Resources */,
 			);
@@ -351,8 +367,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.chenmo.test.TripPlanner;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chenmo.HangoutPlanner;
+				PRODUCT_NAME = HangoutPlanner;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -369,8 +385,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.chenmo.test.TripPlanner;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chenmo.HangoutPlanner;
+				PRODUCT_NAME = HangoutPlanner;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

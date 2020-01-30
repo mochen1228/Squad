@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:TripPlanner/TripPlanner.xcodeproj">
+      location = "self:..">
    </FileRef>
 </Workspace>
