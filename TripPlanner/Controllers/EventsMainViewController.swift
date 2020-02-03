@@ -14,6 +14,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 class EventsMainViewController: UIViewController {
     // MARK: Properties
@@ -41,6 +42,18 @@ class EventsMainViewController: UIViewController {
         menuViewController.modalPresentationStyle = .overCurrentContext
         menuViewController.transitioningDelegate = self
         present(menuViewController, animated: true)
+    }
+    
+    @IBAction func didTapLogout(_ sender: UIBarButtonItem) {
+        do {
+            try Auth.auth().signOut()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let toVC = storyboard.instantiateViewController(withIdentifier: "WelcomeScreenViewController")
+            toVC.modalPresentationStyle = .fullScreen
+            present(toVC, animated: false)
+        } catch {
+            print("Cannot logout")
+        }
     }
     
     func showNewController(_ selectedMenu: MenuType) {

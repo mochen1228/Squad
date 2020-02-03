@@ -59,7 +59,13 @@ class SignupViewController: UIViewController {
     
     func createNewUser(_ username: String, _ password: String) -> Void {
         Auth.auth().createUser(withEmail: username, password: password) { authResult, error in
-          print("Cannot create user")
+            print(error.debugDescription)
+            if error != nil {
+                print("Cannot create user")
+            } else {
+                print("Successfully created user")
+                self.dismiss(animated: true, completion: nil)
+            }
             return
         }
     }
@@ -78,26 +84,6 @@ class SignupViewController: UIViewController {
     }
     
     func checkUsernameLegal(with email: String) -> Bool {
-        // TODO:
-        // Implement the feature that allows the error textfield to
-        // display which type of illegal is the username/password
-        
-        // if email.count < 8 {
-            // return false
-        // }
-        
-        // For querying users, use "_User", or it won't work
-//        let query = PFQuery(className: "_User")
-//        query.whereKey("username", equalTo:usernameTextField.text!)
-//        var legal = true
-        
-        // CAUSION:
-        // This code will throw error when the user database has NO users at all
-        // Currently working on solutions, but having at least 1 user in the
-        //      database will hide this problem temporarily
-        // TODO: Make the query work when querying an empty database
-//        let count = try! query.findObjects().count
-//        return count == 0
         return true
     }
     

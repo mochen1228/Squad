@@ -7,27 +7,45 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class WelcomeScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-    @IBAction func didTapLogin(_ sender: UIButton) {
-        // When Log in button is clicked, jump to events page
-        // (Logged in)
-//        let toStoryboard = UIStoryboard(name: "EventsMain", bundle: nil)
-//        let toVC = toStoryboard.instantiateInitialViewController()
-//        toVC!.modalPresentationStyle = .fullScreen
-//        present(toVC!, animated: false)
+    override func viewDidAppear(_ animated: Bool) {
+        print("Checking logged in users")
+        let currentUser = Auth.auth().currentUser
+        
+        // If current user session is active, skip the login screen
+        if currentUser != nil {
+            print("User session active")
+            let userHome = UIStoryboard(name: "EventsMain", bundle: nil)
+            let userHomeController = userHome.instantiateViewController(withIdentifier: "EventsNavigationViewController")
+            userHomeController.modalPresentationStyle = .fullScreen
+            present(userHomeController, animated: false)
+        }
+    }
+    
+    
+    @IBAction func didTapSignup(_ sender: UIButton) {
         let toStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let toVC = toStoryboard.instantiateViewController(withIdentifier: "SignupViewController")
         toVC.modalPresentationStyle = .fullScreen
         present(toVC, animated: true)
     }
+    
+    @IBAction func didTapLogin(_ sender: UIButton) {
+        let toStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let toVC = toStoryboard.instantiateViewController(withIdentifier: "LoginViewController")
+        toVC.modalPresentationStyle = .fullScreen
+        present(toVC, animated: true)
+    }
+    
+    
+    
     
 
     /*

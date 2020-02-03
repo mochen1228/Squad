@@ -10,7 +10,7 @@
         <!--Events-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="EventsViewController" id="BYZ-38-t0r" customClass="EventsMainViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventsViewController" id="BYZ-38-t0r" customClass="EventsMainViewController" customModule="HangoutPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,6 +24,11 @@
                                 <action selector="didTapMenu:" destination="BYZ-38-t0r" id="nRk-8K-Pow"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="G5L-co-d2n">
+                            <connections>
+                                <action selector="didTapLogout:" destination="BYZ-38-t0r" id="trO-LT-ic6"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -33,7 +38,7 @@
         <!--Settings-->
         <scene sceneID="QBN-vf-bdL">
             <objects>
-                <viewController storyboardIdentifier="SettingsViewController" id="UPP-ZW-SGl" customClass="SettingsViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" id="UPP-ZW-SGl" customClass="SettingsViewController" customModule="HangoutPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="59u-hb-aJb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -55,7 +60,7 @@
         <!--Contacts-->
         <scene sceneID="t4M-50-4cM">
             <objects>
-                <viewController storyboardIdentifier="ContactsViewController" id="xhY-Wj-jSd" customClass="ContactsViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactsViewController" id="xhY-Wj-jSd" customClass="ContactsViewController" customModule="HangoutPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bUP-HJ-uxx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -77,7 +82,7 @@
         <!--Menu View Controller-->
         <scene sceneID="QZp-5o-LgY">
             <objects>
-                <tableViewController storyboardIdentifier="MenuViewController" id="Oct-Jp-F2F" customClass="MenuViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MenuViewController" id="Oct-Jp-F2F" customClass="MenuViewController" customModule="HangoutPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="YCU-fc-scs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
