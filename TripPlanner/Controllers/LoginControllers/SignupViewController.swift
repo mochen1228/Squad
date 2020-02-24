@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class SignupViewController: UIViewController {
 
@@ -64,6 +65,9 @@ class SignupViewController: UIViewController {
                 print("Cannot create user")
             } else {
                 print("Successfully created user")
+                var ref: DatabaseReference!
+                ref = Database.database().reference()
+                
                 self.dismiss(animated: true, completion: nil)
             }
             return

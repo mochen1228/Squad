@@ -11,5 +11,11 @@ target 'TripPlanner' do
   # add pods for any other desired Firebase products
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Database'
+  pod 'RYFloatingInput'
+  pod "RAGTextField"
+  platform :ios, '8.0'
+  use_frameworks!
+  pod 'ACFloatingTextfield-Swift', '~> 1.8'
   # https://firebase.google.com/docs/ios/setup#available-pods
 end

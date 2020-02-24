@@ -161,10 +161,15 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/ACFloatingTextfield-Swift/ACFloatingTextfield_Swift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RAGTextField/RAGTextField.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RYFloatingInput/RYFloatingInput.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/abseil/absl.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework"
@@ -172,10 +177,15 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/ACFloatingTextfield-Swift/ACFloatingTextfield_Swift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RAGTextField/RAGTextField.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RYFloatingInput/RYFloatingInput.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/abseil/absl.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework"

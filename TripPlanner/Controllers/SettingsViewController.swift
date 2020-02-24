@@ -13,6 +13,7 @@
 */
 
 import UIKit
+import FirebaseAuth
 
 class SettingsViewController: UIViewController {
     // MARK: Properties
@@ -41,6 +42,7 @@ class SettingsViewController: UIViewController {
         menuViewController.transitioningDelegate = self
         present(menuViewController, animated: true)
     }
+    
     
     func showNewController(_ selectedMenu: MenuType) {
         // Takes selected menu as input and present corresponding VC
