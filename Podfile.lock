@@ -307,6 +307,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Firestore
+  - InputBarAccessoryView
   - MessageInputBar
   - MessageKit (from `https://github.com/MessageKit/MessageKit.git`, branch `development`)
   - RAGTextField
@@ -386,6 +387,6 @@ SPEC CHECKSUMS:
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RYFloatingInput: 4034e3c12a8235a7d7e0a97d69ae05e906397b22
 
-PODFILE CHECKSUM: 1ea8bc978e1ed0ba8b5e3929aab67dd1cd6b2797
+PODFILE CHECKSUM: 60d0632c60053b86a87f47179d2fc45641819cb0
 
 COCOAPODS: 1.8.4

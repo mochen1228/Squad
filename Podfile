@@ -16,5 +16,6 @@ target 'TripPlanner' do
   pod "RAGTextField"
   pod 'MessageKit', :git => 'https://github.com/MessageKit/MessageKit.git', :branch => 'development'
   pod 'MessageInputBar' 
+  pod 'InputBarAccessoryView'
   # https://firebase.google.com/docs/ios/setup#available-pods
 end

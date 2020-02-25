@@ -7,32 +7,30 @@
 //
 
 import Foundation
+import UIKit
 import MessageKit
 
+struct Member {
+    let name: String
+    let color: UIColor
+}
 
-struct Message: MessageType {
+struct Message {
+    let member: Member
+    let text: String
+    let messageId: String
+}
+
+extension Message: MessageType{
     var sender: SenderType {
-        return user
+        return Sender(id: member.name, displayName: member.name)
     }
     
-    var messageId: String
-    
-    var sentDate: Date
-    
-    var kind: MessageKind
-    
-    var user: User
-    
-    private init(kind: MessageKind, user: User, messageId: String, date: Date) {
-        self.kind = kind
-        self.user = user
-        self.messageId = messageId
-        self.sentDate = date
+    var sentDate: Date {
+        return Date()
     }
-    
-    
-    init(text: String, user: User, messageId: String, date: Date) {
-        self.init(kind: .text(text), user: user, messageId: messageId, date: date)
+
+    var kind: MessageKind {
+        return .text(text)
     }
-    
 }
