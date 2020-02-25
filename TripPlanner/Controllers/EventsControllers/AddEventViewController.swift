@@ -19,7 +19,10 @@ class AddEventViewController: UIViewController {
     }
 
     @IBOutlet weak var eventNameTextfield: UITextField!
-    
+        
+    @IBAction func didTapInviteFriendsButton(_ sender: Any) {
+        performSegue(withIdentifier: "showInviteFriends", sender: nil)
+    }
     /*
     // MARK: - Navigation
 

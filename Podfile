@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'TripPlanner' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -17,5 +17,5 @@ target 'TripPlanner' do
   pod 'MessageKit', :git => 'https://github.com/MessageKit/MessageKit.git', :branch => 'development'
   pod 'MessageInputBar' 
   pod 'InputBarAccessoryView'
-  # https://firebase.google.com/docs/ios/setup#available-pods
+  pod 'SimpleCheckbox'
 end

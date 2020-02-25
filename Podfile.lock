@@ -301,6 +301,7 @@ PODS:
   - RYFloatingInput (0.1.6):
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
+  - SimpleCheckbox (2.1.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -312,6 +313,7 @@ DEPENDENCIES:
   - MessageKit (from `https://github.com/MessageKit/MessageKit.git`, branch `development`)
   - RAGTextField
   - RYFloatingInput
+  - SimpleCheckbox
 
 SPEC REPOS:
   trunk:
@@ -344,6 +346,7 @@ SPEC REPOS:
     - RxCocoa
     - RxSwift
     - RYFloatingInput
+    - SimpleCheckbox
 
 EXTERNAL SOURCES:
   MessageKit:
@@ -386,7 +389,8 @@ SPEC CHECKSUMS:
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RYFloatingInput: 4034e3c12a8235a7d7e0a97d69ae05e906397b22
+  SimpleCheckbox: ddcd433ab8c3a8f57300bebda13151a8f302c7f9
 
-PODFILE CHECKSUM: 60d0632c60053b86a87f47179d2fc45641819cb0
+PODFILE CHECKSUM: 09e90759b17e2dbeac06c3b430a8074edb52e20f
 
 COCOAPODS: 1.8.4
