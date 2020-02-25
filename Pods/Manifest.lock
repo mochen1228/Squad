@@ -158,29 +158,28 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
-  - ACFloatingTextfield-Swift (1.8)
   - BoringSSL-GRPC (0.0.3):
     - BoringSSL-GRPC/Implementation (= 0.0.3)
     - BoringSSL-GRPC/Interface (= 0.0.3)
   - BoringSSL-GRPC/Implementation (0.0.3):
     - BoringSSL-GRPC/Interface (= 0.0.3)
   - BoringSSL-GRPC/Interface (0.0.3)
-  - Firebase/Analytics (6.16.0):
+  - Firebase/Analytics (6.17.0):
     - Firebase/Core
-  - Firebase/Auth (6.16.0):
+  - Firebase/Auth (6.17.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.4.3)
-  - Firebase/Core (6.16.0):
+  - Firebase/Core (6.17.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.2.2)
-  - Firebase/CoreOnly (6.16.0):
-    - FirebaseCore (= 6.6.1)
-  - Firebase/Database (6.16.0):
+  - Firebase/CoreOnly (6.17.0):
+    - FirebaseCore (= 6.6.2)
+  - Firebase/Database (6.17.0):
     - Firebase/CoreOnly
     - FirebaseDatabase (~> 6.1.4)
-  - Firebase/Firestore (6.16.0):
+  - Firebase/Firestore (6.17.0):
     - Firebase/CoreOnly
-    - FirebaseFirestore (~> 1.10.0)
+    - FirebaseFirestore (~> 1.10.2)
   - FirebaseAnalytics (6.2.2):
     - FirebaseCore (~> 6.6)
     - FirebaseInstanceID (~> 4.3)
@@ -197,7 +196,7 @@ PODS:
     - GoogleUtilities/Environment (~> 6.5)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (6.6.1):
+  - FirebaseCore (6.6.2):
     - FirebaseCoreDiagnostics (~> 1.2)
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
     - GoogleUtilities/Environment (~> 6.5)
@@ -213,7 +212,7 @@ PODS:
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.0)
     - leveldb-library (~> 1.22)
-  - FirebaseFirestore (1.10.0):
+  - FirebaseFirestore (1.10.2):
     - abseil/algorithm (= 0.20190808)
     - abseil/base (= 0.20190808)
     - abseil/memory (= 0.20190808)
@@ -230,7 +229,7 @@ PODS:
     - FirebaseCore (~> 6.6)
     - GoogleUtilities/UserDefaults (~> 6.5)
     - PromisesObjC (~> 1.2)
-  - FirebaseInstanceID (4.3.0):
+  - FirebaseInstanceID (4.3.1):
     - FirebaseCore (~> 6.6)
     - FirebaseInstallations (~> 1.0)
     - GoogleUtilities/Environment (~> 6.5)
@@ -241,9 +240,9 @@ PODS:
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (= 0.3.9011)
-  - GoogleDataTransport (3.3.1)
-  - GoogleDataTransportCCTSupport (1.3.1):
-    - GoogleDataTransport (~> 3.3)
+  - GoogleDataTransport (4.0.0)
+  - GoogleDataTransportCCTSupport (1.4.0):
+    - GoogleDataTransport (~> 4.0)
     - nanopb (~> 0.3.901)
   - GoogleUtilities/AppDelegateSwizzler (6.5.1):
     - GoogleUtilities/Environment
@@ -280,7 +279,12 @@ PODS:
     - nanopb (~> 0.3)
   - gRPC-Core/Interface (1.21.0)
   - GTMSessionFetcher/Core (1.3.1)
+  - InputBarAccessoryView (4.3.1):
+    - InputBarAccessoryView/Core (= 4.3.1)
+  - InputBarAccessoryView/Core (4.3.1)
   - leveldb-library (1.22)
+  - MessageKit (3.1.0):
+    - InputBarAccessoryView (~> 4.3.0)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
@@ -296,18 +300,17 @@ PODS:
     - RxSwift (~> 4.0)
 
 DEPENDENCIES:
-  - ACFloatingTextfield-Swift (~> 1.8)
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Firestore
+  - MessageKit (from `https://github.com/MessageKit/MessageKit.git`, branch `development`)
   - RAGTextField
   - RYFloatingInput
 
 SPEC REPOS:
   trunk:
     - abseil
-    - ACFloatingTextfield-Swift
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAnalytics
@@ -327,6 +330,7 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - InputBarAccessoryView
     - leveldb-library
     - nanopb
     - PromisesObjC
@@ -335,29 +339,40 @@ SPEC REPOS:
     - RxSwift
     - RYFloatingInput
 
+EXTERNAL SOURCES:
+  MessageKit:
+    :branch: development
+    :git: https://github.com/MessageKit/MessageKit.git
+
+CHECKOUT OPTIONS:
+  MessageKit:
+    :commit: 1fbb4970d07a4081b6ad0fa58c5f491a2e5cae6c
+    :git: https://github.com/MessageKit/MessageKit.git
+
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
-  ACFloatingTextfield-Swift: c3212cef9548ae58fa914ea1c26a2f9a4f7cd7df
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
-  Firebase: 497158b816d0a86fc31babbd05546fcd7e6083ff
+  Firebase: 2672e5636b42f977177716317e68346ae5e9de25
   FirebaseAnalytics: cf95d3aab897612783020fbd98401d5366f135ee
   FirebaseAuth: 5ce2b03a3d7fe56b7a6e4c5ec7ff1522890b1d6f
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: 85064903ed6c28e47fec9c7bd149d94ba1b6b6e7
+  FirebaseCore: a1dd9dd6355a8356dd30a8f076839e242285a81c
   FirebaseCoreDiagnostics: 5e78803ab276bc5b50340e3c539c06c3de35c649
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseDatabase: 0144e0706a4761f1b0e8679572eba8095ddb59be
-  FirebaseFirestore: cee8f861d68dadce998876b78a4b75701bc94302
+  FirebaseFirestore: 2ee644acccde18e49b2fb5d434c709b1f1171b13
   FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
-  FirebaseInstanceID: 6668efc1655a4052c083f287a7141f1ead12f9c2
+  FirebaseInstanceID: 031d7d0c8e7b5c030bbeb4d2a690550375e83fec
   GoogleAppMeasurement: d0560d915abf15e692e8538ba1d58442217b6aff
-  GoogleDataTransport: 0048df6388dab1c254799f2a30365b1dffe20422
-  GoogleDataTransportCCTSupport: f880d70972efa2ed1be4e9173a0f4c5f3dc2d176
+  GoogleDataTransport: 47fe3b8e1673e5187dfd615656a3c5034f150d69
+  GoogleDataTransportCCTSupport: 36f69887fd212db6d7ef4dd45ba44523717a434e
   GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
   "gRPC-C++": 9dfe7b44821e7b3e44aacad2af29d2c21f7cde83
   gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
+  InputBarAccessoryView: 58a348be7ea2736c7eec60e5c315511c2dbb39fd
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  MessageKit: 3beb578737a5aa2bba25cc27c7b6d6faa09af5a7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   RAGTextField: 96dfbf49ec5f7b29cd16339192ec99f7610dd0ef
@@ -365,6 +380,6 @@ SPEC CHECKSUMS:
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RYFloatingInput: 4034e3c12a8235a7d7e0a97d69ae05e906397b22
 
-PODFILE CHECKSUM: 560aeb13bf380678317c640bd1fae135e9cfa77e
+PODFILE CHECKSUM: 621a94f7b9fc4ed7c92299a9eb5fbd4ee96d1a63
 
 COCOAPODS: 1.8.4

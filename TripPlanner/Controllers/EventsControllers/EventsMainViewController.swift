@@ -114,6 +114,7 @@ extension EventsMainViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventsCell", for: indexPath) as! EventsTableViewCell
+        cell.selectionStyle = .none
         let row = indexPath.row
         cell.datetimeLabel.text = dummyDatetime[row]
         cell.eventNameLabel.text = dummyEventNames[row]
@@ -122,4 +123,9 @@ extension EventsMainViewController {
         cell.eventImage.contentMode = .scaleAspectFill
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
 }

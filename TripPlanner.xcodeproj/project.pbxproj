@@ -26,6 +26,8 @@
 		A8A1075023E3C759008C4D59 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1074F23E3C759008C4D59 /* SignupViewController.swift */; };
 		A8A1075223E9E8B9008C4D59 /* SearchContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1075123E9E8B9008C4D59 /* SearchContactsViewController.swift */; };
 		A8EE0FF624047FF1004CF76E /* EventProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE0FF524047FF1004CF76E /* EventProfileImage.swift */; };
+		A8EE0FFA2404A49D004CF76E /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE0FF92404A49D004CF76E /* ContactTableViewCell.swift */; };
+		A8EE0FFC2404AC56004CF76E /* PrivateMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE0FFB2404AC56004CF76E /* PrivateMessageViewController.swift */; };
 		A8F99C982404601A00A6FAF4 /* EventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F99C972404601A00A6FAF4 /* EventsTableViewCell.swift */; };
 		A97F098DDBCD5D83A9A73D75 /* Pods_TripPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE1FBA801D0BA205F5CC1AD /* Pods_TripPlanner.framework */; };
 /* End PBXBuildFile section */
@@ -54,6 +56,8 @@
 		A8A1074F23E3C759008C4D59 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		A8A1075123E9E8B9008C4D59 /* SearchContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchContactsViewController.swift; path = TripPlanner/Controllers/SearchContactsViewController.swift; sourceTree = SOURCE_ROOT; };
 		A8EE0FF524047FF1004CF76E /* EventProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventProfileImage.swift; sourceTree = "<group>"; };
+		A8EE0FF92404A49D004CF76E /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		A8EE0FFB2404AC56004CF76E /* PrivateMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateMessageViewController.swift; sourceTree = "<group>"; };
 		A8F99C972404601A00A6FAF4 /* EventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
 		F3AB855DD53F4A790608BFB1 /* Pods-TripPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripPlanner.debug.xcconfig"; path = "Target Support Files/Pods-TripPlanner/Pods-TripPlanner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,12 +122,12 @@
 		A868642C23DF895600EBFA35 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A8EE0FF72404A30E004CF76E /* ContactsControllers */,
 				A86ED92F240370DB0066AE21 /* EventsControllers */,
 				A8A1074A23E3A1C9008C4D59 /* LoginControllers */,
 				A8A1075123E9E8B9008C4D59 /* SearchContactsViewController.swift */,
 				A868643023DF89B600EBFA35 /* ContainerController.swift */,
 				A868643423DF89E300EBFA35 /* MenuViewController.swift */,
-				A8A1074123E2663D008C4D59 /* ContactsViewController.swift */,
 				A8A1074323E2665A008C4D59 /* SettingsViewController.swift */,
 			);
 			path = Controllers;
@@ -187,6 +191,24 @@
 				A8A1074B23E3A1F9008C4D59 /* WelcomeScreenViewController.swift */,
 			);
 			path = LoginControllers;
+			sourceTree = "<group>";
+		};
+		A8EE0FF72404A30E004CF76E /* ContactsControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A8EE0FF82404A476004CF76E /* Models */,
+				A8A1074123E2663D008C4D59 /* ContactsViewController.swift */,
+				A8EE0FFB2404AC56004CF76E /* PrivateMessageViewController.swift */,
+			);
+			path = ContactsControllers;
+			sourceTree = "<group>";
+		};
+		A8EE0FF82404A476004CF76E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A8EE0FF92404A49D004CF76E /* ContactTableViewCell.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A8F99C642404245E00A6FAF4 /* Resources */ = {
@@ -334,12 +356,14 @@
 				A8EE0FF624047FF1004CF76E /* EventProfileImage.swift in Sources */,
 				A86ED931240372060066AE21 /* AddEventViewController.swift in Sources */,
 				A8A1074223E2663D008C4D59 /* ContactsViewController.swift in Sources */,
+				A8EE0FFA2404A49D004CF76E /* ContactTableViewCell.swift in Sources */,
 				A8A1075023E3C759008C4D59 /* SignupViewController.swift in Sources */,
 				A868641923DF7B7D00EBFA35 /* AppDelegate.swift in Sources */,
 				A868641B23DF7B7D00EBFA35 /* SceneDelegate.swift in Sources */,
 				A8A1075223E9E8B9008C4D59 /* SearchContactsViewController.swift in Sources */,
 				A868643123DF89B600EBFA35 /* ContainerController.swift in Sources */,
 				A8F99C982404601A00A6FAF4 /* EventsTableViewCell.swift in Sources */,
+				A8EE0FFC2404AC56004CF76E /* PrivateMessageViewController.swift in Sources */,
 				A8A1074C23E3A1F9008C4D59 /* WelcomeScreenViewController.swift in Sources */,
 				A868643523DF89E300EBFA35 /* MenuViewController.swift in Sources */,
 				A868643323DF89D400EBFA35 /* EventsMainViewController.swift in Sources */,
