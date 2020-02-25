@@ -283,6 +283,9 @@ PODS:
     - InputBarAccessoryView/Core (= 4.3.1)
   - InputBarAccessoryView/Core (4.3.1)
   - leveldb-library (1.22)
+  - MessageInputBar (0.4.1):
+    - MessageInputBar/Core (= 0.4.1)
+  - MessageInputBar/Core (0.4.1)
   - MessageKit (3.1.0):
     - InputBarAccessoryView (~> 4.3.0)
   - nanopb (0.3.9011):
@@ -304,6 +307,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Firestore
+  - MessageInputBar
   - MessageKit (from `https://github.com/MessageKit/MessageKit.git`, branch `development`)
   - RAGTextField
   - RYFloatingInput
@@ -332,6 +336,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - InputBarAccessoryView
     - leveldb-library
+    - MessageInputBar
     - nanopb
     - PromisesObjC
     - RAGTextField
@@ -372,6 +377,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   InputBarAccessoryView: 58a348be7ea2736c7eec60e5c315511c2dbb39fd
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
   MessageKit: 3beb578737a5aa2bba25cc27c7b6d6faa09af5a7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
@@ -380,6 +386,6 @@ SPEC CHECKSUMS:
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RYFloatingInput: 4034e3c12a8235a7d7e0a97d69ae05e906397b22
 
-PODFILE CHECKSUM: 621a94f7b9fc4ed7c92299a9eb5fbd4ee96d1a63
+PODFILE CHECKSUM: 1ea8bc978e1ed0ba8b5e3929aab67dd1cd6b2797
 
 COCOAPODS: 1.8.4
