@@ -151,6 +151,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="TL0-as-jks" id="fhP-a0-5ot"/>
+                        <segue destination="RNx-hB-NGm" kind="show" identifier="showEventMainPage" id="zmH-Xm-T7c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -175,6 +176,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AIX-yu-KJY">
                                 <rect key="frame" x="360" y="64" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="didTapSaveButton:" destination="315-rR-UlD" eventType="touchUpInside" id="IMF-Rm-CA3"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lch-ij-Z5G" customClass="UITextfield">
                                 <rect key="frame" x="30" y="148" width="354" height="34"/>
@@ -248,7 +252,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CTp-uI-Eok">
-                                <rect key="frame" x="0.0" y="378" width="414" height="498"/>
+                                <rect key="frame" x="0.0" y="368" width="414" height="508"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="selectedFriendsCell" rowHeight="78" id="Aew-xH-mIZ" customClass="SelectedFriendsTableViewCell" customModule="HangoutPlanner" customModuleProvider="target">
@@ -320,7 +324,7 @@
                             <constraint firstItem="MFn-Ij-o5i" firstAttribute="leading" secondItem="v5k-sy-rdq" secondAttribute="leading" constant="30" id="Tyg-1b-dSu"/>
                             <constraint firstItem="TQM-Mg-JIb" firstAttribute="leading" secondItem="v5k-sy-rdq" secondAttribute="leading" constant="30" id="WSH-A7-uZN"/>
                             <constraint firstItem="v5k-sy-rdq" firstAttribute="trailing" secondItem="FIb-JO-Urs" secondAttribute="trailing" constant="30" id="cs2-aZ-iy2"/>
-                            <constraint firstItem="CTp-uI-Eok" firstAttribute="top" secondItem="FIb-JO-Urs" secondAttribute="bottom" constant="10" id="e6b-eo-66l"/>
+                            <constraint firstItem="CTp-uI-Eok" firstAttribute="top" secondItem="FIb-JO-Urs" secondAttribute="bottom" id="e6b-eo-66l"/>
                             <constraint firstItem="MFn-Ij-o5i" firstAttribute="top" secondItem="v5k-sy-rdq" secondAttribute="top" constant="73" id="hHD-lB-ha0"/>
                             <constraint firstItem="RLH-VV-myz" firstAttribute="leading" secondItem="v5k-sy-rdq" secondAttribute="leading" constant="30" id="hJ0-9f-6tE"/>
                             <constraint firstItem="v5k-sy-rdq" firstAttribute="trailing" secondItem="Lch-ij-Z5G" secondAttribute="trailing" constant="30" id="kHL-2a-A5O"/>
@@ -335,10 +339,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="v5k-sy-rdq"/>
                     </view>
+                    <navigationItem key="navigationItem" id="rfD-wx-sxL"/>
                     <connections>
+                        <outlet property="eventDatetimeTextfield" destination="TQM-Mg-JIb" id="GI0-n9-yOR"/>
+                        <outlet property="eventLocationTextfield" destination="RLH-VV-myz" id="7tz-7B-ROl"/>
                         <outlet property="eventNameTextfield" destination="Lch-ij-Z5G" id="jQd-Zb-FII"/>
                         <outlet property="tableView" destination="CTp-uI-Eok" id="IZv-6W-lUW"/>
-                        <segue destination="87r-VX-V2f" kind="show" identifier="showInviteFriends" id="wBY-eg-ClT"/>
+                        <segue destination="87r-VX-V2f" kind="presentation" identifier="showInviteFriends" id="wBY-eg-ClT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5I-ty-o5P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -771,11 +778,47 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SGU-Qd-MAR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="-533.03571428571422"/>
+            <point key="canvasLocation" x="159" y="-518"/>
+        </scene>
+        <!--Event Main Page View Controller-->
+        <scene sceneID="JRJ-kv-tH9">
+            <objects>
+                <viewController id="RNx-hB-NGm" customClass="EventMainPageViewController" customModule="HangoutPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pJv-ds-Auu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1uT-pe-zmp">
+                                <rect key="frame" x="20" y="106" width="374" height="32"/>
+                                <segments>
+                                    <segment title="Group Chat"/>
+                                    <segment title="Schedule"/>
+                                    <segment title="Cost"/>
+                                    <segment title="Members"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="bUJ-lX-zyd" firstAttribute="trailing" secondItem="1uT-pe-zmp" secondAttribute="trailing" constant="20" id="4Md-e2-bcx"/>
+                            <constraint firstItem="1uT-pe-zmp" firstAttribute="top" secondItem="bUJ-lX-zyd" secondAttribute="top" constant="18" id="HGr-eL-ilh"/>
+                            <constraint firstItem="1uT-pe-zmp" firstAttribute="leading" secondItem="bUJ-lX-zyd" secondAttribute="leading" constant="20" id="jPZ-Lc-4vz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bUJ-lX-zyd"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1bq-xf-1im"/>
+                    <connections>
+                        <outlet property="navigationBar" destination="1bq-xf-1im" id="lDo-Bg-QUm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dZM-Zb-M9k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1953.6231884057972" y="-518.30357142857144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="81X-a0-mC8">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W3W-fb-oaC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="EventsNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="aIt-Di-0q9" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aZH-VN-ZPv">
@@ -791,7 +834,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="isb-fE-kPJ"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="W3W-fb-oaC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>

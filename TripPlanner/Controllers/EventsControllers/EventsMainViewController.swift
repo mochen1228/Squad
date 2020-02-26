@@ -16,20 +16,40 @@ import Foundation
 import UIKit
 import FirebaseAuth
 
-class EventsMainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class EventsMainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddEventViewControllerDelegate {
+
+    func onPassingString(newData: [String:String]) {
+        print("Received:")
+        print(newData)
+        dummyDatetime.append(newData["datatime"]!)
+        dummyEventNames.append(newData["name"]!)
+        dummyLocationNames.append(newData["location"]!)
+        dummyImageNames.append(newData["image"]!)
+        tableView.reloadData()
+    }
     
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: Properties
     let transition = MenuSlideInTransition()
     
-    let dummyCount = 2
-    let dummyEventNames = ["Club Night",
+    var dummyEventNames = ["Club Night",
                            "Longboarding and Biking"]
-    let dummyLocationNames = ["Academy LA, Los Angeles",
+    var dummyLocationNames = ["Academy LA, Los Angeles",
                               "Newport Beach Pier, Newport Beach"]
-    let dummyDatetime = ["Today, 10:00 PM", "Saturday, 11:00 AM"]
-    let dummyImageNames = ["grum_event_profile", "newport_beach_profile"]
+    var dummyDatetime = ["Today, 10:00 PM", "Saturday, 11:00 AM"]
+    var dummyImageNames = ["grum_event_profile", "newport_beach_profile"]
+    
+    var selectedEvent = ""
+    
+    var childDismiss = 0 {
+        // This value is used to detect if child
+        // data has finished passing
+        didSet {
+            print("Data finished transmitting")
+            tableView.reloadData()
+        }
+    }
     
     // MARK: Initializations
     override func viewDidLoad() {
@@ -62,6 +82,7 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
         // When add event button is pressed, show add event VC
         guard let addViewController = storyboard?.instantiateViewController(
             withIdentifier: "AddEventViewController") as? AddEventViewController else {return}
+        addViewController.delegate = self
         present(addViewController, animated: true)
     }
     
@@ -88,6 +109,15 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
         newViewController.modalPresentationStyle = .fullScreen
         present(newViewController, animated: false)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showEventMainPage" {
+            if let destinationVC = segue.destination as? EventMainPageViewController {
+                destinationVC.currentEvent = selectedEvent
+                selectedEvent = ""
+            }
+        }
+    }
 }
 
 extension EventsMainViewController: UIViewControllerTransitioningDelegate {
@@ -109,7 +139,7 @@ extension EventsMainViewController: UIViewControllerTransitioningDelegate {
 
 extension EventsMainViewController {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyCount
+        return dummyEventNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -126,6 +156,8 @@ extension EventsMainViewController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        selectedEvent = dummyEventNames[indexPath.row]
+        performSegue(withIdentifier: "showEventMainPage", sender: nil)
     }
     
 }

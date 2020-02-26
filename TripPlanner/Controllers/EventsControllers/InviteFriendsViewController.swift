@@ -43,6 +43,8 @@ class InviteFriendsViewController: UIViewController {
     }
     
     @IBAction func didTapInviteButton(_ sender: Any) {
+//        let p = presentingViewController as? AddEventViewController
+//        print(p?.dummyContactNames)
         if let parent = presentingViewController as? AddEventViewController {
             var newDummyImageNames: [String] = []
             var newDummyContactNames: [String] = []
@@ -70,6 +72,12 @@ class InviteFriendsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        
+        // Add kayboard dismissing gesture
+        let tap = UITapGestureRecognizer(target: self.view,
+                                         action: #selector(UIView.endEditing))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
 
     }
     

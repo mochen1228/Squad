@@ -9,6 +9,8 @@
 import UIKit
 
 class AddEventViewController: UIViewController {
+    var delegate: AddEventViewControllerDelegate?
+    
     var dummyImageNames: [String] = []
     
     var dummyContactNames: [String] = []
@@ -16,6 +18,8 @@ class AddEventViewController: UIViewController {
     var dummyUsernames: [String] = []
     
     var childDismiss = 0 {
+        // This value is used to detect if child
+        // data has finished passing
         didSet {
             print("Data finished transmitting")
             tableView.reloadData()
@@ -23,6 +27,37 @@ class AddEventViewController: UIViewController {
     }
     
     @IBOutlet weak var tableView: UITableView!
+
+    @IBOutlet weak var eventNameTextfield: UITextField!
+    @IBOutlet weak var eventDatetimeTextfield: UITextField!
+    @IBOutlet weak var eventLocationTextfield: UITextField!
+    
+    @IBAction func didTapInviteFriendsButton(_ sender: Any) {
+        performSegue(withIdentifier: "showInviteFriends", sender: nil)
+    }
+    
+    @IBAction func didTapCancelButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func didTapSaveButton(_ sender: Any) {
+        let toPass: [String: String] = ["datatime": eventDatetimeTextfield.text!,
+                                       "name": eventNameTextfield.text!,
+                                       "location": eventLocationTextfield.text!,
+                                       "image": "kbbq_profile"]
+        delegate?.onPassingString(newData: toPass)
+        
+//        if let parent = presentingViewController as? EventsMainViewController {
+//            parent.dummyDatetime.append(eventDatetimeTextfield.text!)
+//            parent.dummyImageNames.append(eventDatetimeTextfield.text!)
+//            parent.dummyLocationNames.append(eventLocationTextfield.text!)
+//            parent.dummyImageNames.append("kbbq_profile")
+//            parent.childDismiss = 0
+//            print("hello")
+//        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,17 +65,14 @@ class AddEventViewController: UIViewController {
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.delegate = self
         tableView.dataSource = self
-    }
         
-    @IBAction func didTapCancelButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        // Add kayboard dismissing gesture
+        let tap = UITapGestureRecognizer(target: self.view,
+                                         action: #selector(UIView.endEditing))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
 
-    @IBOutlet weak var eventNameTextfield: UITextField!
-        
-    @IBAction func didTapInviteFriendsButton(_ sender: Any) {
-        performSegue(withIdentifier: "showInviteFriends", sender: nil)
-    }
 }
 
 extension AddEventViewController: UITableViewDelegate, UITableViewDataSource {
@@ -50,8 +82,7 @@ extension AddEventViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "selectedFriendsCell",
-                                                 for: indexPath)
-            as! SelectedFriendsTableViewCell
+                                                 for: indexPath) as! SelectedFriendsTableViewCell
         
         cell.selectionStyle = .none
         let row = indexPath.row
@@ -62,5 +93,8 @@ extension AddEventViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
+}
 
+protocol AddEventViewControllerDelegate {
+    func onPassingString(newData: [String: String])
 }
