@@ -41,7 +41,11 @@ class EventScheduleViewController: UIViewController {
     }
     
     @objc func didTapAddButton(sender: Any) {
-        performSegue(withIdentifier: "showAddSchedule", sender: nil)
+        guard let addViewController = storyboard?.instantiateViewController(
+            withIdentifier: "AddScheduleViewController") as? AddScheduleViewController else {return}
+        addViewController.delegate = self
+        present(addViewController, animated: true)
+        // performSegue(withIdentifier: "showAddSchedule", sender: nil)
     }
 }
 
@@ -59,4 +63,14 @@ extension EventScheduleViewController: UITableViewDelegate, UITableViewDataSourc
         return cell
     }
 
+}
+
+extension EventScheduleViewController: AddScheduleViewControllerDelegate {
+    func onPassingString(newData: [String : String]) {
+        print("Received:")
+        print(newData)
+        dummyDatetime.append(newData["datatime"]!)
+        dummyScheduleNames.append(newData["name"]!)
+        tableView.reloadData()
+    }
 }

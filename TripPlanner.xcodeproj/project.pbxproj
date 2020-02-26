@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A83CBF2524065FFD0067709B /* AddScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83CBF2424065FFD0067709B /* AddScheduleViewController.swift */; };
 		A868641923DF7B7D00EBFA35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868641823DF7B7D00EBFA35 /* AppDelegate.swift */; };
 		A868641B23DF7B7D00EBFA35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868641A23DF7B7D00EBFA35 /* SceneDelegate.swift */; };
 		A868642023DF7B7D00EBFA35 /* EventsMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A868641E23DF7B7D00EBFA35 /* EventsMain.storyboard */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		2DE1FBA801D0BA205F5CC1AD /* Pods_TripPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DA82B83516E8688B47526C /* Pods-TripPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripPlanner.release.xcconfig"; path = "Target Support Files/Pods-TripPlanner/Pods-TripPlanner.release.xcconfig"; sourceTree = "<group>"; };
+		A83CBF2424065FFD0067709B /* AddScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleViewController.swift; sourceTree = "<group>"; };
 		A868641523DF7B7D00EBFA35 /* HangoutPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HangoutPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A868641823DF7B7D00EBFA35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A868641A23DF7B7D00EBFA35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				A8EE100724061D1E004CF76E /* EventMainPageViewController.swift */,
 				A8EE1009240633E9004CF76E /* EventScheduleViewController.swift */,
 				A8EE100D2406387A004CF76E /* EventMembersViewController.swift */,
+				A83CBF2424065FFD0067709B /* AddScheduleViewController.swift */,
 			);
 			path = EventsControllers;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				A868641B23DF7B7D00EBFA35 /* SceneDelegate.swift in Sources */,
 				A8EE100824061D1E004CF76E /* EventMainPageViewController.swift in Sources */,
 				A8A1075223E9E8B9008C4D59 /* SearchContactsViewController.swift in Sources */,
+				A83CBF2524065FFD0067709B /* AddScheduleViewController.swift in Sources */,
 				A868643123DF89B600EBFA35 /* ContainerController.swift in Sources */,
 				A8F99C982404601A00A6FAF4 /* EventsTableViewCell.swift in Sources */,
 				A8EE0FFC2404AC56004CF76E /* PrivateMessageViewController.swift in Sources */,
