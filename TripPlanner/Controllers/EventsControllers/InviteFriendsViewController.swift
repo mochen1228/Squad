@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SimpleCheckbox
 
 class InviteFriendsViewController: UIViewController {
     let dummyCount = 4
@@ -26,13 +27,40 @@ class InviteFriendsViewController: UIViewController {
                           "r.a.q.u.e.l.m",
                           "fannnncyy"]
     
+    var dummySelectedStatus: [Int: Int] = [
+        0: 0,
+        1: 0,
+        2: 0,
+        3: 0
+    ]
+    
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func didTapCancelButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        
+    }
+    
+    @IBAction func didTapInviteButton(_ sender: Any) {
+        if let parent = presentingViewController as? AddEventViewController {
+            var newDummyImageNames: [String] = []
+            var newDummyContactNames: [String] = []
+            var newDummyUsernames: [String] = []
+            
+            for selection in dummySelectedStatus {
+                if selection.value == 1 {
+                    newDummyUsernames.append(dummyUsernames[selection.key])
+                    newDummyImageNames.append(dummyImageNames[selection.key])
+                    newDummyContactNames.append(dummyContactNames[selection.key])
+                }
+            }
+            parent.dummyImageNames = newDummyImageNames
+            parent.dummyUsernames = newDummyUsernames
+            parent.dummyContactNames = newDummyContactNames
+            parent.childDismiss = 0
+        }
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -46,9 +74,7 @@ class InviteFriendsViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
     }
-
 }
 
 extension InviteFriendsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -64,7 +90,21 @@ extension InviteFriendsViewController: UITableViewDelegate, UITableViewDataSourc
         cell.profileImage.image = UIImage(named: dummyImageNames[row])
         cell.usernameLabel.text = dummyUsernames[row]
         cell.firstLastNameLabel.text = dummyContactNames[row]
+
+        // Closure for detecting checkbox check and uncheck
+        cell.checkBox.valueChanged = { (isChecked) in
+            // print(row, "checkbox is checked: \(isChecked)")
+            if isChecked {
+                self.dummySelectedStatus[row] = 1
+            } else {
+                self.dummySelectedStatus[row] = 0
+            }
+            // print(self.dummySelectedStatus)
+            
+        }
+        
         return cell
     }
     
 }
+

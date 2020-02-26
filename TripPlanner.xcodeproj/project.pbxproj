@@ -32,6 +32,7 @@
 		A8EE10002404D24C004CF76E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE0FFF2404D24C004CF76E /* User.swift */; };
 		A8EE10022405A8AE004CF76E /* InviteFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE10012405A8AE004CF76E /* InviteFriendsTableViewCell.swift */; };
 		A8EE10042405A9DB004CF76E /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE10032405A9DB004CF76E /* InviteFriendsViewController.swift */; };
+		A8EE10062405EE87004CF76E /* SelectedFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE10052405EE87004CF76E /* SelectedFriendsTableViewCell.swift */; };
 		A8F99C982404601A00A6FAF4 /* EventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F99C972404601A00A6FAF4 /* EventsTableViewCell.swift */; };
 		A97F098DDBCD5D83A9A73D75 /* Pods_TripPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE1FBA801D0BA205F5CC1AD /* Pods_TripPlanner.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		A8EE0FFF2404D24C004CF76E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A8EE10012405A8AE004CF76E /* InviteFriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsTableViewCell.swift; sourceTree = "<group>"; };
 		A8EE10032405A9DB004CF76E /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
+		A8EE10052405EE87004CF76E /* SelectedFriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFriendsTableViewCell.swift; sourceTree = "<group>"; };
 		A8F99C972404601A00A6FAF4 /* EventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
 		F3AB855DD53F4A790608BFB1 /* Pods-TripPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripPlanner.debug.xcconfig"; path = "Target Support Files/Pods-TripPlanner/Pods-TripPlanner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -235,6 +237,7 @@
 				A8F99C972404601A00A6FAF4 /* EventsTableViewCell.swift */,
 				A8EE0FF524047FF1004CF76E /* EventProfileImage.swift */,
 				A8EE10012405A8AE004CF76E /* InviteFriendsTableViewCell.swift */,
+				A8EE10052405EE87004CF76E /* SelectedFriendsTableViewCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8EE10062405EE87004CF76E /* SelectedFriendsTableViewCell.swift in Sources */,
 				A8EE10022405A8AE004CF76E /* InviteFriendsTableViewCell.swift in Sources */,
 				A8A1071323E0BC2F008C4D59 /* MenuSlideInTransition.swift in Sources */,
 				A8EE0FF624047FF1004CF76E /* EventProfileImage.swift in Sources */,
