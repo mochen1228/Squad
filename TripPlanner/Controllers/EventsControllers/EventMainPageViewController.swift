@@ -12,14 +12,39 @@ class EventMainPageViewController: UIViewController {
 
     var currentEvent = ""
 
+    @IBOutlet weak var scheduleContainer: UIView!
+    @IBOutlet weak var membersContainer: UIView!
+    @IBOutlet weak var costContainer: UIView!
+    
     @IBOutlet weak var navigationBar: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.title = currentEvent
+        membersContainer.isHidden = true
+        costContainer.isHidden = true
     }
     
-
+    @IBAction func switchSegments(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            scheduleContainer.isHidden = false
+            membersContainer.isHidden = true
+            costContainer.isHidden = true
+        case 1:
+            scheduleContainer.isHidden = true
+            membersContainer.isHidden = false
+            costContainer.isHidden = true
+        case 2:
+            scheduleContainer.isHidden = true
+            membersContainer.isHidden = true
+            costContainer.isHidden = false
+        default:
+            break
+        }
+    }
+    
+    
     /*
     // MARK: - Navigation
 

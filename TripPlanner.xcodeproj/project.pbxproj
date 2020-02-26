@@ -34,6 +34,9 @@
 		A8EE10042405A9DB004CF76E /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE10032405A9DB004CF76E /* InviteFriendsViewController.swift */; };
 		A8EE10062405EE87004CF76E /* SelectedFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE10052405EE87004CF76E /* SelectedFriendsTableViewCell.swift */; };
 		A8EE100824061D1E004CF76E /* EventMainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE100724061D1E004CF76E /* EventMainPageViewController.swift */; };
+		A8EE100A240633E9004CF76E /* EventScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE1009240633E9004CF76E /* EventScheduleViewController.swift */; };
+		A8EE100C24063456004CF76E /* EventScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE100B24063456004CF76E /* EventScheduleTableViewCell.swift */; };
+		A8EE100E2406387A004CF76E /* EventMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE100D2406387A004CF76E /* EventMembersViewController.swift */; };
 		A8F99C982404601A00A6FAF4 /* EventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F99C972404601A00A6FAF4 /* EventsTableViewCell.swift */; };
 		A97F098DDBCD5D83A9A73D75 /* Pods_TripPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE1FBA801D0BA205F5CC1AD /* Pods_TripPlanner.framework */; };
 /* End PBXBuildFile section */
@@ -70,6 +73,9 @@
 		A8EE10032405A9DB004CF76E /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
 		A8EE10052405EE87004CF76E /* SelectedFriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFriendsTableViewCell.swift; sourceTree = "<group>"; };
 		A8EE100724061D1E004CF76E /* EventMainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMainPageViewController.swift; sourceTree = "<group>"; };
+		A8EE1009240633E9004CF76E /* EventScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventScheduleViewController.swift; sourceTree = "<group>"; };
+		A8EE100B24063456004CF76E /* EventScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventScheduleTableViewCell.swift; sourceTree = "<group>"; };
+		A8EE100D2406387A004CF76E /* EventMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMembersViewController.swift; sourceTree = "<group>"; };
 		A8F99C972404601A00A6FAF4 /* EventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
 		F3AB855DD53F4A790608BFB1 /* Pods-TripPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripPlanner.debug.xcconfig"; path = "Target Support Files/Pods-TripPlanner/Pods-TripPlanner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +181,8 @@
 				A868643223DF89D400EBFA35 /* EventsMainViewController.swift */,
 				A8EE10032405A9DB004CF76E /* InviteFriendsViewController.swift */,
 				A8EE100724061D1E004CF76E /* EventMainPageViewController.swift */,
+				A8EE1009240633E9004CF76E /* EventScheduleViewController.swift */,
+				A8EE100D2406387A004CF76E /* EventMembersViewController.swift */,
 			);
 			path = EventsControllers;
 			sourceTree = "<group>";
@@ -241,6 +249,7 @@
 				A8EE0FF524047FF1004CF76E /* EventProfileImage.swift */,
 				A8EE10012405A8AE004CF76E /* InviteFriendsTableViewCell.swift */,
 				A8EE10052405EE87004CF76E /* SelectedFriendsTableViewCell.swift */,
+				A8EE100B24063456004CF76E /* EventScheduleTableViewCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -372,10 +381,12 @@
 			files = (
 				A8EE10062405EE87004CF76E /* SelectedFriendsTableViewCell.swift in Sources */,
 				A8EE10022405A8AE004CF76E /* InviteFriendsTableViewCell.swift in Sources */,
+				A8EE100E2406387A004CF76E /* EventMembersViewController.swift in Sources */,
 				A8A1071323E0BC2F008C4D59 /* MenuSlideInTransition.swift in Sources */,
 				A8EE0FF624047FF1004CF76E /* EventProfileImage.swift in Sources */,
 				A86ED931240372060066AE21 /* AddEventViewController.swift in Sources */,
 				A8EE10042405A9DB004CF76E /* InviteFriendsViewController.swift in Sources */,
+				A8EE100A240633E9004CF76E /* EventScheduleViewController.swift in Sources */,
 				A8EE0FFE2404CDCC004CF76E /* Message.swift in Sources */,
 				A8A1074223E2663D008C4D59 /* ContactsViewController.swift in Sources */,
 				A8EE0FFA2404A49D004CF76E /* ContactTableViewCell.swift in Sources */,
@@ -390,6 +401,7 @@
 				A8A1074C23E3A1F9008C4D59 /* WelcomeScreenViewController.swift in Sources */,
 				A868643523DF89E300EBFA35 /* MenuViewController.swift in Sources */,
 				A868643323DF89D400EBFA35 /* EventsMainViewController.swift in Sources */,
+				A8EE100C24063456004CF76E /* EventScheduleTableViewCell.swift in Sources */,
 				A8A1074E23E3C749008C4D59 /* LoginViewController.swift in Sources */,
 				A8A1074423E2665A008C4D59 /* SettingsViewController.swift in Sources */,
 				A8EE10002404D24C004CF76E /* User.swift in Sources */,
