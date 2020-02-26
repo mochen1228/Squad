@@ -9,11 +9,9 @@
 import UIKit
 
 class EventScheduleViewController: UIViewController {
-    var dummyEventNames = ["Club Night",
-                           "Longboarding and Biking"]
-    var dummyLocationNames = ["Academy LA, Los Angeles",
-                              "Newport Beach Pier, Newport Beach"]
-    var dummyDatetime = ["Today, 10:00 PM", "Saturday, 11:00 AM"]
+    var dummyScheduleNames = ["Meet Up At Matt's Place",
+                           "Dinner at McDonald's"]
+    var dummyDatetime = ["Today, 5:00 PM", "Today, 6:00 PM"]
     
     let button = UIButton(frame: CGRect(x: 150, y: 550, width: 75, height: 75))
     
@@ -23,6 +21,8 @@ class EventScheduleViewController: UIViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+
         // Do any additional setup after loading the view.
         setUpButton()
     }
@@ -41,28 +41,21 @@ class EventScheduleViewController: UIViewController {
     }
     
     @objc func didTapAddButton(sender: Any) {
-        print("test")
+        performSegue(withIdentifier: "showAddSchedule", sender: nil)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension EventScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return dummyScheduleNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventScheduleCell", for: indexPath) as! EventScheduleTableViewCell
+        let row = indexPath.row
+        cell.selectionStyle = .none
+        cell.scheduleNameLabel.text = dummyScheduleNames[row]
+        cell.datetimeLabel.text = dummyDatetime[row]
         return cell
     }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SimpleCheckbox
 
 class EventScheduleTableViewCell: UITableViewCell {
 //    @IBOutlet weak var eventImage: UIImageView!
@@ -22,6 +23,7 @@ class EventScheduleTableViewCell: UITableViewCell {
     @IBOutlet weak var datetimeLabel: UILabel!
     @IBOutlet weak var scheduleNameLabel: UILabel!
     @IBOutlet weak var scheduleDetailsLabel: UILabel!
+    @IBOutlet weak var checkBox: Checkbox!
     
     @IBOutlet weak var userProfile1: UIImageView!
     @IBOutlet weak var userProfile2: UIImageView!
@@ -35,6 +37,13 @@ class EventScheduleTableViewCell: UITableViewCell {
         self.userProfile1.layer.cornerRadius = self.userProfile1.frame.size.width / 2;
         self.userProfile2.layer.cornerRadius = self.userProfile2.frame.size.width / 2;
         self.userProfile3.layer.cornerRadius = self.userProfile3.frame.size.width / 2;
+        
+        self.checkBox.borderStyle = .circle
+        self.checkBox.checkedBorderColor = .black
+        self.checkBox.uncheckedBorderColor = .black
+        self.checkBox.checkmarkStyle = .tick
+        self.checkBox.checkmarkColor = .black
+        self.checkBox.useHapticFeedback = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

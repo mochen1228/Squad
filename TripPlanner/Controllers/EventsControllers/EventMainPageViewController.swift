@@ -15,6 +15,7 @@ class EventMainPageViewController: UIViewController {
     @IBOutlet weak var scheduleContainer: UIView!
     @IBOutlet weak var membersContainer: UIView!
     @IBOutlet weak var costContainer: UIView!
+    @IBOutlet weak var chatContainer: UIView!
     
     @IBOutlet weak var navigationBar: UINavigationItem!
     
@@ -23,6 +24,7 @@ class EventMainPageViewController: UIViewController {
         navigationBar.title = currentEvent
         membersContainer.isHidden = true
         costContainer.isHidden = true
+        chatContainer.isHidden = true
     }
     
     @IBAction func switchSegments(_ sender: UISegmentedControl) {
@@ -31,14 +33,22 @@ class EventMainPageViewController: UIViewController {
             scheduleContainer.isHidden = false
             membersContainer.isHidden = true
             costContainer.isHidden = true
+            chatContainer.isHidden = true
         case 1:
             scheduleContainer.isHidden = true
             membersContainer.isHidden = false
             costContainer.isHidden = true
+            chatContainer.isHidden = true
         case 2:
             scheduleContainer.isHidden = true
             membersContainer.isHidden = true
             costContainer.isHidden = false
+            chatContainer.isHidden = true
+        case 3:
+            scheduleContainer.isHidden = true
+            membersContainer.isHidden = true
+            costContainer.isHidden = true
+            chatContainer.isHidden = false
         default:
             break
         }
