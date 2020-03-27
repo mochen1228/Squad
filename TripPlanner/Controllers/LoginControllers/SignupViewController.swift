@@ -9,12 +9,18 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import Firebase
 
 class SignupViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        // Add a new document with a generated ID
+        
+        
+
+        
     }
     
     let passwordChars = "qwertyuiopasdfghjklzxcvbnm1234567890"
@@ -64,16 +70,34 @@ class SignupViewController: UIViewController {
             if error != nil {
                 print("Cannot create user")
             } else {
-                print("Successfully created user")
-                var ref: DatabaseReference!
-                ref = Database.database().reference()
-                
+                print("--- Successfully created user")
+                let newUserID = Auth.auth().currentUser?.uid
+                self.createUserDoc(newUserID!, "Chen", "Mo")
                 self.dismiss(animated: true, completion: nil)
             }
             return
         }
     }
     
+    func createUserDoc(_ userID: String, _ firstName: String, _ lastName: String) -> Void {
+        var ref: DocumentReference? = nil
+        let db = Firestore.firestore()
+        // Add document to collection
+        print("--- Adding documents")
+        ref = db.collection("users").addDocument(data: [
+            "userID": userID,
+            "first": firstName,
+            "last": lastName,
+            "contactList": [String](),
+            "username": "flyer1228"
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+    }
     
     func checkPasswordLegal(with password: String) -> Bool {
         // For the first prototype version, the application would only

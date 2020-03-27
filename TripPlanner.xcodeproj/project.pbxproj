@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F805CCF7EBE4BECE3D95250 /* Pods_TripPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E656C78F9E3B00896A033FF /* Pods_TripPlanner.framework */; };
 		A83CBF2524065FFD0067709B /* AddScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83CBF2424065FFD0067709B /* AddScheduleViewController.swift */; };
 		A868641923DF7B7D00EBFA35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868641823DF7B7D00EBFA35 /* AppDelegate.swift */; };
 		A868641B23DF7B7D00EBFA35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868641A23DF7B7D00EBFA35 /* SceneDelegate.swift */; };
@@ -17,6 +18,7 @@
 		A868643323DF89D400EBFA35 /* EventsMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868643223DF89D400EBFA35 /* EventsMainViewController.swift */; };
 		A868643523DF89E300EBFA35 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A868643423DF89E300EBFA35 /* MenuViewController.swift */; };
 		A86ED931240372060066AE21 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86ED930240372060066AE21 /* AddEventViewController.swift */; };
+		A89503E7240756A900A47C28 /* EventChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89503E6240756A900A47C28 /* EventChatViewController.swift */; };
 		A8A1071323E0BC2F008C4D59 /* MenuSlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1071223E0BC2F008C4D59 /* MenuSlideInTransition.swift */; };
 		A8A1074223E2663D008C4D59 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1074123E2663D008C4D59 /* ContactsViewController.swift */; };
 		A8A1074423E2665A008C4D59 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1074323E2665A008C4D59 /* SettingsViewController.swift */; };
@@ -39,11 +41,10 @@
 		A8EE100C24063456004CF76E /* EventScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE100B24063456004CF76E /* EventScheduleTableViewCell.swift */; };
 		A8EE100E2406387A004CF76E /* EventMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE100D2406387A004CF76E /* EventMembersViewController.swift */; };
 		A8F99C982404601A00A6FAF4 /* EventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F99C972404601A00A6FAF4 /* EventsTableViewCell.swift */; };
-		A97F098DDBCD5D83A9A73D75 /* Pods_TripPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE1FBA801D0BA205F5CC1AD /* Pods_TripPlanner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2DE1FBA801D0BA205F5CC1AD /* Pods_TripPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E656C78F9E3B00896A033FF /* Pods_TripPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DA82B83516E8688B47526C /* Pods-TripPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripPlanner.release.xcconfig"; path = "Target Support Files/Pods-TripPlanner/Pods-TripPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		A83CBF2424065FFD0067709B /* AddScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleViewController.swift; sourceTree = "<group>"; };
 		A868641523DF7B7D00EBFA35 /* HangoutPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HangoutPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +58,7 @@
 		A868643223DF89D400EBFA35 /* EventsMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsMainViewController.swift; sourceTree = "<group>"; };
 		A868643423DF89E300EBFA35 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		A86ED930240372060066AE21 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		A89503E6240756A900A47C28 /* EventChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventChatViewController.swift; sourceTree = "<group>"; };
 		A8A1071223E0BC2F008C4D59 /* MenuSlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSlideInTransition.swift; sourceTree = "<group>"; };
 		A8A1074123E2663D008C4D59 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		A8A1074323E2665A008C4D59 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -87,7 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A97F098DDBCD5D83A9A73D75 /* Pods_TripPlanner.framework in Frameworks */,
+				1F805CCF7EBE4BECE3D95250 /* Pods_TripPlanner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +188,7 @@
 				A8EE1009240633E9004CF76E /* EventScheduleViewController.swift */,
 				A8EE100D2406387A004CF76E /* EventMembersViewController.swift */,
 				A83CBF2424065FFD0067709B /* AddScheduleViewController.swift */,
+				A89503E6240756A900A47C28 /* EventChatViewController.swift */,
 			);
 			path = EventsControllers;
 			sourceTree = "<group>";
@@ -260,7 +263,7 @@
 		DEB6D9B79FEE1E03582326E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2DE1FBA801D0BA205F5CC1AD /* Pods_TripPlanner.framework */,
+				1E656C78F9E3B00896A033FF /* Pods_TripPlanner.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -276,7 +279,7 @@
 				A868641123DF7B7D00EBFA35 /* Sources */,
 				A868641223DF7B7D00EBFA35 /* Frameworks */,
 				A868641323DF7B7D00EBFA35 /* Resources */,
-				5A095FC70BB0D8C720D19211 /* [CP] Embed Pods Frameworks */,
+				11529E1D04A6DBC709DEF105 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -336,7 +339,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5A095FC70BB0D8C720D19211 /* [CP] Embed Pods Frameworks */ = {
+		11529E1D04A6DBC709DEF105 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -403,6 +406,7 @@
 				A8F99C982404601A00A6FAF4 /* EventsTableViewCell.swift in Sources */,
 				A8EE0FFC2404AC56004CF76E /* PrivateMessageViewController.swift in Sources */,
 				A8A1074C23E3A1F9008C4D59 /* WelcomeScreenViewController.swift in Sources */,
+				A89503E7240756A900A47C28 /* EventChatViewController.swift in Sources */,
 				A868643523DF89E300EBFA35 /* MenuViewController.swift in Sources */,
 				A868643323DF89D400EBFA35 /* EventsMainViewController.swift in Sources */,
 				A8EE100C24063456004CF76E /* EventScheduleTableViewCell.swift in Sources */,

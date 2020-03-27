@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-TripPlanner/Pods-TripPlanner-resources.sh
+${PODS_CONFIGURATION_BUILD_DIR}/MessageKit/MessageKitAssets.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates-Cpp.bundle

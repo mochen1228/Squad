@@ -13,6 +13,9 @@
 */
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+
 
 class ContactsViewController: UIViewController {
     
@@ -28,6 +31,8 @@ class ContactsViewController: UIViewController {
                              "Raquel Hidalgo",
                              "Yihua Cai"]
     
+    var contactNames = [String]()
+    
     let dummyLastMessages = ["You: Wanna get kbbq this weekend?",
                              "Sounds good!",
                              "Lol",
@@ -38,12 +43,15 @@ class ContactsViewController: UIViewController {
     // MARK: Properties
     let transition = MenuSlideInTransition()
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     // MARK: Initializations
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -55,45 +63,7 @@ class ContactsViewController: UIViewController {
         }
     }
     
-    // MARK: Handlers
-    @IBAction func didTapMenu(_ sender: UIBarButtonItem) {
-        // Executes when side menu button icon is tapped
-        
-        // Instantiate menu view controller
-        guard let menuViewController = storyboard?.instantiateViewController(
-            withIdentifier: "MenuViewController") as? MenuViewController else { return }
-        
-        // Set the closure value of menu VC
-        menuViewController.didTapMenuButton = {
-            selectedMenu in
-            self.showNewController(selectedMenu)
-        }
-        
-        menuViewController.modalPresentationStyle = .overCurrentContext
-        menuViewController.transitioningDelegate = self
-        present(menuViewController, animated: true)
-    }
     
-    func showNewController(_ selectedMenu: MenuType) {
-        // Takes selected menu as input and present corresponding VC
-        var newViewController: UIViewController
-        
-        switch selectedMenu {
-        case .events:
-            newViewController = (storyboard?.instantiateViewController(
-                withIdentifier: "EventsNavigationViewController"))!
-        case .contacts:
-            newViewController = (storyboard?.instantiateViewController(
-                withIdentifier: "ContactsNavigationViewController"))!
-        case .settings:
-            newViewController = (storyboard?.instantiateViewController(
-                withIdentifier: "SettingsNavigationViewController"))!
-        }
-        
-        // Present VC in fullscreen
-        newViewController.modalPresentationStyle = .fullScreen
-        present(newViewController, animated: false)
-    }
 }
 
 extension ContactsViewController: UIViewControllerTransitioningDelegate {
@@ -137,5 +107,64 @@ extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension ContactsViewController {
+    // MARK: Handlers
+    @IBAction func didTapMenu(_ sender: UIBarButtonItem) {
+        // Executes when side menu button icon is tapped
+        
+        // Instantiate menu view controller
+        guard let menuViewController = storyboard?.instantiateViewController(
+            withIdentifier: "MenuViewController") as? MenuViewController else { return }
+        
+        // Set the closure value of menu VC
+        menuViewController.didTapMenuButton = {
+            selectedMenu in
+            self.showNewController(selectedMenu)
+        }
+        
+        menuViewController.modalPresentationStyle = .overCurrentContext
+        menuViewController.transitioningDelegate = self
+        present(menuViewController, animated: true)
+    }
+    
+    func showNewController(_ selectedMenu: MenuType) {
+        // Takes selected menu as input and present corresponding VC
+        var newViewController: UIViewController
+        
+        switch selectedMenu {
+        case .events:
+            newViewController = (storyboard?.instantiateViewController(
+                withIdentifier: "EventsNavigationViewController"))!
+        case .contacts:
+            newViewController = (storyboard?.instantiateViewController(
+                withIdentifier: "ContactsNavigationViewController"))!
+        case .settings:
+            newViewController = (storyboard?.instantiateViewController(
+                withIdentifier: "SettingsNavigationViewController"))!
+        }
+        
+        // Present VC in fullscreen
+        newViewController.modalPresentationStyle = .fullScreen
+        present(newViewController, animated: false)
+    }
+}
 
+extension ContactsViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let searchText = searchBar.text!
+        print(searchText)
+        
+        let db = Firestore.firestore()
+        
+        // Query the database for users that matches the searched username
+        db.collection("users").whereField("username", isEqualTo: searchText)
+            .getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
+    }
 }

@@ -24,6 +24,17 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    @IBAction func didTapLogout(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let toVC = storyboard.instantiateViewController(withIdentifier: "WelcomeScreenViewController")
+            toVC.modalPresentationStyle = .fullScreen
+            present(toVC, animated: false)
+        } catch {
+            print("Cannot logout")
+        }
+    }
     // MARK: Handlers
     @IBAction func didTapMenu(_ sender: Any) {
         // Executes when side menu button icon is tapped

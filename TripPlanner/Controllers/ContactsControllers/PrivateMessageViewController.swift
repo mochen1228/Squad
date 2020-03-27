@@ -29,7 +29,7 @@ class PrivateMessageViewController: MessagesViewController {
     }
     
     func configureInputBar() {
-        member = Member(name: "bluemoon", color: .blue)
+        member = Member(name: "Chen Mo", color: .gray)
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messageInputBar.delegate = self

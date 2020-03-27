@@ -501,7 +501,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="65A-Qn-gWw">
                             <connections>
-                                <action selector="didTapLogout:" destination="UPP-ZW-SGl" id="mer-YC-sLp"/>
+                                <action selector="didTapLogout:" destination="UPP-ZW-SGl" id="m4f-se-Uwl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -620,6 +620,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="0gi-cg-qYs" id="rRC-IL-joq"/>
                         <outlet property="tableView" destination="SR9-dF-PJK" id="dN9-xy-wu5"/>
                         <segue destination="dG0-OA-5US" kind="show" identifier="showPrivateChat" id="q56-UM-MCe"/>
                     </connections>
@@ -1300,23 +1301,28 @@
             </objects>
             <point key="canvasLocation" x="4111.1999999999998" y="-994.21182266009862"/>
         </scene>
-        <!--View Controller-->
+        <!--Event Chat View Controller-->
         <scene sceneID="0vg-ar-8Fa">
             <objects>
-                <viewController id="4uN-xk-C24" sceneMemberID="viewController">
+                <viewController id="4uN-xk-C24" customClass="EventChatViewController" customModule="HangoutPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qnc-DZ-q9h">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chat Container" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVi-Mf-DAB">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat Container" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVi-Mf-DAB">
                                 <rect key="frame" x="126" y="322" width="123" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="jzs-fr-Kme" firstAttribute="trailing" secondItem="mVi-Mf-DAB" secondAttribute="trailing" constant="126" id="0EW-Hi-E0Q"/>
+                            <constraint firstItem="mVi-Mf-DAB" firstAttribute="leading" secondItem="jzs-fr-Kme" secondAttribute="leading" constant="126" id="5Cn-Sl-wqH"/>
+                            <constraint firstItem="jzs-fr-Kme" firstAttribute="bottom" secondItem="mVi-Mf-DAB" secondAttribute="bottom" constant="322" id="CCB-a3-DmC"/>
+                            <constraint firstItem="mVi-Mf-DAB" firstAttribute="top" secondItem="jzs-fr-Kme" secondAttribute="top" constant="278" id="SQS-NQ-DNU"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="jzs-fr-Kme"/>
                     </view>
                 </viewController>

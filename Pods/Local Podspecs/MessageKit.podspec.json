@@ -1,6 +1,6 @@
 {
   "name": "MessageKit",
-  "version": "3.1.0",
+  "version": "3.1.0-beta.1",
   "license": {
     "type": "MIT",
     "file": "LICENSE.md"
@@ -13,12 +13,9 @@
   },
   "source": {
     "git": "https://github.com/MessageKit/MessageKit.git",
-    "tag": "3.1.0"
+    "tag": "3.1.0-beta.1"
   },
   "source_files": "Sources/**/*.swift",
-  "pod_target_xcconfig": {
-    "SWIFT_VERSION": "5.0"
-  },
   "swift_versions": "5.0",
   "platforms": {
     "ios": "9.0"
@@ -28,7 +25,6 @@
       "MessageKitAssets": "Assets/MessageKitAssets.bundle/Images"
     }
   },
-  "requires_arc": true,
   "dependencies": {
     "InputBarAccessoryView": [
       "~> 4.3.0"
