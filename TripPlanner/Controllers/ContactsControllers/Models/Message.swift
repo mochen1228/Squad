@@ -15,6 +15,11 @@ struct Member {
     let color: UIColor
 }
 
+//struct User: SenderType, Equatable {
+//    var senderId: String
+//    var displayName: String
+//}
+
 struct Message {
     let member: Member
     let text: String

@@ -62,8 +62,6 @@ class ContactsViewController: UIViewController {
             }
         }
     }
-    
-    
 }
 
 extension ContactsViewController: UIViewControllerTransitioningDelegate {
@@ -153,8 +151,9 @@ extension ContactsViewController: UISearchBarDelegate {
         let searchText = searchBar.text!
         print(searchText)
         
-        let db = Firestore.firestore()
         
+        let db = Firestore.firestore()
+
         // Query the database for users that matches the searched username
         db.collection("users").whereField("username", isEqualTo: searchText)
             .getDocuments() { (querySnapshot, err) in

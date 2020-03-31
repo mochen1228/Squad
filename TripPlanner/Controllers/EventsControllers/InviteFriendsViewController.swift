@@ -12,10 +12,10 @@ import SimpleCheckbox
 class InviteFriendsViewController: UIViewController {
     let dummyCount = 4
     
-    let dummyImageNames = ["gyul_profile",
-                           "matt_profile",
-                           "raquel_profile",
-                           "yihua_profile"]
+    let dummyImageNames = ["profile_placeholder",
+                           "profile_placeholder",
+                           "profile_placeholder",
+                           "profile_placeholder"]
     
     let dummyContactNames = ["Gyulnara Grigoryan",
                              "Mattthew Marano",

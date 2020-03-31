@@ -29,6 +29,10 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var illegalUsernameLabel: UILabel!
     @IBOutlet weak var illegalPasswordLabel: UILabel!
     
+    @IBOutlet weak var firstnameTextfield: UITextField!
+    @IBOutlet weak var lastnameTextfield: UITextField!
+    
+    
     
     @IBAction func onClickDismissButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
@@ -72,7 +76,7 @@ class SignupViewController: UIViewController {
             } else {
                 print("--- Successfully created user")
                 let newUserID = Auth.auth().currentUser?.uid
-                self.createUserDoc(newUserID!, "Chen", "Mo")
+                self.createUserDoc(newUserID!, self.firstnameTextfield.text!, self.lastnameTextfield.text!)
                 self.dismiss(animated: true, completion: nil)
             }
             return

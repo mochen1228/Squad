@@ -1,15 +1,27 @@
 //
-//  User.swift
+//  searchResult.swift
 //  TripPlanner
 //
-//  Created by Hamster on 2/24/20.
+//  Created by Hamster on 3/30/20.
 //  Copyright © 2020 Hamster. All rights reserved.
 //
 
 import Foundation
-import MessageKit
 
-struct User: SenderType, Equatable {
-    var senderId: String
-    var displayName: String
+struct User {
+    var userID: String
+    var username: String
+    var firstname: String
+    var lastname: String
+    var profileImageID: String
+    var contactList: [String]
+    
+    init() {
+        userID = ""
+        username = ""
+        firstname = ""
+        lastname = ""
+        profileImageID = ""
+        contactList = []
+    }
 }
