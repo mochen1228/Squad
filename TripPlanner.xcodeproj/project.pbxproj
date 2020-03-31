@@ -23,7 +23,6 @@
 		A89503E7240756A900A47C28 /* EventChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89503E6240756A900A47C28 /* EventChatViewController.swift */; };
 		A8A1071323E0BC2F008C4D59 /* MenuSlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1071223E0BC2F008C4D59 /* MenuSlideInTransition.swift */; };
 		A8A1074223E2663D008C4D59 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1074123E2663D008C4D59 /* ContactsViewController.swift */; };
-		A8A1074423E2665A008C4D59 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1074323E2665A008C4D59 /* SettingsViewController.swift */; };
 		A8A1074723E354D1008C4D59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8A1074623E354D1008C4D59 /* Main.storyboard */; };
 		A8A1074923E3958F008C4D59 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8A1074823E3958F008C4D59 /* GoogleService-Info.plist */; };
 		A8A1074C23E3A1F9008C4D59 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1074B23E3A1F9008C4D59 /* WelcomeScreenViewController.swift */; };
@@ -43,6 +42,9 @@
 		A8EE100A240633E9004CF76E /* EventScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE1009240633E9004CF76E /* EventScheduleViewController.swift */; };
 		A8EE100C24063456004CF76E /* EventScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE100B24063456004CF76E /* EventScheduleTableViewCell.swift */; };
 		A8EE100E2406387A004CF76E /* EventMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE100D2406387A004CF76E /* EventMembersViewController.swift */; };
+		A8F9783F2433E605001D9794 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F9783C2433E605001D9794 /* SettingTableViewCell.swift */; };
+		A8F978402433E605001D9794 /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F9783D2433E605001D9794 /* UsernameViewController.swift */; };
+		A8F978412433E605001D9794 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F9783E2433E605001D9794 /* SettingsViewController.swift */; };
 		A8F99C982404601A00A6FAF4 /* EventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F99C972404601A00A6FAF4 /* EventsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,7 +68,6 @@
 		A89503E6240756A900A47C28 /* EventChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventChatViewController.swift; sourceTree = "<group>"; };
 		A8A1071223E0BC2F008C4D59 /* MenuSlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSlideInTransition.swift; sourceTree = "<group>"; };
 		A8A1074123E2663D008C4D59 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
-		A8A1074323E2665A008C4D59 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A8A1074623E354D1008C4D59 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A8A1074823E3958F008C4D59 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A8A1074B23E3A1F9008C4D59 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +87,9 @@
 		A8EE1009240633E9004CF76E /* EventScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventScheduleViewController.swift; sourceTree = "<group>"; };
 		A8EE100B24063456004CF76E /* EventScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		A8EE100D2406387A004CF76E /* EventMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMembersViewController.swift; sourceTree = "<group>"; };
+		A8F9783C2433E605001D9794 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		A8F9783D2433E605001D9794 /* UsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameViewController.swift; sourceTree = "<group>"; };
+		A8F9783E2433E605001D9794 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A8F99C972404601A00A6FAF4 /* EventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
 		F3AB855DD53F4A790608BFB1 /* Pods-TripPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripPlanner.debug.xcconfig"; path = "Target Support Files/Pods-TripPlanner/Pods-TripPlanner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,13 +154,13 @@
 		A868642C23DF895600EBFA35 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A8F9783A2433E605001D9794 /* SettingsControllers */,
 				A8EE0FF72404A30E004CF76E /* ContactsControllers */,
 				A86ED92F240370DB0066AE21 /* EventsControllers */,
 				A8A1074A23E3A1C9008C4D59 /* LoginControllers */,
 				A8A1075123E9E8B9008C4D59 /* SearchContactsViewController.swift */,
 				A868643023DF89B600EBFA35 /* ContainerController.swift */,
 				A868643423DF89E300EBFA35 /* MenuViewController.swift */,
-				A8A1074323E2665A008C4D59 /* SettingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -254,6 +258,25 @@
 				A8EE0FFD2404CDCC004CF76E /* Message.swift */,
 				A8BBA5EE2432E0F200D9EF74 /* User.swift */,
 				A8EE0FFF2404D24C004CF76E /* MessageUser.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A8F9783A2433E605001D9794 /* SettingsControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A8F9783B2433E605001D9794 /* Models */,
+				A8F9783D2433E605001D9794 /* UsernameViewController.swift */,
+				A8F9783E2433E605001D9794 /* SettingsViewController.swift */,
+			);
+			name = SettingsControllers;
+			path = ../../../../HangoutPlanner/TripPlanner/Controllers/SettingsControllers;
+			sourceTree = "<group>";
+		};
+		A8F9783B2433E605001D9794 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A8F9783C2433E605001D9794 /* SettingTableViewCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -421,17 +444,19 @@
 				A8442C69242EE938003819E9 /* AddContactsViewController.swift in Sources */,
 				A8A1075223E9E8B9008C4D59 /* SearchContactsViewController.swift in Sources */,
 				A83CBF2524065FFD0067709B /* AddScheduleViewController.swift in Sources */,
+				A8F978402433E605001D9794 /* UsernameViewController.swift in Sources */,
 				A868643123DF89B600EBFA35 /* ContainerController.swift in Sources */,
 				A8F99C982404601A00A6FAF4 /* EventsTableViewCell.swift in Sources */,
 				A8EE0FFC2404AC56004CF76E /* PrivateMessageViewController.swift in Sources */,
+				A8F9783F2433E605001D9794 /* SettingTableViewCell.swift in Sources */,
 				A8A1074C23E3A1F9008C4D59 /* WelcomeScreenViewController.swift in Sources */,
 				A89503E7240756A900A47C28 /* EventChatViewController.swift in Sources */,
 				A868643523DF89E300EBFA35 /* MenuViewController.swift in Sources */,
 				A864F7E1243286B600C43FD8 /* SearchUsersTableViewCell.swift in Sources */,
 				A868643323DF89D400EBFA35 /* EventsMainViewController.swift in Sources */,
+				A8F978412433E605001D9794 /* SettingsViewController.swift in Sources */,
 				A8EE100C24063456004CF76E /* EventScheduleTableViewCell.swift in Sources */,
 				A8A1074E23E3C749008C4D59 /* LoginViewController.swift in Sources */,
-				A8A1074423E2665A008C4D59 /* SettingsViewController.swift in Sources */,
 				A8EE10002404D24C004CF76E /* MessageUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
