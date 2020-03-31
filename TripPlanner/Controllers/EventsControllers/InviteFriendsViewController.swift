@@ -67,10 +67,12 @@ class InviteFriendsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.barTintColor = UIColor.white
-        searchBar.setBackgroundImage(UIImage.init(), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
         tableView.delegate = self
         tableView.dataSource = self
+        
+        searchBar.barTintColor = UIColor.white
+        searchBar.setBackgroundImage(UIImage.init(), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
+        
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
         // Add kayboard dismissing gesture

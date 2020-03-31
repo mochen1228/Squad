@@ -14,7 +14,12 @@ class SearchUsersTableViewCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var firstlastnameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var addUserButton: UIButton!
     
+    
+    @IBAction func didTapAddUserButton(_ sender: Any) {
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

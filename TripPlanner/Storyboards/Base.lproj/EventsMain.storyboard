@@ -615,7 +615,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="6vB-GW-rgT">
                             <connections>
-                                <segue destination="fj8-ec-0h1" kind="show" id="Xn9-G0-dRa"/>
+                                <segue destination="fj8-ec-0h1" kind="presentation" id="Xn9-G0-dRa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -634,11 +634,11 @@
             <objects>
                 <viewController id="fj8-ec-0h1" customClass="AddContactsViewController" customModule="HangoutPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U5h-ad-9HF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M78-LP-dJi">
-                                <rect key="frame" x="0.0" y="144" width="375" height="668"/>
+                                <rect key="frame" x="0.0" y="106" width="375" height="652"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchUsersCell" rowHeight="78" id="K6M-7e-qnx" customClass="SearchUsersTableViewCell" customModule="HangoutPlanner" customModuleProvider="target">
@@ -673,18 +673,32 @@
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWD-2u-02g">
+                                                    <rect key="frame" x="320" y="25" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="9ME-AY-jJ4"/>
+                                                        <constraint firstAttribute="width" constant="30" id="d4k-IF-8vf"/>
+                                                    </constraints>
+                                                    <state key="normal" image="plus" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="didTapAddUserButton:" destination="K6M-7e-qnx" eventType="touchUpInside" id="7Xo-qF-PG1"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="oWD-2u-02g" secondAttribute="trailing" constant="10" id="38m-T6-1yW"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="GAX-Yk-rUu" secondAttribute="bottom" constant="4" id="4gP-ew-nLF"/>
                                                 <constraint firstItem="ONU-h4-JIR" firstAttribute="leading" secondItem="Eyv-Vb-78b" secondAttribute="leadingMargin" constant="6" id="ECb-ue-2nc"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="ONU-h4-JIR" secondAttribute="bottom" constant="3" id="FiJ-nz-2ix"/>
                                                 <constraint firstItem="GAX-Yk-rUu" firstAttribute="leading" secondItem="ONU-h4-JIR" secondAttribute="trailing" constant="8" id="Gmn-xs-Psd"/>
                                                 <constraint firstItem="vMh-ei-Wab" firstAttribute="top" secondItem="Eyv-Vb-78b" secondAttribute="topMargin" constant="4" id="Kyx-aa-99Y"/>
+                                                <constraint firstItem="oWD-2u-02g" firstAttribute="top" secondItem="Eyv-Vb-78b" secondAttribute="topMargin" constant="14" id="QiK-fp-BFH"/>
                                                 <constraint firstItem="vMh-ei-Wab" firstAttribute="leading" secondItem="ONU-h4-JIR" secondAttribute="trailing" constant="8" id="SsH-NQ-Tpe"/>
                                                 <constraint firstItem="ONU-h4-JIR" firstAttribute="top" secondItem="Eyv-Vb-78b" secondAttribute="topMargin" constant="3" id="myC-Sg-dso"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="addUserButton" destination="oWD-2u-02g" id="jV0-bL-viY"/>
                                             <outlet property="firstlastnameLabel" destination="GAX-Yk-rUu" id="J0a-VR-BQE"/>
                                             <outlet property="profileImage" destination="ONU-h4-JIR" id="vj6-B5-s9Q"/>
                                             <outlet property="usernameLabel" destination="vMh-ei-Wab" id="zJi-UF-WyV"/>
@@ -692,20 +706,27 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BV5-iM-2Ie">
+                                <rect key="frame" x="20" y="20" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                            </button>
                             <searchBar contentMode="redraw" placeholder="Search username" translatesAutoresizingMaskIntoConstraints="NO" id="YtD-mo-yrj">
-                                <rect key="frame" x="0.0" y="88" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="56"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="YtD-mo-yrj" firstAttribute="trailing" secondItem="YP3-t4-gz7" secondAttribute="trailing" id="33G-Xs-m6y"/>
-                            <constraint firstItem="M78-LP-dJi" firstAttribute="leading" secondItem="YP3-t4-gz7" secondAttribute="leading" id="UaB-CO-KHM"/>
-                            <constraint firstItem="YtD-mo-yrj" firstAttribute="top" secondItem="YP3-t4-gz7" secondAttribute="top" id="Zac-27-bra"/>
-                            <constraint firstItem="M78-LP-dJi" firstAttribute="trailing" secondItem="YP3-t4-gz7" secondAttribute="trailing" id="fLt-ZL-sEP"/>
-                            <constraint firstItem="M78-LP-dJi" firstAttribute="top" secondItem="YtD-mo-yrj" secondAttribute="bottom" symbolic="YES" id="oFr-6g-X6M"/>
-                            <constraint firstAttribute="bottom" secondItem="M78-LP-dJi" secondAttribute="bottom" id="s8l-AD-bg8"/>
-                            <constraint firstItem="YtD-mo-yrj" firstAttribute="leading" secondItem="YP3-t4-gz7" secondAttribute="leading" id="z5z-qu-llu"/>
+                            <constraint firstItem="YtD-mo-yrj" firstAttribute="top" secondItem="BV5-iM-2Ie" secondAttribute="bottom" symbolic="YES" id="2ZD-2m-hh8"/>
+                            <constraint firstItem="BV5-iM-2Ie" firstAttribute="leading" secondItem="YP3-t4-gz7" secondAttribute="leading" constant="20" id="AVF-Th-cAI"/>
+                            <constraint firstAttribute="bottom" secondItem="M78-LP-dJi" secondAttribute="bottom" id="QHR-qG-LRS"/>
+                            <constraint firstItem="BV5-iM-2Ie" firstAttribute="top" secondItem="YP3-t4-gz7" secondAttribute="top" constant="20" id="R1t-cm-vlZ"/>
+                            <constraint firstItem="YtD-mo-yrj" firstAttribute="trailing" secondItem="YP3-t4-gz7" secondAttribute="trailing" id="YzB-s2-rtq"/>
+                            <constraint firstItem="YtD-mo-yrj" firstAttribute="leading" secondItem="YP3-t4-gz7" secondAttribute="leading" id="bTa-gP-ELl"/>
+                            <constraint firstItem="M78-LP-dJi" firstAttribute="top" secondItem="YtD-mo-yrj" secondAttribute="bottom" symbolic="YES" id="jV8-41-0A0"/>
+                            <constraint firstItem="M78-LP-dJi" firstAttribute="leading" secondItem="YP3-t4-gz7" secondAttribute="leading" id="sTO-CC-yRj"/>
+                            <constraint firstItem="M78-LP-dJi" firstAttribute="trailing" secondItem="YP3-t4-gz7" secondAttribute="trailing" id="uqZ-1r-XbV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YP3-t4-gz7"/>
                     </view>
