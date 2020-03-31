@@ -16,14 +16,40 @@ import UIKit
 import FirebaseAuth
 
 class SettingsViewController: UIViewController {
+    let dummyImageNames = ["gyul_profile",
+                           "matt_profile",
+                           "raquel_profile",
+                           "yihua_profile",
+                           "yihua_profile"]
+    
+    let dummySetNames = ["Username",
+                             "Password",
+                             "Notifications",
+                             "Dark mode",
+                             "Facebook"]
+    
+
+    var selectedSetting = ""
     // MARK: Properties
     let transition = MenuSlideInTransition()
-
+    @IBOutlet weak var tableView: UITableView!
+    
     // MARK: Initializations
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showUsername" {
+            if let destinationVC = segue.destination as? UsernameViewController {
+
+            }
+        }
+    }
+
     @IBAction func didTapLogout(_ sender: Any) {
         do {
             try Auth.auth().signOut()
@@ -93,3 +119,27 @@ extension SettingsViewController: UIViewControllerTransitioningDelegate {
         return transition
     }
 }
+
+extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dummySetNames.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "setCell", for: indexPath) as! SettingTableViewCell
+        let row = indexPath.row
+        cell.setImage.image = UIImage(named: dummyImageNames[row])
+        cell.setLabel.text = dummySetNames[row]
+        cell.selectionStyle = .none
+        return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedSetting = dummySetNames[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
+        if selectedSetting == "Username"{
+            performSegue(withIdentifier: "showUsername", sender: nil)
+        }
+        
+    }
+}
+
