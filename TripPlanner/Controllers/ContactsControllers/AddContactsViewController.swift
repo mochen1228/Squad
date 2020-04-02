@@ -71,8 +71,18 @@ extension AddContactsViewController: UITableViewDelegate, UITableViewDataSource 
         cell.profileImage.image = UIImage(named: "profile_placeholder")
         cell.firstlastnameLabel.text = "\(searchResults[indexPath.row].firstname) \(searchResults[indexPath.row].lastname)"
         cell.usernameLabel.text = searchResults[indexPath.row].username
-        if (currentUser.contactList.contains(searchResults[indexPath.row].userID)) {
-            
+        
+        print(currentUser.contactList)
+        print(searchResults[indexPath.row].userID)
+        
+        // Set images for add friend button
+        // If the user is alreay a friend, it will set checked as the button image
+        if (!currentUser.contactList.contains(searchResults[indexPath.row].userID)) {
+            let buttonImage = UIImage(named: "add_user")
+            cell.addUserButton.setImage(buttonImage, for: .normal)
+        } else {
+            let buttonImage = UIImage(named: "add_user_checked")
+            cell.addUserButton.setImage(buttonImage, for: .normal)
         }
         return cell
     }

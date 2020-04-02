@@ -15,10 +15,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    public var currentUser = User()
+    
+    func loadProfile() {
+        // Load current user profile to currentUser variable
+        //      for the all VCs to access
+        //
+        // This function should be called each time when user
+        //      profile is updated
+        let db = Firestore.firestore()
+        let currentUser = Auth.auth().currentUser
+        db.collection("users").whereField("userID", isEqualTo: currentUser?.uid)
+            .getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let resultData = querySnapshot!.documents[0].data()
+                self.currentUser.firstname = resultData["first"] as! String
+                self.currentUser.lastname = resultData["last"] as! String
+                self.currentUser.username = resultData["username"] as! String
+                self.currentUser.userID = resultData["userID"] as! String
+                self.currentUser.contactList = resultData["contactList"] as! [String]
+            }
+        }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        if (Auth.auth().currentUser != nil){
+            loadProfile()
+        }
         
         return true
     }

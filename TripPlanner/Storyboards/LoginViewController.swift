@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 
 class LoginViewController: UIViewController {
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +37,14 @@ class LoginViewController: UIViewController {
             print("Cannot log in")
           } else {
             print("Successfully logged in")
-            self!.dismiss(animated: true, completion: nil)
             let storyboard = UIStoryboard(name: "EventsMain", bundle: nil)
             let toVC = storyboard.instantiateViewController(withIdentifier: "EventsNavigationViewController")
             toVC.modalPresentationStyle = .fullScreen
+            
+            // Load profile to app
+            self!.appDelegate.loadProfile()
+            
+            // redirect to event home page
             self!.present(toVC, animated: false)
           }
         }

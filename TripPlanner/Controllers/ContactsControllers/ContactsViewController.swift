@@ -62,6 +62,7 @@ class ContactsViewController: UIViewController {
             }
         }
     }
+    
 }
 
 extension ContactsViewController: UIViewControllerTransitioningDelegate {
@@ -106,7 +107,7 @@ extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension ContactsViewController {
     // MARK: Handlers
-    @IBAction func didTapMenu(_ sender: UIBarButtonItem) {
+    @IBAction func didTapMenuButton(_ sender: Any) {
         // Executes when side menu button icon is tapped
         
         // Instantiate menu view controller
@@ -122,6 +123,7 @@ extension ContactsViewController {
         menuViewController.modalPresentationStyle = .overCurrentContext
         menuViewController.transitioningDelegate = self
         present(menuViewController, animated: true)
+
     }
     
     func showNewController(_ selectedMenu: MenuType) {

@@ -46,6 +46,8 @@
 		A8F978402433E605001D9794 /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F9783D2433E605001D9794 /* UsernameViewController.swift */; };
 		A8F978412433E605001D9794 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F9783E2433E605001D9794 /* SettingsViewController.swift */; };
 		A8F99C982404601A00A6FAF4 /* EventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F99C972404601A00A6FAF4 /* EventsTableViewCell.swift */; };
+		A8FDD80B243575CF00C99AC6 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FDD80A243575CF00C99AC6 /* SettingsTableViewController.swift */; };
+		A8FDD80D243672CB00C99AC6 /* SettingsProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FDD80C243672CB00C99AC6 /* SettingsProfileTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +93,8 @@
 		A8F9783D2433E605001D9794 /* UsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameViewController.swift; sourceTree = "<group>"; };
 		A8F9783E2433E605001D9794 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A8F99C972404601A00A6FAF4 /* EventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
+		A8FDD80A243575CF00C99AC6 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		A8FDD80C243672CB00C99AC6 /* SettingsProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsProfileTableViewCell.swift; path = TripPlanner/Controllers/SettingsController/Cells/SettingsProfileTableViewCell.swift; sourceTree = "<group>"; };
 		F3AB855DD53F4A790608BFB1 /* Pods-TripPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripPlanner.debug.xcconfig"; path = "Target Support Files/Pods-TripPlanner/Pods-TripPlanner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +122,7 @@
 		A868640C23DF7B7D00EBFA35 = {
 			isa = PBXGroup;
 			children = (
+				A8FDD80C243672CB00C99AC6 /* SettingsProfileTableViewCell.swift */,
 				A8F99C642404245E00A6FAF4 /* Resources */,
 				A868641723DF7B7D00EBFA35 /* TripPlanner */,
 				A868641623DF7B7D00EBFA35 /* Products */,
@@ -267,6 +272,7 @@
 			children = (
 				A8F9783B2433E605001D9794 /* Models */,
 				A8F9783D2433E605001D9794 /* UsernameViewController.swift */,
+				A8FDD80A243575CF00C99AC6 /* SettingsTableViewController.swift */,
 				A8F9783E2433E605001D9794 /* SettingsViewController.swift */,
 			);
 			name = SettingsControllers;
@@ -428,9 +434,11 @@
 				A8BBA5EF2432E0F200D9EF74 /* User.swift in Sources */,
 				A8EE10062405EE87004CF76E /* SelectedFriendsTableViewCell.swift in Sources */,
 				A8EE10022405A8AE004CF76E /* InviteFriendsTableViewCell.swift in Sources */,
+				A8FDD80D243672CB00C99AC6 /* SettingsProfileTableViewCell.swift in Sources */,
 				A8EE100E2406387A004CF76E /* EventMembersViewController.swift in Sources */,
 				A8A1071323E0BC2F008C4D59 /* MenuSlideInTransition.swift in Sources */,
 				A8EE0FF624047FF1004CF76E /* EventProfileImage.swift in Sources */,
+				A8FDD80B243575CF00C99AC6 /* SettingsTableViewController.swift in Sources */,
 				A86ED931240372060066AE21 /* AddEventViewController.swift in Sources */,
 				A8EE10042405A9DB004CF76E /* InviteFriendsViewController.swift in Sources */,
 				A8EE100A240633E9004CF76E /* EventScheduleViewController.swift in Sources */,

@@ -34,6 +34,7 @@ class MenuViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layer.cornerRadius = 20
+        
     }
     
     // MARK: Protocols
