@@ -26,9 +26,7 @@ class AddLocationViewController: UIViewController, LocationSearchTableDelegate {
     let locationManager = CLLocationManager()
     
     var resultSearchController:UISearchController? = nil
-    
-    @IBOutlet weak var navigationBar: UINavigationItem!
-    
+        
     func passSelectedLocation(location: MKPlacemark) {
     // Set of statements to run when received data from the search table
     // print("Placemark received:")
@@ -84,7 +82,7 @@ class AddLocationViewController: UIViewController, LocationSearchTableDelegate {
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
         searchBar.placeholder = "Search for places"
-        navigationBar.titleView = resultSearchController?.searchBar
+        navigationItem.titleView = resultSearchController?.searchBar
         // We want the search bar to always be present
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         // Nice to have feature for better aesthetics

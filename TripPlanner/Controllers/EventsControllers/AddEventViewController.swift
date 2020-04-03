@@ -7,8 +7,18 @@
 //
 
 import UIKit
+import MapKit
+
+
+protocol AddEventViewControllerDelegate {
+    func onPassingString(newData: [String: String])
+}
+
 
 class AddEventViewController: UIViewController {
+    
+    var selectedPlacemark: MKPlacemark? = nil
+    
     var delegate: AddEventViewControllerDelegate?
     
     var dummyImageNames: [String] = []
@@ -19,14 +29,6 @@ class AddEventViewController: UIViewController {
     
     let datePicker = UIDatePicker()
 
-    var childDismiss = 0 {
-        // This value is used to detect if child
-        // data has finished passing
-        didSet {
-            print("Data finished transmitting")
-            tableView.reloadData()
-        }
-    }
     
     @IBOutlet weak var tableView: UITableView!
 
@@ -39,7 +41,7 @@ class AddEventViewController: UIViewController {
     }
     
     @IBAction func didTapInviteFriendsButton(_ sender: Any) {
-        performSegue(withIdentifier: "showInviteFriends", sender: nil)
+        performSegue(withIdentifier: "showInviteFriendsSegue", sender: nil)
     }
     
     @IBAction func didTapCancelButton(_ sender: Any) {
@@ -61,9 +63,22 @@ class AddEventViewController: UIViewController {
 //            parent.childDismiss = 0
 //            print("hello")
 //        }
-        self.dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
+        // self.dismiss(animated: true, completion: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMapSegue" {
+            if let destination = segue.destination as? AddLocationViewController {
+                destination.delegate = self
+            }
+        }
+        if segue.identifier == "showInviteFriendsSegue" {
+            if let destination = segue.destination as? InviteFriendsViewController {
+                destination.delegate = self
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,6 +151,26 @@ extension AddEventViewController {
     }
 }
 
-protocol AddEventViewControllerDelegate {
-    func onPassingString(newData: [String: String])
+extension AddEventViewController: AddLocationViewControllerDelegate {
+    func finishPassing(location: MKPlacemark) {
+        print("Received:")
+        print(location)
+        selectedPlacemark = location
+        let array = location.title!.components(separatedBy: ",")
+        
+        eventLocationTextfield.text = "\(location.name!), \(array[1])"
+    }
+    
 }
+
+extension AddEventViewController: InviteFriendsViewControllerDelegate {
+    func finishPassing(newData: [[String]]) {
+        print("Received:")
+        print(newData)
+        dummyImageNames = newData[0]
+        dummyUsernames = newData[1]
+        dummyContactNames = newData[2]
+        tableView.reloadData()
+    }
+}
+

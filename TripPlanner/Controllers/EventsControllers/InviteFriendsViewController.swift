@@ -9,7 +9,13 @@
 import UIKit
 import SimpleCheckbox
 
+protocol InviteFriendsViewControllerDelegate {
+    func finishPassing(newData: [[String]])
+}
+
 class InviteFriendsViewController: UIViewController {
+    var delegate: InviteFriendsViewControllerDelegate?
+    
     let dummyCount = 4
     
     let dummyImageNames = ["profile_placeholder",
@@ -45,23 +51,40 @@ class InviteFriendsViewController: UIViewController {
     @IBAction func didTapInviteButton(_ sender: Any) {
 //        let p = presentingViewController as? AddEventViewController
 //        print(p?.dummyContactNames)
-        if let parent = presentingViewController as? AddEventViewController {
-            var newDummyImageNames: [String] = []
-            var newDummyContactNames: [String] = []
-            var newDummyUsernames: [String] = []
-            
-            for selection in dummySelectedStatus {
-                if selection.value == 1 {
-                    newDummyUsernames.append(dummyUsernames[selection.key])
-                    newDummyImageNames.append(dummyImageNames[selection.key])
-                    newDummyContactNames.append(dummyContactNames[selection.key])
-                }
+        var newDummyImageNames: [String] = []
+        var newDummyContactNames: [String] = []
+        var newDummyUsernames: [String] = []
+        
+        for selection in dummySelectedStatus {
+            if selection.value == 1 {
+                newDummyUsernames.append(dummyUsernames[selection.key])
+                newDummyImageNames.append(dummyImageNames[selection.key])
+                newDummyContactNames.append(dummyContactNames[selection.key])
             }
-            parent.dummyImageNames = newDummyImageNames
-            parent.dummyUsernames = newDummyUsernames
-            parent.dummyContactNames = newDummyContactNames
-            parent.childDismiss = 0
         }
+        var toPass: [[String]] = [newDummyImageNames, newDummyUsernames, newDummyContactNames]
+        delegate?.finishPassing(newData: toPass)
+        
+//        if let parent = presentingViewController as? AddEventViewController {
+//            var newDummyImageNames: [String] = []
+//            var newDummyContactNames: [String] = []
+//            var newDummyUsernames: [String] = []
+//
+//            for selection in dummySelectedStatus {
+//                if selection.value == 1 {
+//                    newDummyUsernames.append(dummyUsernames[selection.key])
+//                    newDummyImageNames.append(dummyImageNames[selection.key])
+//                    newDummyContactNames.append(dummyContactNames[selection.key])
+//                }
+//            }
+//            parent.dummyImageNames = newDummyImageNames
+//            parent.dummyUsernames = newDummyUsernames
+//            parent.dummyContactNames = newDummyContactNames
+//
+//            var toPass: [[String]] = [newDummyImageNames, newDummyUsernames, newDummyContactNames]
+//            delegate?.finishPassing(newData: toPass)
+//            parent.childDismiss = 0
+//        }
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -81,9 +104,6 @@ class InviteFriendsViewController: UIViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
 
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
 }
 

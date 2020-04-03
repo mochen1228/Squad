@@ -80,10 +80,26 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBAction func didTapAddButton(_ sender: Any) {
         // When add event button is pressed, show add event VC
-        guard let addViewController = storyboard?.instantiateViewController(
-            withIdentifier: "AddEventViewController") as? AddEventViewController else {return}
-        addViewController.delegate = self
-        present(addViewController, animated: true)
+//        guard let addViewController = storyboard?.instantiateViewController(
+//            withIdentifier: "AddEventViewController") as? AddEventViewController else {return}
+//        addViewController.delegate = self
+//        present(addViewController, animated: true)
+        performSegue(withIdentifier: "showAddEventSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showAddEventSegue" {
+            if let destinationVC = segue.destination as? AddEventViewController {
+                destinationVC.delegate = self
+            }
+        }
+        
+        if segue.identifier == "showEventMainPage" {
+            if let destinationVC = segue.destination as? EventMainPageViewController {
+                destinationVC.currentEvent = selectedEvent
+                selectedEvent = ""
+            }
+        }
     }
     
     
@@ -110,14 +126,6 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
         present(newViewController, animated: false)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showEventMainPage" {
-            if let destinationVC = segue.destination as? EventMainPageViewController {
-                destinationVC.currentEvent = selectedEvent
-                selectedEvent = ""
-            }
-        }
-    }
 }
 
 extension EventsMainViewController: UIViewControllerTransitioningDelegate {
