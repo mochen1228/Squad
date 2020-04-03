@@ -17,6 +17,8 @@ class AddEventViewController: UIViewController {
     
     var dummyUsernames: [String] = []
     
+    let datePicker = UIDatePicker()
+
     var childDismiss = 0 {
         // This value is used to detect if child
         // data has finished passing
@@ -71,6 +73,7 @@ class AddEventViewController: UIViewController {
                                          action: #selector(UIView.endEditing))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+        showDatePicker()
     }
 
 }
@@ -93,6 +96,40 @@ extension AddEventViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
+}
+
+extension AddEventViewController {
+    // Extension for datetime picker
+    func showDatePicker(){
+        // Picker mode
+        datePicker.datePickerMode = .dateAndTime
+        
+        // Configure ToolBar
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        
+        // Configure buttons
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donedatePicker));
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
+
+        toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+        
+        eventDatetimeTextfield.inputAccessoryView = toolbar
+        eventDatetimeTextfield.inputView = datePicker
+
+    }
+
+    @objc func donedatePicker(){
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, MMM d, h:mm a"
+        eventDatetimeTextfield.text = formatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+        }
+
+    @objc func cancelDatePicker(){
+        self.view.endEditing(true)
+    }
 }
 
 protocol AddEventViewControllerDelegate {
