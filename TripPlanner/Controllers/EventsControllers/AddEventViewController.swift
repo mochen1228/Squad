@@ -34,6 +34,10 @@ class AddEventViewController: UIViewController {
     @IBOutlet weak var eventDatetimeTextfield: UITextField!
     @IBOutlet weak var eventLocationTextfield: UITextField!
     
+    @IBAction func didTapPickLocationButton(_ sender: Any) {
+        performSegue(withIdentifier: "showMapSegue", sender: nil)
+    }
+    
     @IBAction func didTapInviteFriendsButton(_ sender: Any) {
         performSegue(withIdentifier: "showInviteFriends", sender: nil)
     }
