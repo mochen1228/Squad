@@ -81,6 +81,7 @@ class AddScheduleViewController: UIViewController {
                 print("Document added with ID: \(ref!.documentID)")
                 
                 // Add schedule to event
+                // Get current event document first, then overwrite schedules array
                 self.db.collection("events").document(self.currentEvent)
                     .getDocument() { (document, err) in
                     if let err = err {
@@ -89,8 +90,7 @@ class AddScheduleViewController: UIViewController {
                         let data = document!.data()!
                         var currentSchedule = data["schedules"] as! [String]
                         currentSchedule.append(ref!.documentID)
-                        print(ref!.documentID)
-                        print(currentSchedule)
+                        
                         self.db.collection("events").document(self.currentEvent).setData(["schedules": currentSchedule ], merge: true)
                     }
                 }

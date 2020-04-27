@@ -7,8 +7,25 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 
 class EventScheduleViewController: UIViewController {
+    
+    let db = Firestore.firestore()
+    
+    var scheduleCount = 0
+    var scheduleList: [String] = []
+    var scheduleNames: [String] = []
+    var datetimeNames: [String] = [] {
+        didSet {
+            if scheduleCount == datetimeNames.count {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     var dummyScheduleNames = ["Meet Up At Matt's Place",
                            "Dinner at McDonald's"]
     var dummyDatetime = ["Today, 5:00 PM", "Today, 6:00 PM"]
@@ -18,15 +35,20 @@ class EventScheduleViewController: UIViewController {
     var currentEvent: String = ""
     
     @IBOutlet weak var tableView: UITableView!
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-
+        
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.tableView.addSubview(refreshControl)
+        
         // Do any additional setup after loading the view.
         setUpButton()
+        loadSchedules()
     }
     
     func setUpButton() {
@@ -38,10 +60,45 @@ class EventScheduleViewController: UIViewController {
         button.layer.borderWidth = 0.0
         
         button.addTarget(self, action: #selector(didTapAddButton(sender:)), for: .touchUpInside)
+        
 
         self.view.addSubview(button)
     }
     
+    @objc func refresh(_ sender: Any) {
+        loadSchedules()
+        self.refreshControl.endRefreshing()
+    }
+
+    func loadSchedules() {
+        scheduleCount = 0
+        scheduleNames = []
+        datetimeNames = []
+        scheduleList = []
+        
+        db.collection("events").document(currentEvent).getDocument() { (document, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let data = document!.data()!
+                let currentSchedule = data["schedules"] as! [String]
+                
+                self.scheduleCount = currentSchedule.count
+                for schedule in currentSchedule {
+                    self.db.collection("schedules").document(schedule).getDocument() { (doc, err) in
+                        if let err = err {
+                            print("Error getting documents: \(err)")
+                        } else {
+                            let data = doc!.data()!
+                            self.scheduleList.append(doc!.documentID)
+                            self.scheduleNames.append(data["name"] as! String)
+                            self.datetimeNames.append(data["time"] as! String)
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     
     @objc func didTapAddButton(sender: Any) {
@@ -57,15 +114,15 @@ class EventScheduleViewController: UIViewController {
 
 extension EventScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyScheduleNames.count
+        return scheduleCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventScheduleCell", for: indexPath) as! EventScheduleTableViewCell
         let row = indexPath.row
         cell.selectionStyle = .none
-        cell.scheduleNameLabel.text = dummyScheduleNames[row]
-        cell.datetimeLabel.text = dummyDatetime[row]
+        cell.scheduleNameLabel.text = scheduleNames[row]
+        cell.datetimeLabel.text = datetimeNames[row]
         return cell
     }
 

@@ -121,7 +121,6 @@ class ContactsViewController: UIViewController {
                     self.imageNames.append(dataDescription["image"] as! String)
                 }
             }
-
         }
     }
 }

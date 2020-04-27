@@ -23,11 +23,6 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-
-
-
-
-    
     let db = Firestore.firestore()
 
     func onPassingString(newData: [String:String]) {
@@ -41,6 +36,7 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     @IBOutlet weak var tableView: UITableView!
+    var refreshControl   = UIRefreshControl()
     
     // MARK: Properties
     let transition = MenuSlideInTransition()
@@ -74,11 +70,7 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
     
     
     // MARK: Initializations
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadEvents()
-    }
+
     
     func loadEvents() {
         eventCount = 0
@@ -113,6 +105,11 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
         loadEvents()
     }
     
+    @objc func refresh(_ sender: Any) {
+        loadEvents()
+        self.refreshControl.endRefreshing()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.userInfoDidSetListener), name: NSNotification.Name(rawValue: "userLoaded"), object: nil)
@@ -120,6 +117,9 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
         tableView.delegate = self
         tableView.dataSource = self
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.tableView.addSubview(refreshControl)
+        
         loadEvents()
     }
     
