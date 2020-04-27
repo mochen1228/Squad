@@ -8,7 +8,8 @@
 
 import UIKit
 import MapKit
-
+import FirebaseDatabase
+import Firebase
 
 protocol AddEventViewControllerDelegate {
     func onPassingString(newData: [String: String])
@@ -16,16 +17,20 @@ protocol AddEventViewControllerDelegate {
 
 
 class AddEventViewController: UIViewController {
-    
+    let db = Firestore.firestore()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
     var selectedPlacemark: MKPlacemark? = nil
     
     var delegate: AddEventViewControllerDelegate?
     
-    var dummyImageNames: [String] = []
+    var imageNames: [String] = []
     
-    var dummyContactNames: [String] = []
+    var contactNames: [String] = []
     
-    var dummyUsernames: [String] = []
+    var usernames: [String] = []
+    
+    var contactList: [String] = []
     
     let datePicker = UIDatePicker()
 
@@ -48,23 +53,44 @@ class AddEventViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    func saveValidation() -> Bool {
+        // Won't let user save if any of the critical info is missing
+        if let eventText = eventNameTextfield.text, eventText.isEmpty {
+           return false
+        }
+        if let datetimeText = eventDatetimeTextfield.text, datetimeText.isEmpty {
+           return false
+        }
+        if let locationText = eventLocationTextfield.text, locationText.isEmpty {
+           return false
+        }
+        return true
+    }
+    
     @IBAction func didTapSaveButton(_ sender: Any) {
-        let toPass: [String: String] = ["datatime": eventDatetimeTextfield.text!,
-                                       "name": eventNameTextfield.text!,
-                                       "location": eventLocationTextfield.text!,
-                                       "image": "kbbq_profile"]
-        delegate?.onPassingString(newData: toPass)
-        
-//        if let parent = presentingViewController as? EventsMainViewController {
-//            parent.dummyDatetime.append(eventDatetimeTextfield.text!)
-//            parent.dummyImageNames.append(eventDatetimeTextfield.text!)
-//            parent.dummyLocationNames.append(eventLocationTextfield.text!)
-//            parent.dummyImageNames.append("kbbq_profile")
-//            parent.childDismiss = 0
-//            print("hello")
-//        }
+        if !saveValidation() {
+            // TODO: Add Alert View
+            return
+        }
+
+        // Add event document to collection
+        contactList.append(appDelegate.currentUser.documentID)
+        var ref: DocumentReference? = nil
+        ref = db.collection("events").addDocument(data: [
+            "name": self.eventNameTextfield.text!,
+            "schedules": [String](),
+            "time": self.eventDatetimeTextfield.text!,
+            "location": self.eventLocationTextfield.text!,
+            "participants": contactList,
+            "image": "newport_beach_profile"
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
         navigationController?.popViewController(animated: true)
-        // self.dismiss(animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -82,6 +108,8 @@ class AddEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Configure table view
         tableView.alwaysBounceVertical = false
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.delegate = self
@@ -92,14 +120,15 @@ class AddEventViewController: UIViewController {
                                          action: #selector(UIView.endEditing))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+        
         showDatePicker()
     }
-
 }
 
+// MARK: Table View Extentions
 extension AddEventViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyContactNames.count
+        return contactList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -108,14 +137,14 @@ extension AddEventViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.selectionStyle = .none
         let row = indexPath.row
-        cell.profileImage.image = UIImage(named: dummyImageNames[row])
-        cell.usernameLabel.text = dummyUsernames[row]
-        cell.firstLastNameLabel.text = dummyContactNames[row]
+        cell.profileImage.image = UIImage(named: imageNames[row])
+        cell.usernameLabel.text = usernames[row]
+        cell.firstLastNameLabel.text = contactNames[row]
         
         return cell
     }
-
 }
+
 
 extension AddEventViewController {
     // Extension for datetime picker
@@ -132,7 +161,7 @@ extension AddEventViewController {
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
 
-        toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+        toolbar.setItems([cancelButton,spaceButton,doneButton], animated: false)
         
         eventDatetimeTextfield.inputAccessoryView = toolbar
         eventDatetimeTextfield.inputView = datePicker
@@ -167,9 +196,10 @@ extension AddEventViewController: InviteFriendsViewControllerDelegate {
     func finishPassing(newData: [[String]]) {
         print("Received:")
         print(newData)
-        dummyImageNames = newData[0]
-        dummyUsernames = newData[1]
-        dummyContactNames = newData[2]
+        imageNames = newData[0]
+        usernames = newData[1]
+        contactNames = newData[2]
+        contactList = newData[3]
         tableView.reloadData()
     }
 }

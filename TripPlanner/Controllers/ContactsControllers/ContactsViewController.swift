@@ -18,25 +18,42 @@ import FirebaseDatabase
 
 
 class ContactsViewController: UIViewController {
+    var currentUser = User()
+    let db = Firestore.firestore()
+
+    var profileCount = 0
     
-    let dummyCount = 4
+//    let dummyImageNames = ["gyul_profile",
+//                           "matt_profile",
+//                           "raquel_profile",
+//                           "yihua_profile"]
+//
+//    let dummyContactNames = ["Gyulnara Grigoryan",
+//                             "Mattthew Marano",
+//                             "Raquel Hidalgo",
+//                             "Yihua Cai"]
     
-    let dummyImageNames = ["gyul_profile",
-                           "matt_profile",
-                           "raquel_profile",
-                           "yihua_profile"]
+    var contactList = [String]()
+    var contactNames = [String]() {
+        didSet {
+            if contactNames.count == profileCount {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
-    let dummyContactNames = ["Gyulnara Grigoryan",
-                             "Mattthew Marano",
-                             "Raquel Hidalgo",
-                             "Yihua Cai"]
-    
-    var contactNames = [String]()
+    var imageNames = [String]() {
+        didSet {
+            if contactNames.count == profileCount {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     let dummyLastMessages = ["You: Wanna get kbbq this weekend?",
                              "Sounds good!",
                              "Lol",
-                             "You: 早安儿子"]
+                             "You: 早安ez"]
     
     var selectedContact = ""
     
@@ -47,11 +64,17 @@ class ContactsViewController: UIViewController {
     
     
     // MARK: Initializations
+    override func viewWillAppear(_ animated: Bool) {
+      super.viewWillAppear(animated)
+        loadContacts()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        // loadContacts()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -63,7 +86,46 @@ class ContactsViewController: UIViewController {
         }
     }
     
+    
+    // MARK: Load contact info
+    func loadContacts() {
+        self.contactList = [String]()
+        // Load all contacts of the current user to the table view
+        let currentUser = Auth.auth().currentUser
+        db.collection("users").whereField("userID", isEqualTo: currentUser?.uid as Any)
+            .getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let resultData = querySnapshot!.documents[0].data()
+                for contact in resultData["contactList"] as! [String] {
+                    self.contactList.append(contact)
+                }
+                self.currentUser.contactList = resultData["contactList"] as! [String]
+                // Change dummy count and refresh page
+                self.profileCount = self.contactList.count
+                self.loadContactInfo()
+            }
+        }
+    }
+    
+    func loadContactInfo() {
+        for contact in self.contactList {
+            db.collection("users").document(contact)
+                .getDocument() { (document, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    let dataDescription = document!.data()!
+                    self.contactNames.append("\(dataDescription["first"] as! String) \(dataDescription["last"] as! String)")
+                    self.imageNames.append(dataDescription["image"] as! String)
+                }
+            }
+
+        }
+    }
 }
+
 
 extension ContactsViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController,
@@ -84,21 +146,21 @@ extension ContactsViewController: UIViewControllerTransitioningDelegate {
 
 extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyCount
+        return profileCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contactsCell", for: indexPath) as! ContactTableViewCell
         let row = indexPath.row
-        cell.contactNameLabel.text = dummyContactNames[row]
+        cell.contactNameLabel.text = contactNames[row]
         cell.lastMessageLabel.text = dummyLastMessages[row]
-        cell.profileImage.image = UIImage(named: dummyImageNames[row])
+        cell.profileImage.image = UIImage(named: imageNames[row])
         cell.profileImage.contentMode = .scaleAspectFill
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedContact = dummyContactNames[indexPath.row]
+        selectedContact = contactNames[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "showPrivateChat", sender: nil)
         
@@ -155,17 +217,16 @@ extension ContactsViewController: UISearchBarDelegate {
         
         
         let db = Firestore.firestore()
-
         // Query the database for users that matches the searched username
-        db.collection("users").whereField("username", isEqualTo: searchText)
-            .getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-                }
-            }
-        }
+//        db.collection("users").whereField("username", isEqualTo: searchText)
+//            .getDocuments() { (querySnapshot, err) in
+//            if let err = err {
+//                print("Error getting documents: \(err)")
+//            } else {
+//                for document in querySnapshot!.documents {
+//                    print("\(document.documentID) => \(document.data())")
+//                }
+//            }
+//        }
     }
 }

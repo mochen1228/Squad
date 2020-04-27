@@ -9,17 +9,17 @@
 import UIKit
 import MapKit
 
-protocol AddLocationViewControllerDelegate {
+protocol AddScheduleLocationViewControllerDelegate {
     // Protocal for passing selected location to InstructorAddClassVC
     func finishPassing(location: MKPlacemark)
 }
 
-class AddLocationViewController: UIViewController, LocationSearchTableDelegate {
+class AddScheduleLocationViewController: UIViewController, LocationSearchTableDelegate {
     
-    var delegate: AddLocationViewControllerDelegate?
+    var delegate: AddScheduleLocationViewControllerDelegate?
     
-    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var confirmLocationButton: UIButton!
+    @IBOutlet weak var mapView: MKMapView!
     
     var selectedLocation: MKPlacemark? = nil
     
@@ -37,18 +37,18 @@ class AddLocationViewController: UIViewController, LocationSearchTableDelegate {
     self.resultSearchController?.searchBar.text = location.name
 
     }
+    
     @IBAction func didTapConfirmLocationButton(_ sender: Any) {
-        // Dismiss this VC and go back to the previous InstructorAddClassVC
-        // Pass a selected placemark as location data to IACVC
-        
-        // To prevent crashing when no location is selected
         if selectedLocation == nil {
             print("No location selected")
             return
         }
         
-        delegate?.finishPassing(location: selectedLocation!)
-        navigationController?.popViewController(animated: true)
+        // delegate?.finishPassing(location: selectedLocation!)
+        let locationDict: [String: MKPlacemark] = ["info": selectedLocation!]
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "locationSelected"), object: nil, userInfo: locationDict)
+        
+        dismiss(animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,13 +90,11 @@ class AddLocationViewController: UIViewController, LocationSearchTableDelegate {
         definesPresentationContext = true
         
         confirmLocationButton.layer.cornerRadius = 25
-        
-        
     }
 
 }
 
-extension AddLocationViewController : CLLocationManagerDelegate {
+extension AddScheduleLocationViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("error:: (error)")
     }

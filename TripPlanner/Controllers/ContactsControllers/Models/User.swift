@@ -15,6 +15,7 @@ struct User {
     var lastname: String
     var profileImageID: String
     var contactList: [String]
+    var documentID: String
     
     init() {
         userID = ""
@@ -23,5 +24,6 @@ struct User {
         lastname = ""
         profileImageID = ""
         contactList = []
+        documentID = ""
     }
 }

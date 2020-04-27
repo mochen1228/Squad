@@ -14,17 +14,29 @@
 
 import Foundation
 import UIKit
+import Firebase
+import FirebaseDatabase
 import FirebaseAuth
 
+
 class EventsMainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddEventViewControllerDelegate {
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+
+
+
+
+    
+    let db = Firestore.firestore()
 
     func onPassingString(newData: [String:String]) {
         print("Received:")
         print(newData)
-        dummyDatetime.append(newData["datatime"]!)
-        dummyEventNames.append(newData["name"]!)
-        dummyLocationNames.append(newData["location"]!)
-        dummyImageNames.append(newData["image"]!)
+//        dummyDatetime.append(newData["datatime"]!)
+//        dummyEventNames.append(newData["name"]!)
+//        dummyLocationNames.append(newData["location"]!)
+//        dummyImageNames.append(newData["image"]!)
         tableView.reloadData()
     }
     
@@ -33,30 +45,82 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: Properties
     let transition = MenuSlideInTransition()
     
-    var dummyEventNames = ["Club Night",
-                           "Longboarding and Biking"]
-    var dummyLocationNames = ["Academy LA, Los Angeles",
-                              "Newport Beach Pier, Newport Beach"]
-    var dummyDatetime = ["Today, 10:00 PM", "Saturday, 11:00 AM"]
-    var dummyImageNames = ["grum_event_profile", "newport_beach_profile"]
+    var eventCount = 0
     
-    var selectedEvent = ""
-    
-    var childDismiss = 0 {
-        // This value is used to detect if child
-        // data has finished passing
+    var eventList: [String] = []
+
+    var eventNames: [String] = []
+
+    var locationNames: [String] = []
+
+    var eventDatetimes: [String] = []
+
+    var imageNames: [String] = [] {
         didSet {
-            print("Data finished transmitting")
-            tableView.reloadData()
+            if eventCount == imageNames.count {
+                self.tableView.reloadData()
+            }
         }
     }
     
+//    var dummyEventNames = ["Club Night",
+//                           "Longboarding and Biking"]
+//    var dummyLocationNames = ["Academy LA, Los Angeles",
+//                              "Newport Beach Pier, Newport Beach"]
+//    var dummyDatetime = ["Today, 10:00 PM", "Saturday, 11:00 AM"]
+//    var dummyImageNames = ["grum_event_profile", "newport_beach_profile"]
+//
+    var selectedEvent = ""
+    
+    
     // MARK: Initializations
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadEvents()
+    }
+    
+    func loadEvents() {
+        eventCount = 0
+        eventList = []
+        eventNames = []
+        eventDatetimes = []
+        locationNames = []
+        imageNames = []
+        
+        let userDocumentID = appDelegate.currentUser.documentID
+        
+        self.db.collection("events").whereField("participants", arrayContains: appDelegate.currentUser.documentID as Any)
+            .getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let resultData = querySnapshot!.documents
+                self.eventCount = resultData.count
+                
+                for event in resultData {
+                    self.eventList.append(event.documentID)
+                    self.eventNames.append(event.data()["name"] as! String)
+                    self.eventDatetimes.append(event.data()["time"] as! String)
+                    self.locationNames.append(event.data()["location"] as! String)
+                    self.imageNames.append(event.data()["image"] as! String)
+                }
+            }
+        }
+    }
+    
+    @ objc func userInfoDidSetListener(notif: NSNotification) {
+        loadEvents()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.userInfoDidSetListener), name: NSNotification.Name(rawValue: "userLoaded"), object: nil)
+        
         tableView.delegate = self
         tableView.dataSource = self
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        loadEvents()
     }
     
     // MARK: Handlers
@@ -79,11 +143,6 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     @IBAction func didTapAddButton(_ sender: Any) {
-        // When add event button is pressed, show add event VC
-//        guard let addViewController = storyboard?.instantiateViewController(
-//            withIdentifier: "AddEventViewController") as? AddEventViewController else {return}
-//        addViewController.delegate = self
-//        present(addViewController, animated: true)
         performSegue(withIdentifier: "showAddEventSegue", sender: nil)
     }
     
@@ -147,24 +206,24 @@ extension EventsMainViewController: UIViewControllerTransitioningDelegate {
 
 extension EventsMainViewController {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyEventNames.count
+        return eventCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventsCell", for: indexPath) as! EventsTableViewCell
         cell.selectionStyle = .none
         let row = indexPath.row
-        cell.datetimeLabel.text = dummyDatetime[row]
-        cell.eventNameLabel.text = dummyEventNames[row]
-        cell.locationLabel.text = dummyLocationNames[row]
-        cell.eventImage.image = UIImage(named: dummyImageNames[row])
+        cell.datetimeLabel.text = eventDatetimes[row]
+        cell.eventNameLabel.text = eventNames[row]
+        cell.locationLabel.text = locationNames[row]
+        cell.eventImage.image = UIImage(named: imageNames[row])
         cell.eventImage.contentMode = .scaleAspectFill
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectedEvent = dummyEventNames[indexPath.row]
+        selectedEvent = eventList[indexPath.row]
         performSegue(withIdentifier: "showEventMainPage", sender: nil)
     }
     

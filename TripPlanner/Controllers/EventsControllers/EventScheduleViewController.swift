@@ -15,6 +15,8 @@ class EventScheduleViewController: UIViewController {
     
     let button = UIButton(frame: CGRect(x: 150, y: 550, width: 75, height: 75))
     
+    var currentEvent: String = ""
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -40,10 +42,14 @@ class EventScheduleViewController: UIViewController {
         self.view.addSubview(button)
     }
     
+
+    
     @objc func didTapAddButton(sender: Any) {
         guard let addViewController = storyboard?.instantiateViewController(
             withIdentifier: "AddScheduleViewController") as? AddScheduleViewController else {return}
         addViewController.delegate = self
+        addViewController.modalPresentationStyle = .fullScreen
+        addViewController.currentEvent = currentEvent
         present(addViewController, animated: true)
         // performSegue(withIdentifier: "showAddSchedule", sender: nil)
     }

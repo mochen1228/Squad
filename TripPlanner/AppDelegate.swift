@@ -30,16 +30,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
+                self.currentUser.documentID = querySnapshot!.documents[0].documentID
                 let resultData = querySnapshot!.documents[0].data()
                 self.currentUser.firstname = resultData["first"] as! String
                 self.currentUser.lastname = resultData["last"] as! String
                 self.currentUser.username = resultData["username"] as! String
                 self.currentUser.userID = resultData["userID"] as! String
                 self.currentUser.contactList = resultData["contactList"] as! [String]
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "userLoaded"), object: nil)
+
             }
         }
     }
 
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()

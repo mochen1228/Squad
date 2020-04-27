@@ -8,6 +8,8 @@
 
 import UIKit
 import SimpleCheckbox
+import Firebase
+import FirebaseDatabase
 
 protocol InviteFriendsViewControllerDelegate {
     func finishPassing(newData: [[String]])
@@ -15,30 +17,46 @@ protocol InviteFriendsViewControllerDelegate {
 
 class InviteFriendsViewController: UIViewController {
     var delegate: InviteFriendsViewControllerDelegate?
+    var currentUser = User()
+    let db = Firestore.firestore()
+
+
+    var profileCount = 0 {
+        didSet {
+            selectedStatus = [:]
+            for i in 0...profileCount {
+                selectedStatus[i] = 0
+            }
+            print(selectedStatus)
+        }
+    }
     
-    let dummyCount = 4
+    var contactList = [String]()
+    var contactNames = [String]() {
+        didSet {
+            if contactNames.count == profileCount {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
-    let dummyImageNames = ["profile_placeholder",
-                           "profile_placeholder",
-                           "profile_placeholder",
-                           "profile_placeholder"]
+    var usernames = [String]() {
+        didSet {
+            if contactNames.count == profileCount {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
-    let dummyContactNames = ["Gyulnara Grigoryan",
-                             "Mattthew Marano",
-                             "Raquel Hidalgo",
-                             "Yihua Cai"]
+    var imageNames = [String]() {
+        didSet {
+            if contactNames.count == profileCount {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
-    let dummyUsernames = ["gyul.py",
-                          "mjmlacrosse",
-                          "r.a.q.u.e.l.m",
-                          "fannnncyy"]
-    
-    var dummySelectedStatus: [Int: Int] = [
-        0: 0,
-        1: 0,
-        2: 0,
-        3: 0
-    ]
+    var selectedStatus: [Int: Int] = [:]
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -49,49 +67,39 @@ class InviteFriendsViewController: UIViewController {
     }
     
     @IBAction func didTapInviteButton(_ sender: Any) {
-//        let p = presentingViewController as? AddEventViewController
-//        print(p?.dummyContactNames)
-        var newDummyImageNames: [String] = []
-        var newDummyContactNames: [String] = []
-        var newDummyUsernames: [String] = []
+        var toPassImageNames: [String] = []
+        var toPassContactNames: [String] = []
+        var toPassUsernames: [String] = []
+        var toPassUserID: [String] = []
         
-        for selection in dummySelectedStatus {
+        for selection in selectedStatus {
             if selection.value == 1 {
-                newDummyUsernames.append(dummyUsernames[selection.key])
-                newDummyImageNames.append(dummyImageNames[selection.key])
-                newDummyContactNames.append(dummyContactNames[selection.key])
+                toPassUsernames.append(usernames[selection.key])
+                toPassImageNames.append(imageNames[selection.key])
+                toPassContactNames.append(contactNames[selection.key])
+                toPassUserID.append(contactList[selection.key])
             }
         }
-        var toPass: [[String]] = [newDummyImageNames, newDummyUsernames, newDummyContactNames]
+        let toPass: [[String]] = [toPassImageNames,
+                                  toPassUsernames,
+                                  toPassContactNames,
+                                  toPassUserID]
         delegate?.finishPassing(newData: toPass)
-        
-//        if let parent = presentingViewController as? AddEventViewController {
-//            var newDummyImageNames: [String] = []
-//            var newDummyContactNames: [String] = []
-//            var newDummyUsernames: [String] = []
-//
-//            for selection in dummySelectedStatus {
-//                if selection.value == 1 {
-//                    newDummyUsernames.append(dummyUsernames[selection.key])
-//                    newDummyImageNames.append(dummyImageNames[selection.key])
-//                    newDummyContactNames.append(dummyContactNames[selection.key])
-//                }
-//            }
-//            parent.dummyImageNames = newDummyImageNames
-//            parent.dummyUsernames = newDummyUsernames
-//            parent.dummyContactNames = newDummyContactNames
-//
-//            var toPass: [[String]] = [newDummyImageNames, newDummyUsernames, newDummyContactNames]
-//            delegate?.finishPassing(newData: toPass)
-//            parent.childDismiss = 0
-//        }
+        // saveInvited()
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: Initializations
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadContacts()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
         
         searchBar.barTintColor = UIColor.white
         searchBar.setBackgroundImage(UIImage.init(), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
@@ -103,13 +111,69 @@ class InviteFriendsViewController: UIViewController {
                                          action: #selector(UIView.endEditing))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+        
+    }
+    
+    
+    // MARK: Load contact info
+    func loadContacts() {
+        // Load the userID of the user objects in current user's contact list
+        self.contactList = [String]()
+        // Load all contacts of the current user to the table view
+        let currentUser = Auth.auth().currentUser
+        db.collection("users").whereField("userID", isEqualTo: currentUser?.uid as Any)
+            .getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let resultData = querySnapshot!.documents[0].data()
+                for contact in resultData["contactList"] as! [String] {
+                    self.contactList.append(contact)
+                }
+                self.currentUser.contactList = resultData["contactList"] as! [String]
+                // Change dummy count and refresh page
+                self.profileCount = self.contactList.count
+                print(self.profileCount)
+                self.loadContactInfo()
+            }
+        }
+    }
+        
+    func loadContactInfo() {
+        // Load username, first and last names
+        for contact in self.contactList {
+            db.collection("users").document(contact)
+                .getDocument() { (document, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    let dataDescription = document!.data()!
+                    // Handle both username and first/last name
+                    self.usernames.append(dataDescription["username"] as! String)
+                    self.contactNames.append("\(dataDescription["first"] as! String) \(dataDescription["last"] as! String)")
+                    self.imageNames.append(dataDescription["image"] as! String)
 
+                }
+            }
+
+        }
+    }
+    
+    func saveInvited() {
+        for selection in selectedStatus {
+            if selection.value == 1 {
+                print(contactNames[selection.key])
+                print(contactList[selection.key])
+
+            }
+        }
     }
 }
 
+
 extension InviteFriendsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyCount
+        return profileCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,19 +181,17 @@ extension InviteFriendsViewController: UITableViewDelegate, UITableViewDataSourc
                                                  for: indexPath) as! InviteFriendsTableViewCell
         cell.selectionStyle = .none
         let row = indexPath.row
-        cell.profileImage.image = UIImage(named: dummyImageNames[row])
-        cell.usernameLabel.text = dummyUsernames[row]
-        cell.firstLastNameLabel.text = dummyContactNames[row]
+        cell.profileImage.image = UIImage(named: imageNames[row])
+        cell.usernameLabel.text = contactNames[row]
+        cell.firstLastNameLabel.text = usernames[row]
 
         // Closure for detecting checkbox check and uncheck
         cell.checkBox.valueChanged = { (isChecked) in
-            // print(row, "checkbox is checked: \(isChecked)")
             if isChecked {
-                self.dummySelectedStatus[row] = 1
+                self.selectedStatus[row] = 1
             } else {
-                self.dummySelectedStatus[row] = 0
+                self.selectedStatus[row] = 0
             }
-            // print(self.dummySelectedStatus)
             
         }
         

@@ -7,15 +7,37 @@
 //
 
 import UIKit
+import MapKit
+import FirebaseDatabase
+import Firebase
+
 
 class AddScheduleViewController: UIViewController {
+    let db = Firestore.firestore()
+
     var delegate: AddScheduleViewControllerDelegate?
+    
+    var delegate2: AddEventViewControllerDelegate?
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+    
+    var selectedPlacemark: MKPlacemark? = nil
+    
     @IBOutlet weak var scheduleNameTextfield: UITextField!
     @IBOutlet weak var scheduleDatetimeTextfield: UITextField!
     @IBOutlet weak var scheduleLocationTextfield: UITextField!
     
+    var participants: [String] = []
+    var currentEvent: String = ""
+    
+    let datePicker = UIDatePicker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        showDatePicker()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.locationDidSetListener(notification:)), name: NSNotification.Name(rawValue: "locationSelected"), object: nil)
 
         // Do any additional setup after loading the view.
     }
@@ -24,26 +46,124 @@ class AddScheduleViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    func saveValidation() -> Bool {
+        // Won't let user save if any of the critical info is missing
+        if let scheduleText = scheduleNameTextfield.text, scheduleText.isEmpty {
+           return false
+        }
+        if let datetimeText = scheduleDatetimeTextfield.text, datetimeText.isEmpty {
+           return false
+        }
+        if let locationText = scheduleLocationTextfield.text, locationText.isEmpty {
+           return false
+        }
+        return true
+    }
+    
     @IBAction func didTapSaveButton(_ sender: Any) {
-        let toPass: [String: String] = ["datatime": scheduleDatetimeTextfield.text!,
-                                       "name": scheduleNameTextfield.text!]
-        delegate?.onPassingString(newData: toPass)
+        if !saveValidation() {
+            // TODO: Add Alert View
+            return
+        }
+        
+        // Add event document to collection
+        participants.append(appDelegate.currentUser.documentID)
+        var ref: DocumentReference? = nil
+        ref = db.collection("schedules").addDocument(data: [
+            "name": self.scheduleNameTextfield.text!,
+            "time": self.scheduleDatetimeTextfield.text!,
+            "location": self.scheduleLocationTextfield.text!,
+            "participants": participants
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+                
+                // Add schedule to event
+                self.db.collection("events").document(self.currentEvent)
+                    .getDocument() { (document, err) in
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else {
+                        let data = document!.data()!
+                        var currentSchedule = data["schedules"] as! [String]
+                        currentSchedule.append(ref!.documentID)
+                        print(ref!.documentID)
+                        print(currentSchedule)
+                        self.db.collection("events").document(self.currentEvent).setData(["schedules": currentSchedule ], merge: true)
+                    }
+                }
+            }
+        }
+        navigationController?.popViewController(animated: true)
+        
         dismiss(animated: true, completion: nil)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func didTapAddLocationButton(_ sender: Any) {
+        performSegue(withIdentifier: "showMapSegue2", sender: nil)
     }
-    */
+    
+    
+    @ objc func locationDidSetListener(notification: NSNotification) {
+        print("Received:")
+        let location = notification.userInfo!["info"]! as! MKPlacemark
+        selectedPlacemark = location
+        let array = location.title!.components(separatedBy: ",")
+        
+        scheduleLocationTextfield.text = "\(location.name!), \(array[1])"
+        
+    }
+    
+}
 
+extension AddScheduleViewController {
+    // Extension for datetime picker
+    func showDatePicker(){
+        // Picker mode
+        datePicker.datePickerMode = .dateAndTime
+        
+        // Configure ToolBar
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        
+        // Configure buttons
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donedatePicker));
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
+
+        toolbar.setItems([cancelButton,spaceButton,doneButton], animated: false)
+        
+        scheduleDatetimeTextfield.inputAccessoryView = toolbar
+        scheduleDatetimeTextfield.inputView = datePicker
+
+    }
+
+    @objc func donedatePicker(){
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, MMM d, h:mm a"
+        scheduleDatetimeTextfield.text = formatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+        }
+
+    @objc func cancelDatePicker(){
+        self.view.endEditing(true)
+    }
 }
 
 protocol AddScheduleViewControllerDelegate {
     func onPassingString(newData: [String: String])
 }
 
+extension AddScheduleViewController: AddScheduleLocationViewControllerDelegate {
+    func finishPassing(location: MKPlacemark) {
+        print("Received:")
+        print(location)
+        selectedPlacemark = location
+        let array = location.title!.components(separatedBy: ",")
+        
+        scheduleLocationTextfield.text = "\(location.name!), \(array[1])"
+    }
+    
+}
