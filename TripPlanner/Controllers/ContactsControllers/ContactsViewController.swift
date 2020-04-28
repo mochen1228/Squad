@@ -89,6 +89,10 @@ class ContactsViewController: UIViewController {
     
     // MARK: Load contact info
     func loadContacts() {
+        profileCount = 0
+        contactNames = []
+        imageNames = []
+        contactList = []
         self.contactList = [String]()
         // Load all contacts of the current user to the table view
         let currentUser = Auth.auth().currentUser
