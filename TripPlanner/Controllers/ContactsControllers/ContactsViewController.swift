@@ -22,17 +22,7 @@ class ContactsViewController: UIViewController {
     let db = Firestore.firestore()
 
     var profileCount = 0
-    
-//    let dummyImageNames = ["gyul_profile",
-//                           "matt_profile",
-//                           "raquel_profile",
-//                           "yihua_profile"]
-//
-//    let dummyContactNames = ["Gyulnara Grigoryan",
-//                             "Mattthew Marano",
-//                             "Raquel Hidalgo",
-//                             "Yihua Cai"]
-    
+
     var contactList = [String]()
     var contactNames = [String]() {
         didSet {
@@ -57,6 +47,8 @@ class ContactsViewController: UIViewController {
     
     var selectedContact = ""
     
+    
+    
     // MARK: Properties
     let transition = MenuSlideInTransition()
     @IBOutlet weak var tableView: UITableView!
@@ -74,7 +66,9 @@ class ContactsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
-        // loadContacts()
+        
+        
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -86,7 +80,7 @@ class ContactsViewController: UIViewController {
         }
     }
     
-    
+
     // MARK: Load contact info
     func loadContacts() {
         profileCount = 0

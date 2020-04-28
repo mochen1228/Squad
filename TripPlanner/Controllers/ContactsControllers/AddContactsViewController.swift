@@ -9,14 +9,58 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import MessageUI
 
-class AddContactsViewController: UIViewController {
-
+class AddContactsViewController: UIViewController, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate {
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
     var searchResults = [User]()
     var currentUser = User()
     
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    
+    @IBAction func didTapInviteButton(_ sender: Any) {
+        print("Presenting alerts")
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "iMessage", style: .default, handler: handleSendText))
+        alert.addAction(UIAlertAction(title: "Email", style: .default, handler: handleSendEmail))
+        alert.addAction(UIAlertAction(title: "Copy Invite Link", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
+    func handleSendText(alert: UIAlertAction!) {
+        // User choose to send invite link with text message
+        let composeVC = MFMessageComposeViewController()
+        composeVC.messageComposeDelegate = self
+
+        // Configure the fields of the interface
+        composeVC.recipients = []
+        composeVC.body = "Join this amazing app with me! https://joinsquadapp/20304392"
+
+        if MFMessageComposeViewController.canSendText() {
+            self.present(composeVC, animated: true, completion: nil)
+        }
+    }
+    
+    func handleSendEmail(alert: UIAlertAction!) {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([])
+            mail.setMessageBody("Hi! Join this amazing app with me! https://joinsquadapp/20304392", isHTML: true)
+
+            present(mail, animated: true)
+        } else {
+            print("Mail service not available")
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -25,6 +69,7 @@ class AddContactsViewController: UIViewController {
         tableview.dataSource = self
         searchBar.delegate = self
         
+
         loadFriendList()
         
         searchBar.barTintColor = UIColor.white

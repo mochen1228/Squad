@@ -35,21 +35,6 @@ class EventMembersViewController: UIViewController {
     
     var selectedContact = ""
     
-    let dummyImageNames = ["gyul_profile",
-                           "matt_profile",
-                           "raquel_profile",
-                           "yihua_profile"]
-    
-    let dummyContactNames = ["Gyulnara Grigoryan",
-                             "Mattthew Marano",
-                             "Raquel Hidalgo",
-                             "Yihua Cai"]
-    
-    let dummyUsernames = ["gyul.py",
-                          "mjmlacrosse",
-                          "r.a.q.u.e.l.m",
-                          "fannnncyy"]
-    
     @IBOutlet weak var tableView: UITableView!
     
     func loadContacts() {
@@ -97,6 +82,7 @@ class EventMembersViewController: UIViewController {
         super.viewWillAppear(true)
         loadContacts()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
