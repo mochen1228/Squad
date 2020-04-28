@@ -42,6 +42,7 @@ class AddScheduleViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
     @IBAction func didTapCancelButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -97,7 +98,6 @@ class AddScheduleViewController: UIViewController {
             }
         }
         navigationController?.popViewController(animated: true)
-        
         dismiss(animated: true, completion: nil)
     }
     

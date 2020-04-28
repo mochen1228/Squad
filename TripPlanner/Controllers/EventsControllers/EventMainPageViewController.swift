@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 
 class EventMainPageViewController: UIViewController {
-
+    
+    let db = Firestore.firestore()
     var currentEvent = ""
 
     @IBOutlet weak var scheduleContainer: UIView!
@@ -25,10 +29,22 @@ class EventMainPageViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBar.title = currentEvent
+        // .title = currentEvent
+        // loadEventName()
         membersContainer.isHidden = true
         costContainer.isHidden = true
         chatContainer.isHidden = true
+    }
+    
+    func loadEventName() {
+        db.collection("events").document(currentEvent).getDocument() { (document, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let data = document!.data()!
+                self.navigationBar.title = data["name"] as! String
+            }
+        }
     }
     
     @IBAction func switchSegments(_ sender: UISegmentedControl) {

@@ -67,6 +67,7 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
 //    var dummyImageNames = ["grum_event_profile", "newport_beach_profile"]
 //
     var selectedEvent = ""
+    var selectedName = ""
     
     
     // MARK: Initializations
@@ -110,6 +111,11 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
         self.refreshControl.endRefreshing()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        loadEvents()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.userInfoDidSetListener), name: NSNotification.Name(rawValue: "userLoaded"), object: nil)
@@ -119,7 +125,6 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.tableView.addSubview(refreshControl)
-        
         loadEvents()
     }
     
@@ -156,6 +161,7 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
         if segue.identifier == "showEventMainPage" {
             if let destinationVC = segue.destination as? EventMainPageViewController {
                 destinationVC.currentEvent = selectedEvent
+                destinationVC.navigationBar.title = selectedName
                 selectedEvent = ""
             }
         }
@@ -224,6 +230,7 @@ extension EventsMainViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         selectedEvent = eventList[indexPath.row]
+        selectedName = eventNames[indexPath.row]
         performSegue(withIdentifier: "showEventMainPage", sender: nil)
     }
     

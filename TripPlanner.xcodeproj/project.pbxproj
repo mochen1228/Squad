@@ -204,6 +204,7 @@
 				A8F99C9624045FF100A6FAF4 /* Models */,
 				A86ED930240372060066AE21 /* AddEventViewController.swift */,
 				A8B6C8892456C64D00256C74 /* AddScheduleLocationViewController.swift */,
+				A83CBF2424065FFD0067709B /* AddScheduleViewController.swift */,
 				A8FDD810243719BE00C99AC6 /* SearchLocationTableViewController.swift */,
 				A868643223DF89D400EBFA35 /* EventsMainViewController.swift */,
 				A8EE10032405A9DB004CF76E /* InviteFriendsViewController.swift */,
@@ -211,7 +212,6 @@
 				A8EE100724061D1E004CF76E /* EventMainPageViewController.swift */,
 				A8EE1009240633E9004CF76E /* EventScheduleViewController.swift */,
 				A8EE100D2406387A004CF76E /* EventMembersViewController.swift */,
-				A83CBF2424065FFD0067709B /* AddScheduleViewController.swift */,
 				A89503E6240756A900A47C28 /* EventChatViewController.swift */,
 			);
 			path = EventsControllers;

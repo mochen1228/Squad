@@ -25,17 +25,22 @@ class EventScheduleViewController: UIViewController {
             }
         }
     }
-    
-    var dummyScheduleNames = ["Meet Up At Matt's Place",
-                           "Dinner at McDonald's"]
-    var dummyDatetime = ["Today, 5:00 PM", "Today, 6:00 PM"]
-    
+//
+//    var dummyScheduleNames = ["Meet Up At Matt's Place",
+//                           "Dinner at McDonald's"]
+//    var dummyDatetime = ["Today, 5:00 PM", "Today, 6:00 PM"]
+//
     let button = UIButton(frame: CGRect(x: 150, y: 550, width: 75, height: 75))
     
     var currentEvent: String = ""
     
     @IBOutlet weak var tableView: UITableView!
     var refreshControl = UIRefreshControl()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        loadSchedules()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,15 +58,16 @@ class EventScheduleViewController: UIViewController {
     
     func setUpButton() {
         button.setTitle("+", for: .normal)
-        button.frame = CGRect(x:275, y: 540, width: 80, height: 80)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.bold)
+
+        button.frame = CGRect(x:275, y: 540, width: 70, height: 70)
         button.backgroundColor = UIColor(red: 57/255, green: 156/255, blue: 189/255, alpha: 1.0)
         button.clipsToBounds = true
-        button.layer.cornerRadius = 40
+        button.layer.cornerRadius = 35
         button.layer.borderWidth = 0.0
         
         button.addTarget(self, action: #selector(didTapAddButton(sender:)), for: .touchUpInside)
         
-
         self.view.addSubview(button)
     }
     
@@ -71,6 +77,7 @@ class EventScheduleViewController: UIViewController {
     }
 
     func loadSchedules() {
+            
         scheduleCount = 0
         scheduleNames = []
         datetimeNames = []
@@ -95,6 +102,27 @@ class EventScheduleViewController: UIViewController {
                             self.datetimeNames.append(data["time"] as! String)
                         }
                     }
+                }
+            }
+        }
+    }
+    
+    func deleteSchedule(schedule: String) {
+        db.collection("events").document(currentEvent).getDocument() { (document, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let data = document!.data()!
+                let currentSchedules = data["schedules"] as! [String]
+                let newSchedules = currentSchedules.filter {$0 != schedule}
+                self.db.collection("events").document(self.currentEvent).setData(["schedules": newSchedules ], merge: true)
+                self.db.collection("schedules").document(schedule).delete() { err in
+                    if let err = err {
+                        print("Error removing document: \(err)")
+                    } else {
+                        print("Document successfully removed!")
+                    }
+                self.loadSchedules()
                 }
             }
         }
@@ -125,6 +153,16 @@ extension EventScheduleViewController: UITableViewDelegate, UITableViewDataSourc
         cell.datetimeLabel.text = datetimeNames[row]
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            deleteSchedule(schedule: self.scheduleList[indexPath.row])
+        }
+    }
 
 }
 
@@ -132,8 +170,8 @@ extension EventScheduleViewController: AddScheduleViewControllerDelegate {
     func onPassingString(newData: [String : String]) {
         print("Received:")
         print(newData)
-        dummyDatetime.append(newData["datatime"]!)
-        dummyScheduleNames.append(newData["name"]!)
+//        dummyDatetime.append(newData["datatime"]!)
+//        dummyScheduleNames.append(newData["name"]!)
         tableView.reloadData()
     }
 }
