@@ -121,8 +121,9 @@ class EventScheduleViewController: UIViewController {
                         print("Error removing document: \(err)")
                     } else {
                         print("Document successfully removed!")
+                        self.loadSchedules()
+
                     }
-                self.loadSchedules()
                 }
             }
         }

@@ -59,20 +59,11 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-//    var dummyEventNames = ["Club Night",
-//                           "Longboarding and Biking"]
-//    var dummyLocationNames = ["Academy LA, Los Angeles",
-//                              "Newport Beach Pier, Newport Beach"]
-//    var dummyDatetime = ["Today, 10:00 PM", "Saturday, 11:00 AM"]
-//    var dummyImageNames = ["grum_event_profile", "newport_beach_profile"]
-//
     var selectedEvent = ""
     var selectedName = ""
     
     
     // MARK: Initializations
-
-    
     func loadEvents() {
         eventCount = 0
         eventList = []
@@ -191,6 +182,43 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
         present(newViewController, animated: false)
     }
     
+    func deleteEvent(event: String) {
+        // Find current event
+        db.collection("events").document(event).getDocument() { (document, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let data = document!.data()!
+                let currentSchedules = data["schedules"] as! [String]
+                
+                // Delete all schedules within this event
+                for schedule in currentSchedules {
+                    self.db.collection("schedules").document(schedule).delete() { err in
+                        if let err = err {
+                            print("Error removing document: \(err)")
+                        } else {
+                            print("Document successfully removed!")
+                            
+                            // Once schedules are deleted, remove the event
+                            self.db.collection("events").document(event).delete() { err in
+                                if let err = err {
+                                    print("Error removing document: \(err)")
+                                } else {
+                                    print("Document successfully removed!")
+                                    
+                                    self.loadEvents()
+                                }
+                            }
+                        }
+                    }
+                
+                }
+            }
+        }
+        
+        
+    }
+    
 }
 
 extension EventsMainViewController: UIViewControllerTransitioningDelegate {
@@ -232,6 +260,12 @@ extension EventsMainViewController {
         selectedEvent = eventList[indexPath.row]
         selectedName = eventNames[indexPath.row]
         performSegue(withIdentifier: "showEventMainPage", sender: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            deleteEvent(event: self.eventList[indexPath.row])
+        }
     }
     
 }

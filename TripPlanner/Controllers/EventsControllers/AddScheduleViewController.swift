@@ -93,12 +93,13 @@ class AddScheduleViewController: UIViewController {
                         currentSchedule.append(ref!.documentID)
                         
                         self.db.collection("events").document(self.currentEvent).setData(["schedules": currentSchedule ], merge: true)
+                        self.navigationController?.popViewController(animated: true)
+                        self.dismiss(animated: true, completion: nil)
                     }
                 }
             }
         }
-        navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
+
     }
     
     @IBAction func didTapAddLocationButton(_ sender: Any) {
