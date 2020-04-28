@@ -52,6 +52,7 @@ class AddCostViewController: UIViewController {
             "activity": self.activityTextfield.text!,
             "amount": self.costTextfield.text!,
             "description": self.descriptionTextfield.text!,
+            "user": self.appDelegate.currentUser.documentID
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")

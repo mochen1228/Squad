@@ -25,7 +25,7 @@ class EventCostViewController: UIViewController {
     
     var costUsers: [String] = [] {
         didSet {
-            tableView.reloadData()
+            loadUsers()
         }
     }
     var costNames: [String] = []
@@ -104,6 +104,22 @@ class EventCostViewController: UIViewController {
                         }
                     }
                 }
+                self.loadUsers()
+            }
+        }
+    }
+    
+    func loadUsers() {
+        for user in costUsers {
+            db.collection("users").document(user)
+                .getDocument() { (document, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    let dataDescription = document!.data()!
+                    self.costNames.append("\(dataDescription["first"] as! String) \(dataDescription["last"] as! String)")
+                    self.costImages.append(dataDescription["image"] as! String)
+                }
             }
         }
     }
@@ -135,12 +151,12 @@ extension EventCostViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCostCell", for: indexPath) as! EventCostTableViewCell
         let row = indexPath.row
         
-        cell.contactNameLabel.text = "First Last"
+        cell.contactNameLabel.text = costNames[row]
         cell.scheduleNameLabel.text = costActivities[row]
         cell.descriptionLabel.text = costDescriptions[row]
         cell.costLabel.text = "$ \(costAmounts[row])"
         // cell.profileImage.image = UIImage(named: costImages[row])
-        cell.profileImage.image = UIImage(named: "matt_profile")
+        cell.profileImage.image = UIImage(named: costImages[row])
         cell.selectionStyle = .none
         return cell
     }
