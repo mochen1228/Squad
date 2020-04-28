@@ -37,6 +37,8 @@ class EventMembersViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    let button = UIButton(frame: CGRect(x: 150, y: 550, width: 75, height: 75))
+    
     func loadContacts() {
         profileCount = 0
         contactNames = []
@@ -78,6 +80,31 @@ class EventMembersViewController: UIViewController {
         }
     }
     
+    @objc func didTapAddButton(sender: Any) {
+        guard let inviteViewController = storyboard?.instantiateViewController(
+            withIdentifier: "InviteFriendsViewController") as? InviteFriendsViewController else {return}
+        //addViewController.delegate = self
+        // addViewController.modalPresentationStyle = .fullScreen
+        // addViewController.currentEvent = currentEvent
+        present(inviteViewController, animated: true)
+        // performSegue(withIdentifier: "showAddSchedule", sender: nil)
+    }
+    
+    func setUpButton() {
+        button.setTitle("+", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.bold)
+
+        button.frame = CGRect(x:275, y: 540, width: 70, height: 70)
+        button.backgroundColor = UIColor(red: 57/255, green: 156/255, blue: 189/255, alpha: 1.0)
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 35
+        button.layer.borderWidth = 0.0
+        
+        button.addTarget(self, action: #selector(didTapAddButton(sender:)), for: .touchUpInside)
+        
+        self.view.addSubview(button)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         loadContacts()
@@ -88,6 +115,7 @@ class EventMembersViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        setUpButton()
     }
 }
 

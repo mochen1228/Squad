@@ -32,6 +32,7 @@
 		A8B6C88A2456C64E00256C74 /* AddScheduleLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6C8892456C64D00256C74 /* AddScheduleLocationViewController.swift */; };
 		A8B6C88C2458BBAF00256C74 /* EventCostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6C88B2458BBAF00256C74 /* EventCostViewController.swift */; };
 		A8BBA5EF2432E0F200D9EF74 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BBA5EE2432E0F200D9EF74 /* User.swift */; };
+		A8CB03AE2458CF4B00826120 /* AddCostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB03AD2458CF4B00826120 /* AddCostViewController.swift */; };
 		A8EE0FF624047FF1004CF76E /* EventProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE0FF524047FF1004CF76E /* EventProfileImage.swift */; };
 		A8EE0FFA2404A49D004CF76E /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE0FF92404A49D004CF76E /* ContactTableViewCell.swift */; };
 		A8EE0FFC2404AC56004CF76E /* PrivateMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE0FFB2404AC56004CF76E /* PrivateMessageViewController.swift */; };
@@ -44,6 +45,7 @@
 		A8EE100A240633E9004CF76E /* EventScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE1009240633E9004CF76E /* EventScheduleViewController.swift */; };
 		A8EE100C24063456004CF76E /* EventScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE100B24063456004CF76E /* EventScheduleTableViewCell.swift */; };
 		A8EE100E2406387A004CF76E /* EventMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE100D2406387A004CF76E /* EventMembersViewController.swift */; };
+		A8F2F76E2458C24E00381C53 /* EventCostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F2F76D2458C24E00381C53 /* EventCostTableViewCell.swift */; };
 		A8F9783F2433E605001D9794 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F9783C2433E605001D9794 /* SettingTableViewCell.swift */; };
 		A8F978402433E605001D9794 /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F9783D2433E605001D9794 /* UsernameViewController.swift */; };
 		A8F978412433E605001D9794 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F9783E2433E605001D9794 /* SettingsViewController.swift */; };
@@ -83,6 +85,7 @@
 		A8B6C8892456C64D00256C74 /* AddScheduleLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleLocationViewController.swift; sourceTree = "<group>"; };
 		A8B6C88B2458BBAF00256C74 /* EventCostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventCostViewController.swift; path = TripPlanner/Controllers/EventsControllers/EventCostViewController.swift; sourceTree = SOURCE_ROOT; };
 		A8BBA5EE2432E0F200D9EF74 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A8CB03AD2458CF4B00826120 /* AddCostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddCostViewController.swift; path = TripPlanner/Storyboards/AddCostViewController.swift; sourceTree = SOURCE_ROOT; };
 		A8EE0FF524047FF1004CF76E /* EventProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventProfileImage.swift; sourceTree = "<group>"; };
 		A8EE0FF92404A49D004CF76E /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		A8EE0FFB2404AC56004CF76E /* PrivateMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateMessageViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +98,7 @@
 		A8EE1009240633E9004CF76E /* EventScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventScheduleViewController.swift; sourceTree = "<group>"; };
 		A8EE100B24063456004CF76E /* EventScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		A8EE100D2406387A004CF76E /* EventMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMembersViewController.swift; sourceTree = "<group>"; };
+		A8F2F76D2458C24E00381C53 /* EventCostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventCostTableViewCell.swift; path = TripPlanner/Controllers/EventsControllers/Cells/EventCostTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		A8F9783C2433E605001D9794 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		A8F9783D2433E605001D9794 /* UsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameViewController.swift; sourceTree = "<group>"; };
 		A8F9783E2433E605001D9794 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -203,8 +207,10 @@
 		A86ED92F240370DB0066AE21 /* EventsControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A8F2F76F2458C25400381C53 /* Cells */,
 				A8F99C9624045FF100A6FAF4 /* Models */,
 				A86ED930240372060066AE21 /* AddEventViewController.swift */,
+				A8CB03AD2458CF4B00826120 /* AddCostViewController.swift */,
 				A8B6C8892456C64D00256C74 /* AddScheduleLocationViewController.swift */,
 				A83CBF2424065FFD0067709B /* AddScheduleViewController.swift */,
 				A8FDD810243719BE00C99AC6 /* SearchLocationTableViewController.swift */,
@@ -279,6 +285,18 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		A8F2F76F2458C25400381C53 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A8F99C972404601A00A6FAF4 /* EventsTableViewCell.swift */,
+				A8EE10012405A8AE004CF76E /* InviteFriendsTableViewCell.swift */,
+				A8F2F76D2458C24E00381C53 /* EventCostTableViewCell.swift */,
+				A8EE10052405EE87004CF76E /* SelectedFriendsTableViewCell.swift */,
+				A8EE100B24063456004CF76E /* EventScheduleTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		A8F9783A2433E605001D9794 /* SettingsControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,11 +327,7 @@
 		A8F99C9624045FF100A6FAF4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A8F99C972404601A00A6FAF4 /* EventsTableViewCell.swift */,
 				A8EE0FF524047FF1004CF76E /* EventProfileImage.swift */,
-				A8EE10012405A8AE004CF76E /* InviteFriendsTableViewCell.swift */,
-				A8EE10052405EE87004CF76E /* SelectedFriendsTableViewCell.swift */,
-				A8EE100B24063456004CF76E /* EventScheduleTableViewCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -446,6 +460,7 @@
 				A8BBA5EF2432E0F200D9EF74 /* User.swift in Sources */,
 				A8EE10062405EE87004CF76E /* SelectedFriendsTableViewCell.swift in Sources */,
 				A8B6C88A2456C64E00256C74 /* AddScheduleLocationViewController.swift in Sources */,
+				A8CB03AE2458CF4B00826120 /* AddCostViewController.swift in Sources */,
 				A8EE10022405A8AE004CF76E /* InviteFriendsTableViewCell.swift in Sources */,
 				A8FDD80D243672CB00C99AC6 /* SettingsProfileTableViewCell.swift in Sources */,
 				A8EE100E2406387A004CF76E /* EventMembersViewController.swift in Sources */,
@@ -456,6 +471,7 @@
 				A8EE10042405A9DB004CF76E /* InviteFriendsViewController.swift in Sources */,
 				A8EE100A240633E9004CF76E /* EventScheduleViewController.swift in Sources */,
 				A8EE0FFE2404CDCC004CF76E /* Message.swift in Sources */,
+				A8F2F76E2458C24E00381C53 /* EventCostTableViewCell.swift in Sources */,
 				A8A1074223E2663D008C4D59 /* ContactsViewController.swift in Sources */,
 				A8FDD811243719BE00C99AC6 /* SearchLocationTableViewController.swift in Sources */,
 				A8EE0FFA2404A49D004CF76E /* ContactTableViewCell.swift in Sources */,

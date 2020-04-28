@@ -37,9 +37,8 @@ class AddScheduleViewController: UIViewController {
         super.viewDidLoad()
         showDatePicker()
 
+        // Receive selected location from Add Schedule Location VC
         NotificationCenter.default.addObserver(self, selector: #selector(self.locationDidSetListener(notification:)), name: NSNotification.Name(rawValue: "locationSelected"), object: nil)
-
-        // Do any additional setup after loading the view.
     }
     
     

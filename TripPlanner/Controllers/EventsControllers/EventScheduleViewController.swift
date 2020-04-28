@@ -77,7 +77,6 @@ class EventScheduleViewController: UIViewController {
     }
 
     func loadSchedules() {
-            
         scheduleCount = 0
         scheduleNames = []
         datetimeNames = []
