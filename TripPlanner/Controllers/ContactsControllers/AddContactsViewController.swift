@@ -17,6 +17,10 @@ class AddContactsViewController: UIViewController, MFMessageComposeViewControlle
         controller.dismiss(animated: true, completion: nil)
     }
     
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
     var searchResults = [User]()
     var currentUser = User()
     
@@ -33,6 +37,10 @@ class AddContactsViewController: UIViewController, MFMessageComposeViewControlle
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         self.present(alert, animated: true)
+    }
+    
+    @IBAction func didTapCancelButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func handleSendText(alert: UIAlertAction!) {

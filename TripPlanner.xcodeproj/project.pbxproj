@@ -30,6 +30,7 @@
 		A8A1075023E3C759008C4D59 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1074F23E3C759008C4D59 /* SignupViewController.swift */; };
 		A8A1075223E9E8B9008C4D59 /* SearchContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1075123E9E8B9008C4D59 /* SearchContactsViewController.swift */; };
 		A8B6C88A2456C64E00256C74 /* AddScheduleLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6C8892456C64D00256C74 /* AddScheduleLocationViewController.swift */; };
+		A8B6C88C2458BBAF00256C74 /* EventCostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6C88B2458BBAF00256C74 /* EventCostViewController.swift */; };
 		A8BBA5EF2432E0F200D9EF74 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BBA5EE2432E0F200D9EF74 /* User.swift */; };
 		A8EE0FF624047FF1004CF76E /* EventProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE0FF524047FF1004CF76E /* EventProfileImage.swift */; };
 		A8EE0FFA2404A49D004CF76E /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EE0FF92404A49D004CF76E /* ContactTableViewCell.swift */; };
@@ -80,6 +81,7 @@
 		A8A1074F23E3C759008C4D59 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		A8A1075123E9E8B9008C4D59 /* SearchContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchContactsViewController.swift; path = TripPlanner/Controllers/SearchContactsViewController.swift; sourceTree = SOURCE_ROOT; };
 		A8B6C8892456C64D00256C74 /* AddScheduleLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleLocationViewController.swift; sourceTree = "<group>"; };
+		A8B6C88B2458BBAF00256C74 /* EventCostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventCostViewController.swift; path = TripPlanner/Controllers/EventsControllers/EventCostViewController.swift; sourceTree = SOURCE_ROOT; };
 		A8BBA5EE2432E0F200D9EF74 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A8EE0FF524047FF1004CF76E /* EventProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventProfileImage.swift; sourceTree = "<group>"; };
 		A8EE0FF92404A49D004CF76E /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				A8FDD80E2437172900C99AC6 /* AddLocationViewController.swift */,
 				A8EE100724061D1E004CF76E /* EventMainPageViewController.swift */,
 				A8EE1009240633E9004CF76E /* EventScheduleViewController.swift */,
+				A8B6C88B2458BBAF00256C74 /* EventCostViewController.swift */,
 				A8EE100D2406387A004CF76E /* EventMembersViewController.swift */,
 				A89503E6240756A900A47C28 /* EventChatViewController.swift */,
 			);
@@ -463,6 +466,7 @@
 				A8442C69242EE938003819E9 /* AddContactsViewController.swift in Sources */,
 				A8A1075223E9E8B9008C4D59 /* SearchContactsViewController.swift in Sources */,
 				A83CBF2524065FFD0067709B /* AddScheduleViewController.swift in Sources */,
+				A8B6C88C2458BBAF00256C74 /* EventCostViewController.swift in Sources */,
 				A8F978402433E605001D9794 /* UsernameViewController.swift in Sources */,
 				A868643123DF89B600EBFA35 /* ContainerController.swift in Sources */,
 				A8F99C982404601A00A6FAF4 /* EventsTableViewCell.swift in Sources */,
