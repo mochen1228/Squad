@@ -15,9 +15,19 @@ class EventCostViewController: UIViewController {
     
     let db = Firestore.firestore()
     
+    var currentEvent: String = ""
+    
     var costCount = 0
     var costList: [String] = []
     var costDescriptions: [String] = []
+    var costAmounts: [String] = []
+    var costActivities: [String] = []
+    
+    var costUsers: [String] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var costNames: [String] = []
     var costImages: [String] = [] {
         didSet {
@@ -58,6 +68,7 @@ class EventCostViewController: UIViewController {
     }
     
     @objc func refresh(_ sender: Any) {
+        loadCosts()
         self.refreshControl.endRefreshing()
     }
     
@@ -65,31 +76,36 @@ class EventCostViewController: UIViewController {
         costCount = 0
         costList = []
         costDescriptions = []
+        costActivities = []
+        
+        costUsers = []
         costNames = []
         costImages = []
         
-//        db.collection("events").document(currentEvent).getDocument() { (document, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                let data = document!.data()!
-//                let currentSchedule = data["schedules"] as! [String]
-//
-//                self.scheduleCount = currentSchedule.count
-//                for schedule in currentSchedule {
-//                    self.db.collection("schedules").document(schedule).getDocument() { (doc, err) in
-//                        if let err = err {
-//                            print("Error getting documents: \(err)")
-//                        } else {
-//                            let data = doc!.data()!
-//                            self.scheduleList.append(doc!.documentID)
-//                            self.scheduleNames.append(data["name"] as! String)
-//                            self.datetimeNames.append(data["time"] as! String)
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        db.collection("events").document(currentEvent).getDocument() { (document, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let data = document!.data()!
+                let currentCosts = data["costs"] as! [String]
+                
+                self.costCount = currentCosts.count
+                for cost in currentCosts {
+                    self.db.collection("costs").document(cost).getDocument() { (doc, err) in
+                        if let err = err {
+                            print("Error getting documents: \(err)")
+                        } else {
+                            let data = doc!.data()!
+                            self.costList.append(doc!.documentID)
+                            self.costDescriptions.append(data["description"] as! String)
+                            self.costAmounts.append(data["amount"] as! String)
+                            self.costActivities.append(data["activity"] as! String)
+                            self.costUsers.append(data["user"] as! String)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,16 +128,20 @@ class EventCostViewController: UIViewController {
 
 extension EventCostViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return costCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCostCell", for: indexPath) as! EventCostTableViewCell
-//        let row = indexPath.row
-//        cell.profileImage.image = UIImage(named: imageNames[row])
-//        cell.usernameLabel.text = usernames[row]
-//        cell.firstLastNameLabel.text = contactNames[row]
-//        cell.selectionStyle = .none
+        let row = indexPath.row
+        
+        cell.contactNameLabel.text = "First Last"
+        cell.scheduleNameLabel.text = costActivities[row]
+        cell.descriptionLabel.text = costDescriptions[row]
+        cell.costLabel.text = "$ \(costAmounts[row])"
+        // cell.profileImage.image = UIImage(named: costImages[row])
+        cell.profileImage.image = UIImage(named: "matt_profile")
+        cell.selectionStyle = .none
         return cell
     }
 

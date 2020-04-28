@@ -25,11 +25,7 @@ class EventScheduleViewController: UIViewController {
             }
         }
     }
-//
-//    var dummyScheduleNames = ["Meet Up At Matt's Place",
-//                           "Dinner at McDonald's"]
-//    var dummyDatetime = ["Today, 5:00 PM", "Today, 6:00 PM"]
-//
+
     let button = UIButton(frame: CGRect(x: 150, y: 550, width: 75, height: 75))
     
     var currentEvent: String = ""

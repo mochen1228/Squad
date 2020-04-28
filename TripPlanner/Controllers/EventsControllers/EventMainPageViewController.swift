@@ -23,6 +23,7 @@ class EventMainPageViewController: UIViewController {
     
     var scheduleVC: EventScheduleViewController!
     var memberVC: EventMembersViewController!
+    var costVC: EventCostViewController!
     var chatVC: EventChatViewController!
     
     @IBOutlet weak var navigationBar: UINavigationItem!
@@ -78,10 +79,14 @@ class EventMainPageViewController: UIViewController {
 
         // get a reference to the embedded PageViewController on load
 
-        if let vc = segue.destination as? EventScheduleViewController,
-            segue.identifier == "eventSegue" {
+        if let vc = segue.destination as? EventScheduleViewController, segue.identifier == "eventSegue" {
             self.scheduleVC = vc
             self.scheduleVC.currentEvent = self.currentEvent
+        }
+        
+        if let vc = segue.destination as? EventCostViewController, segue.identifier == "costSegue" {
+            self.costVC = vc
+            self.costVC.currentEvent = self.currentEvent
         }
     }
 }
