@@ -82,6 +82,7 @@ class EventCostViewController: UIViewController {
         costNames = []
         costImages = []
         
+        // Load current event to get list of costs
         db.collection("events").document(currentEvent).getDocument() { (document, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -90,6 +91,8 @@ class EventCostViewController: UIViewController {
                 let currentCosts = data["costs"] as! [String]
                 
                 self.costCount = currentCosts.count
+                
+                // For each cost, load info to local array
                 for cost in currentCosts {
                     self.db.collection("costs").document(cost).getDocument() { (doc, err) in
                         if let err = err {
@@ -104,6 +107,8 @@ class EventCostViewController: UIViewController {
                         }
                     }
                 }
+                
+                // Load user info after userIDs are loaded
                 self.loadUsers()
             }
         }
