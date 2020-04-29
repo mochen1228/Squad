@@ -190,7 +190,7 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
             } else {
                 let data = document!.data()!
                 let currentSchedules = data["schedules"] as! [String]
-                
+                let currentCosts = data["costs"] as! [String]
                 // Delete all schedules within this event
                 for schedule in currentSchedules {
                     self.db.collection("schedules").document(schedule).delete() { err in
@@ -198,20 +198,31 @@ class EventsMainViewController: UIViewController, UITableViewDataSource, UITable
                             print("Error removing document: \(err)")
                         } else {
                             print("Document successfully removed!")
-                            
-                            // Once schedules are deleted, remove the event
-                            self.db.collection("events").document(event).delete() { err in
-                                if let err = err {
-                                    print("Error removing document: \(err)")
-                                } else {
-                                    print("Document successfully removed!")
-                                    
-                                    self.loadEvents()
-                                }
-                            }
+ 
                         }
                     }
+                }
+                for schedule in currentSchedules {
+                   self.db.collection("schedules").document(schedule).delete() { err in
+                       if let err = err {
+                           print("Error removing document: \(err)")
+                       } else {
+                           print("Document successfully removed!")
+
+                       }
+                   }
+               }
                 
+                
+                // Once schedules are deleted, remove the event
+                self.db.collection("events").document(event).delete() { err in
+                 if let err = err {
+                     print("Error removing document: \(err)")
+                 } else {
+                     print("Document successfully removed!")
+                     
+                     self.loadEvents()
+                 }
                 }
             }
         }
