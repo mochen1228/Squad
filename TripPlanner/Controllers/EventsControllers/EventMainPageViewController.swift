@@ -89,5 +89,9 @@ class EventMainPageViewController: UIViewController {
             self.costVC.currentEvent = self.currentEvent
         }
         
+        if let vc = segue.destination as? EventMembersViewController, segue.identifier == "memberSegue" {
+            self.memberVC = vc
+            self.memberVC.currentEvent = self.currentEvent
+        }
     }
 }

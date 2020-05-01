@@ -94,7 +94,8 @@ class SignupViewController: UIViewController {
             "first": firstName,
             "last": lastName,
             "contactList": [String](),
-            "username": username
+            "username": username,
+            "image": "profile_default"
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")

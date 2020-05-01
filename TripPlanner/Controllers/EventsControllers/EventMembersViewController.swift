@@ -20,7 +20,13 @@ class EventMembersViewController: UIViewController {
     let db = Firestore.firestore()
     
     var profileCount = 0
-    var contactList: [String] = []
+    var contactList: [String] = []  {
+           didSet {
+               if profileCount == contactList.count {
+                   self.loadContactInfo()
+               }
+           }
+       }
     var contactNames: [String] = []
     var usernames: [String] = []
     var imageNames: [String] = [] {
@@ -32,6 +38,8 @@ class EventMembersViewController: UIViewController {
             }
         }
     }
+    
+    var currentEvent = ""
     
     var selectedContact = ""
     
@@ -47,19 +55,26 @@ class EventMembersViewController: UIViewController {
         contactList = []
         // Load all contacts of the current user to the table view
         let currentUser = Auth.auth().currentUser
-        db.collection("users").whereField("userID", isEqualTo: currentUser?.uid as Any)
-            .getDocuments() { (querySnapshot, err) in
+        db.collection("events").document(currentEvent).getDocument() { (document, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                let resultData = querySnapshot!.documents[0].data()
-                for contact in resultData["contactList"] as! [String] {
-                    self.contactList.append(contact)
+                let data = document!.data()!
+                let currentMembers = data["participants"] as! [String]
+                self.profileCount = currentMembers.count
+                for member in currentMembers {
+                    self.db.collection("users").document(member).getDocument() { (doc, err) in
+                        if let err = err {
+                            print("Error getting documents: \(err)")
+                        } else {
+                            let data = doc!.data()!
+                            self.contactList.append(doc!.documentID)
+                            print(doc!.documentID)
+                    }
                 }
-                self.currentUser.contactList = resultData["contactList"] as! [String]
-                // Change dummy count and refresh page
-                self.profileCount = self.contactList.count
-                self.loadContactInfo()
+                // self.loadContactInfo()
+
+                }
             }
         }
     }
@@ -80,12 +95,31 @@ class EventMembersViewController: UIViewController {
         }
     }
     
+    func saveNewMembers(_ members: [String]) {
+        // Add member to event
+        // Get current event document first, then overwrite member array
+        self.db.collection("events").document(self.currentEvent)
+            .getDocument() { (document, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let data = document!.data()!
+                var currentMembers = data["participants"] as! [String]
+                for member in members {
+                    if !(currentMembers.contains(member)) {
+                        currentMembers.append(member)
+                    }
+                }
+                self.db.collection("events").document(self.currentEvent).setData(["costs": currentMembers ], merge: true)
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
     @objc func didTapAddButton(sender: Any) {
         guard let inviteViewController = storyboard?.instantiateViewController(
             withIdentifier: "InviteFriendsViewController") as? InviteFriendsViewController else {return}
-        //addViewController.delegate = self
-        // addViewController.modalPresentationStyle = .fullScreen
-        // addViewController.currentEvent = currentEvent
+        inviteViewController.delegate = self
         present(inviteViewController, animated: true)
         // performSegue(withIdentifier: "showAddSchedule", sender: nil)
     }
@@ -139,5 +173,17 @@ extension EventMembersViewController: UITableViewDelegate, UITableViewDataSource
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "showPrivateChat2", sender: nil)
         
+    }
+}
+
+extension EventMembersViewController: InviteFriendsViewControllerDelegate {
+    func finishPassing(newData: [[String]]) {
+        print("Received:")
+        print(newData)
+        let imageNames = newData[0]
+        let usernames = newData[1]
+        let contactNames = newData[2]
+        let contactList = newData[3]
+        self.saveNewMembers(contactList)
     }
 }
