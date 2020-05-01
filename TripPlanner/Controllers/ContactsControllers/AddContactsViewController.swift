@@ -13,6 +13,8 @@ import MessageUI
 
 class AddContactsViewController: UIViewController, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate {
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         controller.dismiss(animated: true, completion: nil)
     }
@@ -20,6 +22,8 @@ class AddContactsViewController: UIViewController, MFMessageComposeViewControlle
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
+    
+    let db = Firestore.firestore()
     
     var searchResults = [User]()
     var currentUser = User()
@@ -98,7 +102,7 @@ class AddContactsViewController: UIViewController, MFMessageComposeViewControlle
         //      user a different icon indicating so
         let db = Firestore.firestore()
         let currentUser = Auth.auth().currentUser
-        db.collection("users").whereField("userID", isEqualTo: currentUser?.uid)
+        db.collection("users").whereField("userID", isEqualTo: appDelegate.currentUser.userID)
             .getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -126,7 +130,6 @@ extension AddContactsViewController: UITableViewDelegate, UITableViewDataSource 
         cell.usernameLabel.text = searchResults[indexPath.row].username
         
         print(currentUser.contactList)
-        print(searchResults[indexPath.row].userID)
         
         // Set images for add friend button
         // If the user is alreay a friend, it will set checked as the button image
@@ -136,8 +139,32 @@ extension AddContactsViewController: UITableViewDelegate, UITableViewDataSource 
         } else {
             let buttonImage = UIImage(named: "add_user_checked")
             cell.addUserButton.setImage(buttonImage, for: .normal)
+            cell.selectionStyle = .none
         }
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("CURRENT USER", appDelegate.currentUser.documentID)
+        self.db.collection("users").document(appDelegate.currentUser.documentID)
+            .getDocument() { (document, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let data = document!.data()!
+                var currentContacts = data["contactList"] as! [String]
+                print("CURRENT CONTACT", currentContacts)
+                print(self.searchResults[0])
+                if !(currentContacts.contains(self.searchResults[indexPath.row].documentID)) {
+                    currentContacts.append(self.searchResults[indexPath.row].documentID)
+                }
+                self.db.collection("users").document(self.appDelegate.currentUser.documentID).setData(["contactList": currentContacts], merge: true)
+
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        
     }
 }
 
@@ -166,6 +193,7 @@ extension AddContactsViewController: UISearchBarDelegate {
                     newUser.lastname = document.data()["last"] as! String
                     newUser.userID = document.data()["userID"] as! String
                     newUser.username = document.data()["username"] as! String
+                    newUser.documentID = document.documentID
                     self.searchResults.append(newUser)
                 }
                 

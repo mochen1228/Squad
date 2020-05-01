@@ -23,9 +23,10 @@ class PrivateMessageViewController: MessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // navigationBar.title = currentContact
+        navigationBar.title = currentContact
         
         configureInputBar()
+        
     }
     
     func configureInputBar() {

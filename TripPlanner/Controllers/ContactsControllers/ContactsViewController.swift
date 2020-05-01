@@ -46,7 +46,7 @@ class ContactsViewController: UIViewController {
                              "You: 早安ez"]
     
     var selectedContact = ""
-    
+    var refreshControl   = UIRefreshControl()
     
     
     // MARK: Properties
@@ -54,10 +54,14 @@ class ContactsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @objc func refresh(_ sender: Any) {
+        loadContacts()
+        self.refreshControl.endRefreshing()
+    }
     
     // MARK: Initializations
     override func viewWillAppear(_ animated: Bool) {
-      super.viewWillAppear(animated)
+        super.viewWillAppear(true)
         loadContacts()
     }
     
@@ -66,7 +70,8 @@ class ContactsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
-        
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.tableView.addSubview(refreshControl)
         
 
     }
@@ -80,7 +85,7 @@ class ContactsViewController: UIViewController {
         }
     }
     
-
+    
     // MARK: Load contact info
     func loadContacts() {
         profileCount = 0

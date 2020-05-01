@@ -43,6 +43,7 @@ class EventMembersViewController: UIViewController {
     
     var selectedContact = ""
     
+    var refreshControl   = UIRefreshControl()
     @IBOutlet weak var tableView: UITableView!
     
     let button = UIButton(frame: CGRect(x: 150, y: 550, width: 75, height: 75))
@@ -72,7 +73,6 @@ class EventMembersViewController: UIViewController {
                             print(doc!.documentID)
                     }
                 }
-                // self.loadContactInfo()
 
                 }
             }
@@ -110,8 +110,7 @@ class EventMembersViewController: UIViewController {
                         currentMembers.append(member)
                     }
                 }
-                self.db.collection("events").document(self.currentEvent).setData(["costs": currentMembers ], merge: true)
-                self.dismiss(animated: true, completion: nil)
+                self.db.collection("events").document(self.currentEvent).setData(["participants": currentMembers ], merge: true)
             }
         }
     }
@@ -139,6 +138,12 @@ class EventMembersViewController: UIViewController {
         self.view.addSubview(button)
     }
     
+    @objc func refresh(_ sender: Any) {
+        loadContacts()
+        loadContactInfo()
+        self.refreshControl.endRefreshing()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         loadContacts()
@@ -150,6 +155,9 @@ class EventMembersViewController: UIViewController {
         tableView.dataSource = self
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         setUpButton()
+        
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.tableView.addSubview(refreshControl)
     }
 }
 
