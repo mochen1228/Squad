@@ -32,6 +32,7 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var firstnameTextfield: UITextField!
     @IBOutlet weak var lastnameTextfield: UITextField!
     
+    @IBOutlet weak var emailTextfield: UITextField!
     
     
     @IBAction func onClickDismissButton(_ sender: UIButton) {
@@ -64,26 +65,26 @@ class SignupViewController: UIViewController {
             return
         } else {
             print("All good")
-            createNewUser(usernameTextfield.text!, passwordTextfield.text!)
+            createNewUser(emailTextfield.text!, passwordTextfield.text!)
         }
     }
     
-    func createNewUser(_ username: String, _ password: String) -> Void {
-        Auth.auth().createUser(withEmail: username, password: password) { authResult, error in
+    func createNewUser(_ email: String, _ password: String) -> Void {
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             print(error.debugDescription)
             if error != nil {
                 print("Cannot create user")
             } else {
                 print("--- Successfully created user")
                 let newUserID = Auth.auth().currentUser?.uid
-                self.createUserDoc(newUserID!, self.firstnameTextfield.text!, self.lastnameTextfield.text!)
+                self.createUserDoc(newUserID!, self.firstnameTextfield.text!, self.lastnameTextfield.text!, self.usernameTextfield.text!)
                 self.dismiss(animated: true, completion: nil)
             }
             return
         }
     }
     
-    func createUserDoc(_ userID: String, _ firstName: String, _ lastName: String) -> Void {
+    func createUserDoc(_ userID: String, _ firstName: String, _ lastName: String, _ username: String) -> Void {
         var ref: DocumentReference? = nil
         let db = Firestore.firestore()
         // Add document to collection
@@ -93,7 +94,7 @@ class SignupViewController: UIViewController {
             "first": firstName,
             "last": lastName,
             "contactList": [String](),
-            "username": "flyer1228"
+            "username": username
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")

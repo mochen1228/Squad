@@ -24,12 +24,16 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var firstLastNameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        loadProfileInfo()
+    }
     
     func loadProfileInfo() {
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
 
         self.firstLastNameLabel.text = appDelegate.currentUser.firstname + " " + appDelegate.currentUser.lastname
-        
+        self.usernameLabel.text = appDelegate.currentUser.username
     }
     
     @IBAction func didTapMenuButton(_ sender: Any) {
