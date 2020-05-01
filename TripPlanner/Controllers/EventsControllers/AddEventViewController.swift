@@ -82,7 +82,8 @@ class AddEventViewController: UIViewController {
             "time": self.eventDatetimeTextfield.text!,
             "location": self.eventLocationTextfield.text!,
             "participants": contactList,
-            "image": "newport_beach_profile"
+            "image": "image_placeholder",
+            "costs": [String]()
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")

@@ -88,5 +88,6 @@ class EventMainPageViewController: UIViewController {
             self.costVC = vc
             self.costVC.currentEvent = self.currentEvent
         }
+        
     }
 }

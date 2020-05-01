@@ -25,13 +25,16 @@ class EventCostViewController: UIViewController {
     
     var costUsers: [String] = [] {
         didSet {
-            loadUsers()
+            if costCount == costUsers.count {
+                print("second", costList)
+            }
         }
     }
     var costNames: [String] = []
     var costImages: [String] = [] {
         didSet {
             if costCount == costImages.count {
+                print(costList)
                 self.tableView.reloadData()
             }
         }
@@ -60,9 +63,7 @@ class EventCostViewController: UIViewController {
     @objc func didTapAddButton(sender: Any) {
         guard let addViewController = storyboard?.instantiateViewController(
             withIdentifier: "AddCostViewController") as? AddCostViewController else {return}
-        //addViewController.delegate = self
-        // addViewController.modalPresentationStyle = .fullScreen
-        // addViewController.currentEvent = currentEvent
+        addViewController.currentEvent = currentEvent
         present(addViewController, animated: true)
         // performSegue(withIdentifier: "showAddSchedule", sender: nil)
     }
@@ -77,6 +78,7 @@ class EventCostViewController: UIViewController {
         costList = []
         costDescriptions = []
         costActivities = []
+        costAmounts = []
         
         costUsers = []
         costNames = []
@@ -89,45 +91,67 @@ class EventCostViewController: UIViewController {
             } else {
                 let data = document!.data()!
                 let currentCosts = data["costs"] as! [String]
-                
+                print("first", currentCosts)
                 self.costCount = currentCosts.count
                 
                 // For each cost, load info to local array
                 for cost in currentCosts {
+                    print("SEARCH 1")
                     self.db.collection("costs").document(cost).getDocument() { (doc, err) in
                         if let err = err {
                             print("Error getting documents: \(err)")
                         } else {
                             let data = doc!.data()!
                             self.costList.append(doc!.documentID)
-                            self.costDescriptions.append(data["description"] as! String)
+                            self.costDescriptions.append(data["description"] as!
+                                String)
                             self.costAmounts.append(data["amount"] as! String)
                             self.costActivities.append(data["activity"] as! String)
                             self.costUsers.append(data["user"] as! String)
+                            
+                            self.db.collection("users").document(data["user"] as! String)
+                                .getDocument() { (document, err) in
+                                if let err = err {
+                                    print("Error getting documents: \(err)")
+                                } else {
+                                    print("SEARCH 2")
+                                    let dataDescription = document!.data()!
+                                    self.costNames.append("\(dataDescription["first"] as! String) \(dataDescription["last"] as! String)")
+                                    self.costImages.append(dataDescription["image"] as! String)
+                                }
+                            }
                         }
                     }
                 }
                 
                 // Load user info after userIDs are loaded
-                self.loadUsers()
+                // self.loadUsers()
             }
         }
     }
     
-    func loadUsers() {
-        for user in costUsers {
-            db.collection("users").document(user)
-                .getDocument() { (document, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    let dataDescription = document!.data()!
-                    self.costNames.append("\(dataDescription["first"] as! String) \(dataDescription["last"] as! String)")
-                    self.costImages.append(dataDescription["image"] as! String)
+    func deleteCost(cost: String) {
+        db.collection("events").document(currentEvent).getDocument() { (document, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let data = document!.data()!
+                let currentCosts = data["costs"] as! [String]
+                let newCosts = currentCosts.filter {$0 != cost}
+                self.db.collection("events").document(self.currentEvent).setData(["costs": newCosts ], merge: true)
+                self.db.collection("costs").document(cost).delete() { err in
+                    if let err = err {
+                        print("Error removing document: \(err)")
+                    } else {
+                        print("Document successfully removed!")
+                        self.loadCosts()
+
+                    }
                 }
             }
         }
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -164,6 +188,12 @@ extension EventCostViewController: UITableViewDelegate, UITableViewDataSource {
         cell.profileImage.image = UIImage(named: costImages[row])
         cell.selectionStyle = .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            deleteCost(cost: self.costList[indexPath.row])
+        }
     }
 
 
