@@ -53,6 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             loadProfile()
         }
         
+//        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.clear], for: .normal)
+//        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.clear], for: UIControl.State.highlighted)
+        
         return true
     }
 

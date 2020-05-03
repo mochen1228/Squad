@@ -69,8 +69,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3j-oa-pCh">
-                                <rect key="frame" x="68" y="260" width="79" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3j-oa-pCh">
+                                <rect key="frame" x="68" y="260" width="41" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -133,17 +133,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dj8-UQ-kM9">
+                                <rect key="frame" x="67" y="201" width="79" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q18-61-qDE">
+                                <rect key="frame" x="172" y="194" width="137" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="1kq-cs-FRC"/>
                     </view>
                     <connections>
+                        <outlet property="emailTextfield" destination="P2T-jW-5W9" id="teb-Il-4kM"/>
                         <outlet property="firstnameTextfield" destination="LIQ-pa-sVk" id="d19-iP-0b0"/>
                         <outlet property="illegalPasswordLabel" destination="3bu-Vr-GDJ" id="uIS-4E-ua7"/>
                         <outlet property="illegalUsernameLabel" destination="y2N-dR-3R9" id="iRT-GG-AmT"/>
                         <outlet property="lastnameTextfield" destination="7Wn-fa-X1l" id="J9U-QH-6Fa"/>
                         <outlet property="passwordTextfield" destination="Wr9-rS-DNV" id="shN-Nd-yd5"/>
-                        <outlet property="usernameTextfield" destination="P2T-jW-5W9" id="CSe-R2-b4K"/>
+                        <outlet property="usernameTextfield" destination="q18-61-qDE" id="27x-hR-lIg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Qw-MG-KoU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

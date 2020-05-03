@@ -155,7 +155,7 @@ extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contactsCell", for: indexPath) as! ContactTableViewCell
         let row = indexPath.row
         cell.contactNameLabel.text = contactNames[row]
-        cell.lastMessageLabel.text = dummyLastMessages[row]
+        cell.lastMessageLabel.text = "Say hi to your new friend!"
         cell.profileImage.image = UIImage(named: imageNames[row])
         cell.profileImage.contentMode = .scaleAspectFill
         return cell

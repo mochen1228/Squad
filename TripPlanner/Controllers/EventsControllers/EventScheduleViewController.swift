@@ -92,6 +92,7 @@ class EventScheduleViewController: UIViewController {
                             print("Error getting documents: \(err)")
                         } else {
                             let data = doc!.data()!
+                            print("DATA:", data)
                             self.scheduleList.append(doc!.documentID)
                             self.scheduleNames.append(data["name"] as! String)
                             self.datetimeNames.append(data["time"] as! String)

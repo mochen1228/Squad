@@ -41,7 +41,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grum_event_profile" translatesAutoresizingMaskIntoConstraints="NO" id="Sle-5j-h2T">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Sle-5j-h2T">
                                                             <rect key="frame" x="10" y="10" width="64" height="64"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="64" id="bRA-7v-oY9"/>
@@ -75,7 +75,7 @@
                                                                 <constraint firstAttribute="height" constant="40" id="rPY-9E-aJh"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="raquel_profile" translatesAutoresizingMaskIntoConstraints="NO" id="F7f-3H-B9l">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_default" translatesAutoresizingMaskIntoConstraints="NO" id="F7f-3H-B9l">
                                                             <rect key="frame" x="228" y="105" width="40" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="Civ-0f-NpA"/>
@@ -497,7 +497,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chen_profile" translatesAutoresizingMaskIntoConstraints="NO" id="gjo-0J-kvB">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_default" translatesAutoresizingMaskIntoConstraints="NO" id="gjo-0J-kvB">
                                                     <rect key="frame" x="16" y="11" width="68" height="68"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="68" id="Tca-y1-zLm"/>
@@ -1372,6 +1372,12 @@
                                                                 <constraint firstAttribute="width" constant="25" id="Fj3-2W-YHE"/>
                                                             </constraints>
                                                         </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muu-kS-8NT">
+                                                            <rect key="frame" x="268" y="14" width="41" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.95336957359999996" green="0.95336957359999996" blue="0.95336957359999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -1389,6 +1395,8 @@
                                                         <constraint firstItem="FcB-RW-4Pn" firstAttribute="leading" secondItem="9t9-qL-HBe" secondAttribute="leading" constant="20" id="RIj-a5-dJb"/>
                                                         <constraint firstItem="5Fl-Mz-acd" firstAttribute="top" secondItem="9t9-qL-HBe" secondAttribute="top" constant="69" id="UiJ-Mv-Ora"/>
                                                         <constraint firstItem="KyD-tt-TCu" firstAttribute="leading" secondItem="ep3-HC-z8W" secondAttribute="trailing" constant="6" id="X8z-xx-ujg"/>
+                                                        <constraint firstItem="aAc-6D-mVB" firstAttribute="leading" secondItem="muu-kS-8NT" secondAttribute="trailing" constant="9" id="ZQ7-d1-7MC"/>
+                                                        <constraint firstItem="muu-kS-8NT" firstAttribute="top" secondItem="9t9-qL-HBe" secondAttribute="top" constant="14" id="cZf-3U-ybC"/>
                                                         <constraint firstAttribute="bottom" secondItem="KyD-tt-TCu" secondAttribute="bottom" constant="30" id="dd0-jh-MBA"/>
                                                         <constraint firstItem="g2p-Yl-Fce" firstAttribute="top" secondItem="FcB-RW-4Pn" secondAttribute="bottom" constant="8" symbolic="YES" id="f6i-5k-ak5"/>
                                                         <constraint firstItem="1Xk-yt-W1K" firstAttribute="leading" secondItem="g2p-Yl-Fce" secondAttribute="trailing" constant="50" id="iYX-IQ-ZAb"/>
@@ -1652,19 +1660,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat Container" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVi-Mf-DAB">
-                                <rect key="frame" x="126" y="322" width="123" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jW1-bj-Obf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="jzs-fr-Kme" firstAttribute="trailing" secondItem="mVi-Mf-DAB" secondAttribute="trailing" constant="126" id="0EW-Hi-E0Q"/>
-                            <constraint firstItem="mVi-Mf-DAB" firstAttribute="leading" secondItem="jzs-fr-Kme" secondAttribute="leading" constant="126" id="5Cn-Sl-wqH"/>
-                            <constraint firstItem="jzs-fr-Kme" firstAttribute="bottom" secondItem="mVi-Mf-DAB" secondAttribute="bottom" constant="322" id="CCB-a3-DmC"/>
-                            <constraint firstItem="mVi-Mf-DAB" firstAttribute="top" secondItem="jzs-fr-Kme" secondAttribute="top" constant="278" id="SQS-NQ-DNU"/>
+                            <constraint firstItem="jW1-bj-Obf" firstAttribute="trailing" secondItem="jzs-fr-Kme" secondAttribute="trailing" id="frU-JA-lGO"/>
+                            <constraint firstItem="jW1-bj-Obf" firstAttribute="leading" secondItem="jzs-fr-Kme" secondAttribute="leading" id="ncF-Mf-hzt"/>
+                            <constraint firstItem="jW1-bj-Obf" firstAttribute="top" secondItem="qnc-DZ-q9h" secondAttribute="top" id="rLZ-Ja-wC9"/>
+                            <constraint firstItem="jW1-bj-Obf" firstAttribute="bottom" secondItem="jzs-fr-Kme" secondAttribute="bottom" id="y6N-cE-Roe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jzs-fr-Kme"/>
                     </view>
@@ -1986,16 +1991,16 @@
     <resources>
         <image name="chat_user" width="32" height="32"/>
         <image name="chen_profile" width="960" height="960"/>
-        <image name="grum_event_profile" width="750" height="656"/>
         <image name="gyul_profile" width="1366" height="1366"/>
         <image name="icons8-contacts-100" width="100" height="100"/>
         <image name="icons8-event-100" width="100" height="100"/>
         <image name="icons8-settings-100" width="100" height="100"/>
+        <image name="image_placeholder" width="166.66667175292969" height="166.66667175292969"/>
         <image name="line.horizontal.3" catalog="system" width="64" height="32"/>
         <image name="matt_profile" width="960" height="960"/>
         <image name="plus" catalog="system" width="64" height="56"/>
+        <image name="profile_default" width="1024" height="1024"/>
         <image name="profile_placeholder" width="600" height="600"/>
-        <image name="raquel_profile" width="1638" height="1638"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wtV-uU-o61"/>

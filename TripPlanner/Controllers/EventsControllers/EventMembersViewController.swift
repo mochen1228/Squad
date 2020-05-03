@@ -144,6 +144,15 @@ class EventMembersViewController: UIViewController {
         self.refreshControl.endRefreshing()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showPrivateChat2" {
+            if let destinationVC = segue.destination as? PrivateMessageViewController {
+                destinationVC.currentContact = selectedContact
+                selectedContact = ""
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         loadContacts()
