@@ -1,3 +1,5 @@
+Code is in TripPlanner Directory. It consists AppDelegate, Controllers, Storyboards, Models and Cells.
+
 Steps to install:
 1. Open Terminal App
 2. use command 
